@@ -1,237 +1,193 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Spartanos MyR Academy | Simuladores Académicos</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPARTANOS MyR ACADEMY</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* RESETEO GENERAL */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
 
-  <style>
-    :root{
-      --verde-camuflaje:#6b8f45;
-      --verde-oscuro:#3c4a3f;
-      --cafe:#7b5b3b;
-      --plomo:#9aa0a6;
-      --negro:#111114;
-      --bg-card: rgba(255,255,255,0.95);
-    }
+        body {
+            background-image: url("imagenes/fondo.jpg"); /* ← CAMBIA AQUÍ TU FONDO */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
 
-    *{box-sizing:border-box}
-    body{
-      margin:0;
-      font-family:Inter,system-ui,Segoe UI,Arial;
-      background-image: url('fondo-academia-pro.jpg');
-      background-size: cover;
-      background-position:center;
-      background-attachment: fixed;
-      color:var(--negro);
-    }
+        /* BARRA DE NAVEGACIÓN */
+        nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,0.7);
+            padding: 12px 0;
+            text-align: center;
+            z-index: 1000;
+        }
 
-    header{
-      position:sticky;
-      top:0;
-      z-index:1200;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      padding:14px 20px;
-      background:rgba(0,0,0,0.55);
-      backdrop-filter: blur(6px);
-      color:white;
-    }
+        nav a {
+            color: white;
+            margin: 0 18px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: bold;
+            transition: 0.3s;
+        }
 
-    .brand{display:flex;align-items:center;gap:14px}
-    .brand img{height:56px}
+        nav a:hover {
+            color: #00ffea;
+            text-shadow: 0 0 6px #00ffea;
+        }
 
-    nav a{
-      color:#fff;
-      font-weight:600;
-      text-decoration:none;
-      padding:8px 12px;
-      border-radius:8px;
-      transition:0.2s;
-    }
-    nav a:hover{background:rgba(255,255,255,0.1);color:var(--verde-camuflaje)}
+        /* SECCIONES */
+        section {
+            min-height: 100vh;
+            padding: 100px 20px 40px;
+            backdrop-filter: blur(3px);
+        }
 
-    .hero{
-      padding:48px 16px;
-      display:flex;
-      justify-content:center;
-    }
-    .hero-inner{
-      max-width:1100px;
-      width:100%;
-      background:linear-gradient(180deg, rgba(224,22,22,0.96), rgba(4,4,4,0.94));
-      border-radius:14px;
-      padding:28px;
-      color:white;
-      display:flex;
-      gap:20px;
-      align-items:center;
-    }
-    .chip{
-      background:var(--cafe);
-      color:white;
-      padding:6px 10px;
-      border-radius:999px;
-      font-weight:700;
-    }
+        .contenedor {
+            background: rgba(0, 0, 0, 0.50);
+            max-width: 900px;
+            margin: auto;
+            padding: 40px;
+            border-radius: 12px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 0 20px black;
+        }
 
-    main{max-width:1100px;margin:auto;padding:20px}
+        h1, h2 {
+            margin-top: 0;
+            text-shadow: 0 0 12px black;
+        }
 
-    .accordion{
-      background:var(--bg-card);
-      border-radius:12px;
-      margin-bottom:14px;
-      border:1px solid rgba(0,0,0,0.1);
-    }
+        /* BOTONES */
+        .btn {
+            display: inline-block;
+            margin: 15px;
+            padding: 15px 25px;
+            background: #00ffea;
+            color: black;
+            font-weight: bold;
+            border-radius: 10px;
+            text-decoration: none;
+            transition: 0.3s;
+        }
 
-    .test-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-      gap:14px;
-    }
+        .btn:hover {
+            background: white;
+            color: black;
+            transform: scale(1.05);
+        }
 
-    .test-card{
-      background:white;
-      border-radius:10px;
-      padding:14px;
-      cursor:pointer;
-      border:1px solid rgba(0,0,0,0.06);
-      transition:0.2s;
-    }
-    .test-card:hover{
-      transform:translateY(-5px);
-      box-shadow:0 10px 20px rgba(0,0,0,0.1);
-    }
+        /* BOTÓN WHATSAPP */
+        .whatsapp {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            background: #25D366;
+            padding: 15px 20px;
+            border-radius: 50%;
+            font-size: 26px;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 0 15px black;
+            z-index: 999;
+        }
 
-    .whatsapp-float{
-      position:fixed;
-      right:18px;
-      bottom:18px;
-      background:#25d366;
-      color:white;
-      padding:14px;
-      border-radius:50%;
-      font-size:24px;
-      text-align:center;
-      text-decoration:none;
-    }
-
-    footer{
-      background:rgba(0,0,0,0.6);
-      padding:20px;
-      text-align:center;
-      color:white;
-      margin-top:40px;
-    }
-
-  </style>
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
 
-<header>
-  <div class="brand">
-    <img src="Sin título.png" alt="Logo Spartanos MyR Academy">
-    <div>
-      <div style="font-weight:800">Spartanos MyR ACADEMY</div>
-      <div style="font-size:12px;opacity:0.9">Excelencia en Preparación Académica</div>
-    </div>
-  </div>
+    <!-- MENÚ SUPERIOR -->
+    <nav>
+        <a href="#inicio">INICIO</a>
+        <a href="#misionvision">MISIÓN & VISIÓN</a>
+        <a href="#formularios">FORMULARIOS</a>
+        <a href="#contacto">CONTACTO</a>
+    </nav>
 
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#introduccion">Introducción</a>
-    <a href="#misionvision">Misión & Visión</a>
-    <a href="#formularios">Pruebas</a>
-    <a href="#contacto">Contacto</a>
-    <a href="#galeria">Galería</a>
-  </nav>
-</header>
+    <!-- SECCIÓN INICIO -->
+    <section id="inicio">
+        <div class="contenedor">
+            <h1>SPARTANOS MyR ACADEMY</h1>
+            <p>Formación policial y militar · Simuladores académicos · Preparación física profesional</p>
+        </div>
+    </section>
 
-<section id="inicio" class="hero">
-  <div class="hero-inner">
-    <div>
-      <h1>Simuladores Académicos</h1>
-      <p>Práctica orientada a ingreso policial, militar y académico.</p>
-      <div class="chips">
-        <span class="chip">Acceso ilimitado</span>
-        <span class="chip">Práctica constante</span>
-        <span class="chip">100% Gratis</span>
-      </div>
-    </div>
-    <div>
-      <a href="#formularios" style="background:var(--verde-camuflaje);padding:10px 14px;border-radius:10px;color:white;text-decoration:none">
-        Ver Pruebas
-      </a>
-    </div>
-  </div>
-</section>
+    <!-- MISIÓN & VISIÓN -->
+    <section id="misionvision">
+        <div class="contenedor">
+            <h2>MISIÓN</h2>
+            <p>
+                Formar aspirantes policiales y militares con disciplina, 
+                habilidades físicas, técnicas académicas y valores de excelencia.
+            </p>
 
-<main>
+            <h2>VISIÓN</h2>
+            <p>
+                Ser la academia líder en preparación integral, garantizando 
+                resultados sobresalientes y un futuro profesional sólido.
+            </p>
+        </div>
+    </section>
 
-<!-- INTRODUCCIÓN -->
-<section class="accordion" id="introduccion">
-  <div style="padding:18px">
-    <h2>Introducción</h2>
-    <p>Aquí puedes agregar una introducción sobre tu academia, misión, valores y propósito.</p>
-  </div>
-</section>
+    <!-- FORMULARIOS ACADÉMICOS -->
+    <section id="formularios">
+        <div class="contenedor">
+            <h2>FORMULARIOS ACADÉMICOS</h2>
+            <p>Selecciona el simulador que deseas abrir:</p>
 
-<!-- MISIÓN & VISIÓN -->
-<section class="accordion" id="misionvision">
-  <div style="padding:18px">
-    <h2>Misión & Visión</h2>
-    <p><strong>Misión:</strong> Formar estudiantes con excelencia académica y valores de disciplina y servicio.</p>
-    <p><strong>Visión:</strong> Ser la academia líder en preparación integral y apoyo a procesos de ingreso.</p>
-  </div>
-</section>
+            <a class="btn" href="simuladores/ciencias-sociales.html">Ciencias Sociales</a>
+            <a class="btn" href="simuladores/matematicas.html">Matemáticas</a>
+            <a class="btn" href="simuladores/lenguaje.html">Lenguaje</a>
+            <a class="btn" href="simuladores/razonamiento.html">Razonamiento Verbal / Lógico</a>
+        </div>
+    </section>
 
-<!-- PRUEBAS -->
-<section class="accordion" id="formularios">
-  <div style="padding:18px">
-    <h2>Pruebas Académicas</h2>
+    <!-- CONTACTO / REDES -->
+    <section id="contacto">
+        <div class="contenedor">
+            <h2>CONTACTO:</h2>
+            <p>📍 Ecuador</p>
+            <p>📞 Teléfono: +593985486085_+593 </p>
+            <p>📧 Email: spartanosmyr@gmail.com</p>
 
-    <div class="test-grid">
+            <h3>Redes Sociales</h3>
+            <a class="btn" href="#">Facebook</a>
+            <a class="btn" href="#">Instagram</a>
+            <a class="btn" href="#">TikTok</a>
+        </div>
+    </section>
 
-      <div class="test-card">
-        <span>🗺️ Ciencias Sociales P1</span>
-        <button onclick="openForm('FORM_SOCIALES_1')">Iniciar</button>
-      </div>
+    <!-- BOTÓN WHATSAPP -->
+    <a class="whatsapp"
+       href="https://wa.me/593985486085?text=Hola,%20quiero%20más%20información%20sobre%20la%20Academia%20Spartanos%20MyR"
+       target="_blank">💬</a>
 
-      <div class="test-card">
-        <span>➗ Matemáticas P1</span>
-        <button onclick="openForm('FORM_MATE_1')">Iniciar</button>
-      </div>
-
-      <div class="test-card">
-        <span>✍️ Lengua P1</span>
-        <button onclick="openForm('FORM_LENGUA_1')">Iniciar</button>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- CONTACTO -->
-<section class="accordion" id="contacto">
-  <div style="padding:18px">
-    <h2>Contacto</h2>
-    <p>Escríbenos o síguenos en redes.</p>
-
-    <a href="https://api.whatsapp.com/send/?phone=593985486085" target="_blank">WhatsApp</a>
-  </div>
-</section>
-
-</main>
-
-<footer>
-  © Spartanos MyR Academy — 2025
-</footer>
-
-<a href="https://api.whatsapp.com/send/?phone=593985486085" class="whatsapp-float">💬</a>
+    <!-- FOOTER -->
+    <footer>
+        © 2025 SPARTANOS MyR ACADEMY · Todos los derechos reservados
+    </footer>
 
 </body>
 </html>
