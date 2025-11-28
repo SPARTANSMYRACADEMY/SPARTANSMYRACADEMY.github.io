@@ -1,0 +1,7 @@
+<!-- INTRODUCCION-->
+    <section class="accordion" id="introduccion" aria-labelledby="introduccionTitle">
+      <div style="padding:18px">
+        <h2 id="introduccionTitle">Introducción</h2>
+        <p><strong>Introducción:</strong> Bienvenidos a Spartanos MyR Academy, donde nos dedicamos a preparar a estudiantes para su éxito académico y profesional.</p>
+      </div>
+    </section>
