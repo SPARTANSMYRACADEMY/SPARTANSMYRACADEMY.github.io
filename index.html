@@ -1,104 +1,272 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>SPARTANOS MyR ACADEMY</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPARTANOS MyR ACADEMY</title>
+
+    <style>
+        /* RESETEO GENERAL */
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: Arial, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-image: url("imagenes/fondo.jpg"); /* ← CAMBIA AQUÍ TU FONDO */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* NAV */
+        nav {
+            width: 100%;
+            position: fixed;
+            top: 0;
+            background: rgba(0,0,0,0.75);
+            padding: 10px 0;
+            text-align: center;
+            z-index: 1000;
+        }
+
+        nav img {
+            height: 55px;
+            vertical-align: middle;
+            margin-right: 15px;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        nav a:hover {
+            color: #00ffee;
+        }
+
+        /* SECCIONES */
+        section {
+            min-height: 100vh;
+            padding: 120px 20px 40px;
+            backdrop-filter: blur(3px);
+        }
+
+        .contenedor {
+            background: rgba(0,0,0,0.55);
+            padding: 40px;
+            max-width: 900px;
+            margin: auto;
+            text-align: center;
+            color: white;
+            border-radius: 15px;
+            box-shadow: 0 0 15px black;
+        }
+
+        h1, h2 {
+            text-shadow: 0 0 12px black;
+        }
+
+        /* BOTONES */
+        .btn {
+            display: inline-block;
+            padding: 12px 22px;
+            margin: 10px;
+            background: #00efe7;
+            color: black;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: white;
+            transform: scale(1.05);
+        }
+
+        /* GALERIA */
+        .galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 15px;
+        }
+
+        .galeria img {
+            width: 100%;
+            border-radius: 10px;
+            box-shadow: 0 0 10px black;
+        }
+
+        /* VIDEOS */
+        .videos iframe {
+            width: 100%;
+            height: 250px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px black;
+        }
+
+        /* LOGIN */
+        #login {
+            max-width: 380px;
+            margin: auto;
+            background: rgba(255,255,255,0.1);
+            padding: 25px;
+            border-radius: 12px;
+        }
+
+        #login input {
+            width: 90%;
+            padding: 12px;
+            margin: 8px;
+            border-radius: 8px;
+            border: none;
+        }
+
+        #login button {
+            width: 95%;
+            padding: 12px;
+            background: #00efe7;
+            border: none;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+
+        /* WHATSAPP */
+        .whatsapp {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #25D366;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 26px;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 0 12px black;
+        }
+
+        footer {
+            text-align: center;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 20px;
+        }
+    </style>
 </head>
+
 <body>
-  <nav class="nav">
-    <div class="nav-left">
-      <img src="imagenes/logo.png" alt="logo" class="logo">
-      <span class="brand">SPARTANOS MyR</span>
-    </div>
-    <button id="menuBtn" class="hamb">☰</button>
-    <div class="nav-links" id="navLinks">
-      <a href="#inicio">Inicio</a>
-      <a href="#misionvision">Misión</a>
-      <a href="#formularios">Simuladores</a>
-      <a href="#galeria">Galería</a>
-      <a href="#loginSection">Admin</a>
-    </div>
-  </nav>
 
-  <header id="inicio" class="hero">
-    <div class="hero-inner">
-      <h1>SPARTANOS MyR ACADEMY</h1>
-      <p>Preparación policial y militar · Simuladores académicos</p>
-      <div class="cta">
-        <button class="btn" id="openSim">Iniciar Simulador</button>
-        <a class="btn hollow" href="#formularios">Ver simuladores</a>
-      </div>
-    </div>
-  </header>
+    <!-- MENÚ -->
+    <nav>
+        <img src="imagenes/logo.png" alt="Logo">  <!-- ← CAMBIA TU LOGO -->
+        <a href="#inicio">Inicio</a>
+        <a href="#misionvision">Misión & Visión</a>
+        <a href="#galeria">Galería</a>
+        <a href="#videos">Videos</a>
+        <a href="#formularios">Formularios</a>
+        <a href="#loginSection">Admin</a>
+        <a href="#contacto">Contacto</a>
+    </nav>
 
-  <main>
-    <section id="misionvision" class="panel">
-      <div class="card">
-        <h2>Misión & Visión</h2>
-        <p>Formar aspirantes con disciplina y excelencia...</p>
-      </div>
-    </section>
-
-    <section id="formularios" class="panel">
-      <div class="card">
-        <h2>Simuladores</h2>
-        <div id="simList" class="sim-list">
-          <!-- tarjetas generadas por JS -->
+    <!-- INICIO -->
+    <section id="inicio">
+        <div class="contenedor">
+            <h1>SPARTANOS MyR ACADEMY</h1>
+            <p>Preparación policial · militar · simuladores académicos</p>
         </div>
-      </div>
     </section>
 
-    <section id="galeria" class="panel">
-      <div class="card">
-        <h2>Galería</h2>
-        <div class="gal-grid">
-          <img src="galeria/foto1.jpg" alt="">
-          <img src="galeria/foto2.jpg" alt="">
-          <img src="galeria/foto3.jpg" alt="">
-          <img src="galeria/foto4.jpg" alt="">
+    <!-- MISIÓN & VISIÓN -->
+    <section id="misionvision">
+        <div class="contenedor">
+            <h2>MISIÓN</h2>
+            <p>Formar aspirantes policiales y militares con disciplina y excelencia.</p>
+
+            <h2>VISIÓN</h2>
+            <p>Ser la mejor academia integral del país.</p>
         </div>
-      </div>
     </section>
 
-    <section id="loginSection" class="panel">
-      <div class="card">
-        <h2>Panel Admin / Login</h2>
-        <div id="authArea">
-          <div id="loginForm">
-            <input id="userLogin" placeholder="Usuario">
-            <input id="passLogin" placeholder="Contraseña" type="password">
-            <button id="btnLogin" class="btn">Ingresar</button>
-            <hr>
-            <h4>Crear cuenta</h4>
-            <input id="newUser" placeholder="Nuevo usuario">
-            <input id="newName" placeholder="Nombre">
-            <input id="newEmail" placeholder="Email">
-            <input id="newPass" type="password" placeholder="Contraseña">
-            <button id="btnRegister" class="btn">Crear cuenta</button>
-          </div>
+    <!-- GALERÍA -->
+    <section id="galeria">
+        <div class="contenedor">
+            <h2>GALERÍA</h2>
 
-          <div id="adminPanel" style="display:none">
-            <button id="btnLogout" class="btn hollow">Cerrar sesión</button>
-            <h3>Últimas inscripciones</h3>
-            <pre id="inscriptionsOutput" style="max-height:300px;overflow:auto;"></pre>
-          </div>
+            <div class="galeria">
+                <img src="galeria/foto1.jpg">
+                <img src="galeria/foto2.jpg">
+                <img src="galeria/foto3.jpg">
+                <img src="galeria/foto4.jpg">
+            </div>
         </div>
-      </div>
     </section>
-  </main>
 
-  <a class="whatsapp" id="waBtn" href="#" target="_blank">💬</a>
+    <!-- VIDEOS -->
+    <section id="videos">
+        <div class="contenedor">
+            <h2>VIDEOS</h2>
 
-  <div id="simModal" class="modal" aria-hidden="true">
-    <div class="modal-content">
-      <button class="close" id="closeModal">✕</button>
-      <div id="simContainer"></div>
-    </div>
-  </div>
+            <div class="videos">
+                <iframe src="https://www.youtube.com/embed/VIDEO1"></iframe>
+                <iframe src="https://www.youtube.com/embed/VIDEO2"></iframe>
+            </div>
+        </div>
+    </section>
 
-<script src="script.js"></script>
+    <!-- FORMULARIOS -->
+    <section id="formularios">
+        <div class="contenedor">
+            <h2>FORMULARIOS ACADÉMICOS</h2>
+
+            <a class="btn" href="simuladores/ciencias.html">Ciencias Sociales</a>
+            <a class="btn" href="simuladores/matematicas.html">Matemáticas</a>
+            <a class="btn" href="simuladores/lenguaje.html">Lenguaje</a>
+            <a class="btn" href="simuladores/razonamiento.html">Razonamiento</a>
+        </div>
+    </section>
+
+    <!-- LOGIN ADMIN -->
+    <section id="loginSection">
+        <div class="contenedor">
+            <h2>PANEL ADMINISTRADOR</h2>
+            <div id="login">
+                <input type="text" placeholder="Usuario">
+                <input type="password" placeholder="Contraseña">
+                <button onclick="alert('Acceso denegado: sistema demo')">Ingresar</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section id="contacto">
+        <div class="contenedor">
+            <h2>CONTACTO</h2>
+            <p>📍 Ecuador</p>
+            <p>📞 +593 999 999 999</p>
+            <p>📧 spartanosmyr@gmail.com</p>
+
+            <a class="btn" href="#">Facebook</a>
+            <a class="btn" href="#">Instagram</a>
+            <a class="btn" href="#">TikTok</a>
+        </div>
+    </section>
+
+    <!-- WHATSAPP -->
+    <a class="whatsapp" href="https://wa.me/593999999999?text=Hola%20quiero%20información" target="_blank">💬</a>
+
+    <!-- FOOTER -->
+    <footer>
+        © 2025 SPARTANOS MyR ACADEMY
+    </footer>
+
 </body>
 </html>
