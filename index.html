@@ -1,193 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SPARTANOS MyR ACADEMY</title>
-
-    <style>
-        /* RESETEO GENERAL */
-        html, body {
-            margin: 0;
-            padding: 0;
-            height: 100%;
-            font-family: Arial, sans-serif;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background-image: url("imagenes/fondo.jpg"); /* ← CAMBIA AQUÍ TU FONDO */
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center;
-            background-attachment: fixed;
-        }
-
-        /* BARRA DE NAVEGACIÓN */
-        nav {
-            width: 100%;
-            position: fixed;
-            top: 0;
-            left: 0;
-            background: rgba(0,0,0,0.7);
-            padding: 12px 0;
-            text-align: center;
-            z-index: 1000;
-        }
-
-        nav a {
-            color: white;
-            margin: 0 18px;
-            text-decoration: none;
-            font-size: 1.1rem;
-            font-weight: bold;
-            transition: 0.3s;
-        }
-
-        nav a:hover {
-            color: #00ffea;
-            text-shadow: 0 0 6px #00ffea;
-        }
-
-        /* SECCIONES */
-        section {
-            min-height: 100vh;
-            padding: 100px 20px 40px;
-            backdrop-filter: blur(3px);
-        }
-
-        .contenedor {
-            background: rgba(0, 0, 0, 0.50);
-            max-width: 900px;
-            margin: auto;
-            padding: 40px;
-            border-radius: 12px;
-            color: white;
-            text-align: center;
-            box-shadow: 0 0 20px black;
-        }
-
-        h1, h2 {
-            margin-top: 0;
-            text-shadow: 0 0 12px black;
-        }
-
-        /* BOTONES */
-        .btn {
-            display: inline-block;
-            margin: 15px;
-            padding: 15px 25px;
-            background: #00ffea;
-            color: black;
-            font-weight: bold;
-            border-radius: 10px;
-            text-decoration: none;
-            transition: 0.3s;
-        }
-
-        .btn:hover {
-            background: white;
-            color: black;
-            transform: scale(1.05);
-        }
-
-        /* BOTÓN WHATSAPP */
-        .whatsapp {
-            position: fixed;
-            right: 25px;
-            bottom: 25px;
-            background: #25D366;
-            padding: 15px 20px;
-            border-radius: 50%;
-            font-size: 26px;
-            color: white;
-            text-decoration: none;
-            box-shadow: 0 0 15px black;
-            z-index: 999;
-        }
-
-        /* FOOTER */
-        footer {
-            text-align: center;
-            padding: 20px;
-            background: rgba(0,0,0,0.7);
-            color: white;
-        }
-    </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SPARTANOS MyR ACADEMY</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-
 <body>
+  <nav class="nav">
+    <div class="nav-left">
+      <img src="imagenes/logo.png" alt="logo" class="logo">
+      <span class="brand">SPARTANOS MyR</span>
+    </div>
+    <button id="menuBtn" class="hamb">☰</button>
+    <div class="nav-links" id="navLinks">
+      <a href="#inicio">Inicio</a>
+      <a href="#misionvision">Misión</a>
+      <a href="#formularios">Simuladores</a>
+      <a href="#galeria">Galería</a>
+      <a href="#loginSection">Admin</a>
+    </div>
+  </nav>
 
-    <!-- MENÚ SUPERIOR -->
-    <nav>
-        <a href="#inicio">INICIO</a>
-        <a href="#misionvision">MISIÓN & VISIÓN</a>
-        <a href="#formularios">FORMULARIOS</a>
-        <a href="#contacto">CONTACTO</a>
-    </nav>
+  <header id="inicio" class="hero">
+    <div class="hero-inner">
+      <h1>SPARTANOS MyR ACADEMY</h1>
+      <p>Preparación policial y militar · Simuladores académicos</p>
+      <div class="cta">
+        <button class="btn" id="openSim">Iniciar Simulador</button>
+        <a class="btn hollow" href="#formularios">Ver simuladores</a>
+      </div>
+    </div>
+  </header>
 
-    <!-- SECCIÓN INICIO -->
-    <section id="inicio">
-        <div class="contenedor">
-            <h1>SPARTANOS MyR ACADEMY</h1>
-            <p>Formación policial y militar · Simuladores académicos · Preparación física profesional</p>
-        </div>
+  <main>
+    <section id="misionvision" class="panel">
+      <div class="card">
+        <h2>Misión & Visión</h2>
+        <p>Formar aspirantes con disciplina y excelencia...</p>
+      </div>
     </section>
 
-    <!-- MISIÓN & VISIÓN -->
-    <section id="misionvision">
-        <div class="contenedor">
-            <h2>MISIÓN</h2>
-            <p>
-                Formar aspirantes policiales y militares con disciplina, 
-                habilidades físicas, técnicas académicas y valores de excelencia.
-            </p>
-
-            <h2>VISIÓN</h2>
-            <p>
-                Ser la academia líder en preparación integral, garantizando 
-                resultados sobresalientes y un futuro profesional sólido.
-            </p>
+    <section id="formularios" class="panel">
+      <div class="card">
+        <h2>Simuladores</h2>
+        <div id="simList" class="sim-list">
+          <!-- tarjetas generadas por JS -->
         </div>
+      </div>
     </section>
 
-    <!-- FORMULARIOS ACADÉMICOS -->
-    <section id="formularios">
-        <div class="contenedor">
-            <h2>FORMULARIOS ACADÉMICOS</h2>
-            <p>Selecciona el simulador que deseas abrir:</p>
-
-            <a class="btn" href="simuladores/ciencias-sociales.html">Ciencias Sociales</a>
-            <a class="btn" href="simuladores/matematicas.html">Matemáticas</a>
-            <a class="btn" href="simuladores/lenguaje.html">Lenguaje</a>
-            <a class="btn" href="simuladores/razonamiento.html">Razonamiento Verbal / Lógico</a>
+    <section id="galeria" class="panel">
+      <div class="card">
+        <h2>Galería</h2>
+        <div class="gal-grid">
+          <img src="galeria/foto1.jpg" alt="">
+          <img src="galeria/foto2.jpg" alt="">
+          <img src="galeria/foto3.jpg" alt="">
+          <img src="galeria/foto4.jpg" alt="">
         </div>
+      </div>
     </section>
 
-    <!-- CONTACTO / REDES -->
-    <section id="contacto">
-        <div class="contenedor">
-            <h2>CONTACTO:</h2>
-            <p>📍 Ecuador</p>
-            <p>📞 Teléfono: +593985486085_+593 </p>
-            <p>📧 Email: spartanosmyr@gmail.com</p>
+    <section id="loginSection" class="panel">
+      <div class="card">
+        <h2>Panel Admin / Login</h2>
+        <div id="authArea">
+          <div id="loginForm">
+            <input id="userLogin" placeholder="Usuario">
+            <input id="passLogin" placeholder="Contraseña" type="password">
+            <button id="btnLogin" class="btn">Ingresar</button>
+            <hr>
+            <h4>Crear cuenta</h4>
+            <input id="newUser" placeholder="Nuevo usuario">
+            <input id="newName" placeholder="Nombre">
+            <input id="newEmail" placeholder="Email">
+            <input id="newPass" type="password" placeholder="Contraseña">
+            <button id="btnRegister" class="btn">Crear cuenta</button>
+          </div>
 
-            <h3>Redes Sociales</h3>
-            <a class="btn" href="#">Facebook</a>
-            <a class="btn" href="#">Instagram</a>
-            <a class="btn" href="#">TikTok</a>
+          <div id="adminPanel" style="display:none">
+            <button id="btnLogout" class="btn hollow">Cerrar sesión</button>
+            <h3>Últimas inscripciones</h3>
+            <pre id="inscriptionsOutput" style="max-height:300px;overflow:auto;"></pre>
+          </div>
         </div>
+      </div>
     </section>
+  </main>
 
-    <!-- BOTÓN WHATSAPP -->
-    <a class="whatsapp"
-       href="https://wa.me/593985486085?text=Hola,%20quiero%20más%20información%20sobre%20la%20Academia%20Spartanos%20MyR"
-       target="_blank">💬</a>
+  <a class="whatsapp" id="waBtn" href="#" target="_blank">💬</a>
 
-    <!-- FOOTER -->
-    <footer>
-        © 2025 SPARTANOS MyR ACADEMY · Todos los derechos reservados
-    </footer>
+  <div id="simModal" class="modal" aria-hidden="true">
+    <div class="modal-content">
+      <button class="close" id="closeModal">✕</button>
+      <div id="simContainer"></div>
+    </div>
+  </div>
 
+<script src="script.js"></script>
 </body>
 </html>
