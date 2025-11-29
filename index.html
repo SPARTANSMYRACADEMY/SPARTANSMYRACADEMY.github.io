@@ -417,7 +417,7 @@ sociedad.</p>
     const formUrls = {
       FORM_SOCIALES_1: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform?embedded=true',
       FORM_SOCIALES_2: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform?embedded=true',
-      FORM_MATE_1: 'https://forms.gle/3MEoVqysj7vS2oXz9',
+FORM_MATE_1: 'https://forms.gle/3MEoVqysj7vS2oXz9',
       FORM_MATE_2: 'https://forms.gle/ErToU3HhET3L2vTj8',
 
       FORM_FISICA_1: 'https://forms.gle/FbRnNvNWoJEYpFbq9',
@@ -430,38 +430,10 @@ sociedad.</p>
       FORM_INGLES_2: 'https://forms.gle/hx9t9XuyMXmguiev6',
 
       FORM_PSICO_1: 'https://forms.gle/WWCnhs71amLba9mT8',
-      FORM_PSICO_2:'https://forms.gle/6rwGaeFWpTzMTuJ8A',
+      FORM_PSICO_2: 'https://forms.gle/6rwGaeFWpTzMTuJ8A'
     };
-    function closeVisor(){
-      formFrame.src = '';
-      visor.classList.remove('open');
-      visor.setAttribute('aria-hidden','true');
-    }
 
-    // Toggle subject panels
-    function toggleSubject(head){
-      const subject = head.closest('.subject');
-      const panel = subject.querySelector('.panel');
-      const expanded = head.getAttribute('aria-expanded') === 'true';
-      // close others
-      document.querySelectorAll('.subject .panel.open').forEach(p=>{
-        if(p !== panel){ p.classList.remove('open'); p.closest('.subject').querySelector('.head').setAttribute('aria-expanded','false'); p.closest('.subject').querySelector('.chev').style.transform='rotate(0deg)'; }
-      });
-      if(!expanded){
-        panel.classList.add('open');
-        head.setAttribute('aria-expanded','true');
-        head.querySelector('.chev').style.transform = 'rotate(90deg)';
-      } else {
-        panel.classList.remove('open');
-        head.setAttribute('aria-expanded','false');
-        head.querySelector('.chev').style.transform = 'rotate(0deg)';
-      }
-    }
-
-    // Accessibility: close with escape
-    window.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeVisor(); closeChat(); closeAdmin(); }});
-
-    });
+    
   </script>
 
 </body>
