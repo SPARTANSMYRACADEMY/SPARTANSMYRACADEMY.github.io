@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="es">
 <head>
@@ -23,7 +22,20 @@
       --ui-bg: rgba(255,255,255,0.96);
       --transition: 200ms ease;
     }
-
+  /* ===== MARCA DE AGUA ===== */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('logo.png') repeat center center; /* Logo repetido */
+    background-size: 200px; /* Ajusta el tamaño según tu logo */
+    opacity: 0.05;          /* Transparencia */
+    pointer-events: none;    /* Permite interactuar con la página */
+    z-index: 9999;
+  }
     /* ===== reset ===== */
     *{box-sizing:border-box}
     html,body{height:100%;margin:0}
@@ -419,20 +431,20 @@ sociedad.</p>
       FORM_SOCIALES_1: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform?embedded=true',
       FORM_SOCIALES_2: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform?embedded=true',
 
-      FORM_MATE_1: 'https://docs.google.com/forms/d/e/FORM_ID_MATE_1/viewform?embedded=true',
-      FORM_MATE_2: 'https://docs.google.com/forms/d/e/FORM_ID_MATE_2/viewform?embedded=true',
+      FORM_MATE_1: 'https://forms.gle/3MEoVqysj7vS2oXz9',
+      FORM_MATE_2: 'https://forms.gle/ErToU3HhET3L2vTj8',
 
-      FORM_FISICA_1: 'https://docs.google.com/forms/d/e/FORM_ID_FISICA_1/viewform?embedded=true',
-      FORM_FISICA_2: 'https://docs.google.com/forms/d/e/FORM_ID_FISICA_2/viewform?embedded=true',
+      FORM_FISICA_1: 'https://forms.gle/FbRnNvNWoJEYpFbq9',
+      FORM_FISICA_2: 'https://forms.gle/D14m8aHj9Z9HRj1W7',
 
-      FORM_LENGUA_1: 'https://docs.google.com/forms/d/e/FORM_ID_LENGUA_1/viewform?embedded=true',
-      FORM_LENGUA_2: 'https://docs.google.com/forms/d/e/FORM_ID_LENGUA_2/viewform?embedded=true',
+      FORM_LENGUA_1: 'https://forms.gle/HLk9xtMNPVCtPNZk9',
+      FORM_LENGUA_2: 'https://forms.gle/rWAFfwdYVzDdVebo7',
 
-      FORM_INGLES_1: 'https://docs.google.com/forms/d/e/FORM_ID_INGLES_1/viewform?embedded=true',
-      FORM_INGLES_2: 'https://docs.google.com/forms/d/e/FORM_ID_INGLES_2/viewform?embedded=true',
+      FORM_INGLES_1: 'https://forms.gle/YqVwhn37aML63UJs9',
+      FORM_INGLES_2: 'https://forms.gle/hx9t9XuyMXmguiev6',
 
-      FORM_PSICO_1: 'https://docs.google.com/forms/d/e/FORM_ID_PSICO_1/viewform?embedded=true',
-      FORM_PSICO_2: 'https://docs.google.com/forms/d/e/FORM_ID_PSICO_2/viewform?embedded=true'
+      FORM_PSICO_1: 'https://forms.gle/WWCnhs71amLba9mT8',
+      FORM_PSICO_2: 'https://forms.gle/6rwGaeFWpTzMTuJ8A',
     };
 
     // ========== INSCRIPCIONES: REEMPLAZA por tu URL de Google Apps Script (web app) ==========
@@ -495,46 +507,9 @@ sociedad.</p>
     }
 
     // Accessibility: close with escape
-    window.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeVisor(); closeChat(); closeAdmin(); }});
+    window.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeVisor(); closeChat(); closeAdmin(); }})
 
-    // ========== CHATBOT ==========
-    const chatToggle = document.getElementById('chatToggle');
-    const chatWindow = document.getElementById('chatWindow');
-    const chatFrame = document.getElementById('chatFrame');
-    const chatClose = document.getElementById('chatClose');
-    chatToggle.addEventListener('click', ()=> {
-      chatWindow.classList.toggle('open');
-      // Optionally lazy-load chatbot url:
-      if(!chatFrame.src || chatFrame.src === '') {
-        chatFrame.src = 'https://www.chatbase.co/chatbot-iframe'; // replace with your chatbot embed
-      }
-    });
-    chatClose.addEventListener('click', closeChat);
-    function closeChat(){ chatWindow.classList.remove('open'); }
-
-    // ========== ADMIN DEMO ==========
-    const adminOpenBtn = document.getElementById('adminOpen');
-    const adminModal = document.getElementById('adminModal');
-    const adminClose = document.getElementById('adminClose');
-    const adminLogin = document.getElementById('adminLogin');
-    adminOpenBtn.addEventListener('click', ()=> adminModal.classList.add('open'));
-    adminClose.addEventListener('click', closeAdmin);
-    function closeAdmin(){ adminModal.classList.remove('open'); }
-    adminLogin.addEventListener('click', ()=>{
-      const u = document.getElementById('adminUser').value;
-      const p = document.getElementById('adminPass').value;
-      // DEMO credentials: admin / Spartanos123 (client-side demo only)
-      if(u === 'admin' && p === 'Spartanos123'){
-        alert('Acceso demo autorizado. (Este panel es solo demo — para producción usa Auth real.)');
-        closeAdmin();
-        // show a simple admin action: list of forms (demo)
-        const forms = Object.keys(formUrls).map(k=> `${k}: ${formUrls[k]}`).join('\\n');
-        alert('Formularios configurados:\\n\\n' + forms);
-      } else {
-        alert('Credenciales incorrectas (demo).');
-      }
-    });
-
+ 
     // ========== MOBILE MENU (simple) ==========
     const mobileBtn = document.getElementById('mobileMenuBtn');
     mobileBtn.addEventListener('click', ()=>{
@@ -543,62 +518,6 @@ sociedad.</p>
       else nav.style.display = 'flex';
     });
 
-    // ========== WHATSAPP FLOAT behavior: always visible ==========
-    // (No extra JS required; link in HTML)
-
-    // ========== THEME / SOUND toggles ==========
-    const themeToggle = document.getElementById('themeToggle');
-    const soundToggle = document.getElementById('soundToggle');
-    let soundEnabled = false;
-    soundToggle.addEventListener('click', ()=> {
-      soundEnabled = !soundEnabled;
-      soundToggle.style.background = soundEnabled ? 'linear-gradient(180deg,#2f6c2a,#1f421c)' : 'transparent';
-      playSound('toggle');
-    });
-    themeToggle.addEventListener('click', ()=> {
-      document.body.classList.toggle('dark-mode');
-      themeToggle.style.background = document.body.classList.contains('dark-mode') ? 'linear-gradient(180deg,#2f6c2a,#1f421c)' : 'transparent';
-    });
-
-    // small sound packs (base64 blink) just for small UX
-    const sounds = {
-      'toggle': 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA='
-    };
-    function playSound(name){
-      if(!soundEnabled) return;
-      const a = new Audio(sounds[name]);
-      a.play().catch(()=>{ /* ignore autoplay errors */ });
-    }
-
-    // ========== INSCRIPCIONES: enviar a Google Apps Script webhook ==========
-    const insForm = document.getElementById('inscripcionForm');
-    const insClear = document.getElementById('insClear');
-    insClear.addEventListener('click', ()=> insForm.reset());
-    insForm.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      const data = {
-        nombre: document.getElementById('ins_nombre').value,
-        telefono: document.getElementById('ins_telefono').value,
-        email: document.getElementById('ins_email').value,
-        programa: document.getElementById('ins_programa').value,
-        fecha: new Date().toISOString()
-      };
-      // If you provided INSCRIPCIONES_WEBHOOK, it will POST; otherwise show demo alert
-      if(INSCRIPCIONES_WEBHOOK && !INSCRIPCIONES_WEBHOOK.includes('YOUR_SCRIPT_ID')){
-        try{
-          await fetch(INSCRIPCIONES_WEBHOOK, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
-          alert('Inscripción recibida. Gracias — revisar hoja de cálculo.');
-          insForm.reset();
-        }catch(err){
-          alert('Error al enviar inscripción. Revisa INSCRIPCIONES_WEBHOOK en el código. (Demo)');
-          console.error(err);
-        }
-      } else {
-        alert('Demo: inscripción lista (no enviada). Reemplaza INSCRIPCIONES_WEBHOOK con tu Google Apps Script URL para guardar en Sheets.');
-        console.log(data);
-        insForm.reset();
-      }
-    });
 
     // ========== UTILS: set footer year ==========
     document.getElementById('year').textContent = new Date().getFullYear();
