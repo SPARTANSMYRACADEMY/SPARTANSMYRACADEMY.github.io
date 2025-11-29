@@ -5,8 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SPARTANOS MyR ACADEMY</title>
 
+    <!-- FUENTES E ICONOS -->
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+        crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <!-- ESTILOS GENERALES -->
     <style>
-        /* RESETEO GENERAL */
         html, body {
             margin: 0;
             padding: 0;
@@ -16,81 +21,20 @@
         }
 
         body {
-            background-image: url("Sin título.png"); /* ← CAMBIA AQUÍ TU FONDO */
+            background-image: url("Sin título.png");
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
             background-attachment: fixed;
         }
-<!— Asegúrate de incluir Font Awesome en el <head> —>
-<link rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-      integrity="sha512-p6eX6Qv1Z5x3e5Q+vWoG7V3YHB5z3OQbO/9HgD+p/4fQYQyqvyhY4JJ1SGoBj7Dv/ 8oI1pJCuV0B4i5iZP4dLg=="
-      crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<section id="redes" class="social-section">
-  <div class="social-container">
-    <a class="social-btn fb" href="https://facebook.com/TU_PAGINA" target="_blank" aria-label="Facebook">
-      <i class="fab fa-facebook-f"></i>
-    </a>
-    <a class="social-btn ig" href="https://instagram.com/TU_USUARIO" target="_blank" aria-label="Instagram">
-      <i class="fab fa-instagram"></i>
-    </a>
-    <a class="social-btn tt" href="https://www.tiktok.com/@TU_USUARIO" target="_blank" aria-label="TikTok">
-      <i class="fab fa-tiktok"></i>
-    </a>
-    <a class="social-btn wa" href="https://wa.me/NUMERO" target="_blank" aria-label="WhatsApp">
-      <i class="fab fa-whatsapp"></i>
-    </a>
-  </div>
-</section>
-/* ————— Social media section ————— */
-.social-section {
-  width: 100%;
-  padding: 20px 0;
-  background: transparent; /* o cambia según tu diseño */
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.social-container {
-  display: flex;
-  gap: 15px;
-}
-
-.social-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: #4b5f3a; /* verde militar / ajusta a tu paleta */
-  color: white;
-  font-size: 20px;
-  text-decoration: none;
-  transition: background 0.3s, transform 0.3s;
-}
-
-.social-btn:hover {
-  background: #5f7550;
-  transform: scale(1.1);
-}
-
-/* Opcional: estilos específicos por red */
-/* .social-btn.fb { background: #3b5998; } */
-/* .social-btn.ig { background: #e4405f; } */
-/* .social-btn.tt { background: #000; } */
-/* .social-btn.wa { background: #25D366; } */
-
-        /* NAV */
+        /* NAVBAR */
         nav {
             width: 100%;
             position: fixed;
             top: 0;
-            background: rgba(0,0,0,0.75);
-            padding: 10px 0;
+            background: rgba(0, 0, 0, 0.75);
+            padding: 12px 0;
             text-align: center;
             z-index: 1000;
         }
@@ -122,7 +66,7 @@
         }
 
         .contenedor {
-            background: rgba(0,0,0,0.55);
+            background: rgba(0, 0, 0, 0.55);
             padding: 40px;
             max-width: 900px;
             margin: auto;
@@ -132,29 +76,40 @@
             box-shadow: 0 0 15px black;
         }
 
-        h1, h2 {
-            text-shadow: 0 0 12px black;
+        /* REDES SOCIALES */
+        .social-section {
+            width: 100%;
+            padding: 20px 0;
+            text-align: center;
+            margin-top: 80px;
         }
 
-        /* BOTONES */
-        .btn {
-            display: inline-block;
-            padding: 12px 22px;
-            margin: 10px;
-            background: #00efe7;
-            color: black;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: bold;
+        .social-container {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+        }
+
+        .social-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #4b5f3a;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 22px;
             transition: 0.3s;
+            text-decoration: none;
         }
 
-        .btn:hover {
-            background: white;
-            transform: scale(1.05);
+        .social-btn:hover {
+            background: #5f7550;
+            transform: scale(1.1);
         }
 
-        /* GALERIA */
+        /* GALERÍA */
         .galeria {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -170,345 +125,346 @@
         /* VIDEOS */
         .videos iframe {
             width: 100%;
-            height: 250px;
+            height: 260px;
             border-radius: 10px;
             box-shadow: 0 0 10px black;
+            margin-bottom: 20px;
         }
 
-        /* LOGIN */
-        #login {
-            max-width: 380px;
-            margin: auto;
-            background: rgba(255,255,255,0.1);
-            padding: 25px;
-            border-radius: 12px;
-        }
-
-        #login input {
-            width: 90%;
-            padding: 12px;
-            margin: 8px;
-            border-radius: 8px;
-            border: none;
-        }
-
-        #login button {
-            width: 95%;
-            padding: 12px;
-            background: #00efe7;
-            border: none;
-            border-radius: 10px;
-            font-weight: bold;
-        }
-
-        /* WHATSAPP */
+        /* BOTÓN WHATSAPP */
         .whatsapp {
             position: fixed;
             right: 20px;
             bottom: 20px;
             background: #25D366;
-            padding: 15px;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             border-radius: 50%;
-            font-size: 26px;
+            font-size: 32px;
             color: white;
             text-decoration: none;
             box-shadow: 0 0 12px black;
+            z-index: 999;
         }
 
+        /* FOOTER */
         footer {
             text-align: center;
-            background: rgba(0,0,0,0.7);
+            background: rgba(0, 0, 0, 0.85);
             color: white;
-            padding: 20px;
+            padding: 25px;
+            margin-top: 40px;
         }
     </style>
 </head>
 
 <body>
 
-    <!-- MENÚ -->
-    <nav>
-        <img src="imagenes/logo.png" alt="Sin título.png">  <!-- ← CAMBIA TU LOGO -->
-        <a href="#inicio">Inicio</a>
-        <a href="#misionvision">Misión & Visión</a>
-        <a href="#galeria">Galería</a>
-        <a href="#videos">Videos</a>
-        <a href="#formularios">Formularios</a>
-        <a href="#loginSection">Admin</a>
-        <a href="#contacto">Contacto</a>
-    </nav>
+<!-- NAVBAR -->
+<nav>
+    <img src="imagenes/logo.png" alt="logo">
+    <a href="#inicio">Inicio</a>
+    <a href="#misionvision">Misión & Visión</a>
+    <a href="#galeria">Galería</a>
+    <a href="#videos">Videos</a>
+    <a href="#formularios">Formularios</a>
+    <a href="#contacto">Contacto</a>
+</nav>
 
-    <!-- INICIO -->
-    <section id="inicio">
-        <div class="contenedor">
-            <h1>SPARTANOS MyR ACADEMY</h1>
-            <p>Preparación policial · militar · simuladores académicos</p>
+
+<!-- REDES SOCIALES -->
+<section id="redes" class="social-section">
+    <div class="social-container">
+        <a class="social-btn" href="https://facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+        <a class="social-btn" href="https://instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a class="social-btn" href="https://tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a class="social-btn" href="https://wa.me/593985486085" target="_blank"><i class="fab fa-whatsapp"></i></a>
+    </div>
+</section>
+
+
+<!-- INICIO -->
+<section id="inicio">
+    <div class="contenedor">
+        <h1>SPARTANOS MyR ACADEMY</h1>
+        <p>Preparación policial · militar · simuladores académicos</p>
+    </div>
+</section>
+
+
+<!-- MISIÓN Y VISIÓN -->
+<section id="misionvision">
+    <div class="contenedor">
+        <h2>MISIÓN</h2>
+        <p>Formar aspirantes policiales y militares con disciplina, excelencia y fortaleza integral.</p>
+
+        <h2>VISIÓN</h2>
+        <p>Convertirnos en la mejor academia táctica y académica del país.</p>
+    </div>
+</section>
+
+
+<!-- GALERÍA -->
+<section id="galeria">
+    <div class="contenedor">
+        <h2>GALERÍA</h2>
+        <div class="galeria">
+            <img src="Mesa de trabajo 2.png">
+            <img src="Mesa de trabajo 3 copia.png">
+            <img src="Sin título.png">
+            <img src="Mesa de trabajo 1 copia 2 (1).png">
         </div>
-    </section>
+    </div>
+</section>
 
-    <!-- MISIÓN & VISIÓN -->
-    <section id="misionvision">
-        <div class="contenedor">
-            <h2>MISIÓN</h2>
-            <p>Formar aspirantes policiales y militares con disciplina y excelencia.</p>
 
-            <h2>VISIÓN</h2>
-            <p>Ser la mejor academia integral del país.</p>
+<!-- VIDEOS -->
+<section id="videos">
+    <div class="contenedor">
+        <h2>VIDEOS</h2>
+        <div class="videos">
+            <iframe src="https://www.facebook.com/share/v/16Z6kP3rDc/"></iframe>
+            <iframe src="https://www.facebook.com/share/p/1AK5Mv4Qm2/"></iframe>
         </div>
-    </section>
- <!-- PRUEBAS / ACORDEONES -->
-    <section class="accordion" id="formularios" aria-labelledby="pruebasTitle">
-      <button class="header-btn" aria-expanded="true" onclick="togglePanel(this)">
+    </div>
+</section>
+<!-- PRUEBAS ACADÉMICAS -->
+<section class="accordion" id="formularios" aria-labelledby="pruebasTitle">
+
+    <button class="header-btn" aria-expanded="true" onclick="togglePanel(this)">
         <div class="title-wrap">
-          <div class="icon-box" aria-hidden="true">
-            📚
-          </div>
-          <div>
-            <div class="acc-title">Pruebas Académicas</div>
-            <div class="acc-sub">Ciencias Sociales • Matemáticas • Lengua • Inglés • Física</div>
-          </div>
+            <div class="icon-box" aria-hidden="true">📚</div>
+            <div>
+                <div class="acc-title">Pruebas Académicas</div>
+                <div class="acc-sub">Ciencias Sociales • Matemáticas • Lengua • Inglés • Física</div>
+            </div>
         </div>
         <span class="chev" aria-hidden="true">▾</span>
-      </button>
+    </button>
 
-      <div class="panel open" id="pruebasPanel" style="padding:18px">
-        <!-- Aquí están las categorías como acordeones internas -->
-        <!-- Social -->
+    <div class="panel open" id="pruebasPanel" style="padding:18px">
+
+        <!-- ============================
+             CIENCIAS SOCIALES
+        ============================ -->
         <article class="accordion" data-acc>
-          <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
-            <div class="title-wrap">
-              <div class="icon-box" aria-hidden="true">🗺️</div>
-              <div>
-                <div class="acc-title">Ciencias Sociales</div>
-                <div class="acc-sub">Historia • Geografía • Sociedad</div>
-              </div>
-            </div>
-            <span class="chev" aria-hidden="true">▸</span>
-          </button>
-          <div class="panel">
-            <div class="test-grid">
-              <button class="test-card" data-form="FORM_SOCIALES_1" onclick="openForm(this)">
-                <span class="card-number">01</span>
-                <span class="card-pretitle">Simulador</span>
-                <h3 class="card-title">Sociales P1</h3>
-                <p class="card-desc">Evaluación general</p>
-                <div class="card-button">Iniciar Simulador →</div>
-              </button>
 
-              <button class="test-card" data-form="FORM_SOCIALES_2" onclick="openForm(this)">
-                <span class="card-number">02</span>
-                <span class="card-pretitle">Simulador</span>
-                <h3 class="card-title">Sociales P2</h3>
-                <p class="card-desc">Evaluación avanzada</p>
-                <div class="card-button">Iniciar Simulador →</div>
-              </button>
+            <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
+                <div class="title-wrap">
+                    <div class="icon-box" aria-hidden="true">🗺️</div>
+                    <div>
+                        <div class="acc-title">Ciencias Sociales</div>
+                        <div class="acc-sub">Historia • Geografía • Sociedad</div>
+                    </div>
+                </div>
+                <span class="chev" aria-hidden="true">▸</span>
+            </button>
+
+            <div class="panel">
+                <div class="test-grid">
+
+                    <button class="test-card" data-form="FORM_SOCIALES_1" onclick="openForm(this)">
+                        <span class="card-number">01</span>
+                        <span class="card-pretitle">Simulador</span>
+                        <h3 class="card-title">Sociales P1</h3>
+                        <p class="card-desc">Evaluación general</p>
+                        <div class="card-button">Iniciar Simulador →</div>
+                    </button>
+
+                    <button class="test-card" data-form="FORM_SOCIALES_2" onclick="openForm(this)">
+                        <span class="card-number">02</span>
+                        <span class="card-pretitle">Simulador</span>
+                        <h3 class="card-title">Sociales P2</h3>
+                        <p class="card-desc">Evaluación avanzada</p>
+                        <div class="card-button">Iniciar Simulador →</div>
+                    </button>
+
+                </div>
             </div>
-          </div>
+
         </article>
 
-        <!-- Matematicas -->
+        <!-- ============================
+             MATEMÁTICAS
+        ============================ -->
         <article class="accordion" data-acc>
-          <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
-            <div class="title-wrap">
-              <div class="icon-box" aria-hidden="true">➗</div>
-              <div>
-                <div class="acc-title">Matemáticas</div>
-                <div class="acc-sub">Razonamiento • Cálculo</div>
-              </div>
-            </div>
-            <span class="chev" aria-hidden="true">▸</span>
-          </button>
-          <div class="panel">
-            <div class="test-grid">
-              <button class="test-card" data-form="FORM_MATE_1" onclick="openForm(this)">
-                <span class="card-number">01</span>
-                <span class="card-pretitle">Simulador</span>
-                <h3 class="card-title">Matemáticas P1</h3>
-                <p class="card-desc">Razonamiento numérico</p>
-                <div class="card-button">Iniciar Simulador →</div>
-              </button>
 
-              <button class="test-card" data-form="FORM_MATE_2" onclick="openForm(this)">
-                <span class="card-number">02</span>
-                <span class="card-pretitle">Simulador</span>
-                <h3 class="card-title">Matemáticas P2</h3>
-                <p class="card-desc">Álgebra y problemas</p>
-                <div class="card-button">Iniciar Simulador →</div>
-              </button>
+            <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
+                <div class="title-wrap">
+                    <div class="icon-box" aria-hidden="true">➗</div>
+                    <div>
+                        <div class="acc-title">Matemáticas</div>
+                        <div class="acc-sub">Razonamiento • Cálculo</div>
+                    </div>
+                </div>
+                <span class="chev" aria-hidden="true">▸</span>
+            </button>
+
+            <div class="panel">
+                <div class="test-grid">
+
+                    <button class="test-card" data-form="FORM_MATE_1" onclick="openForm(this)">
+                        <span class="card-number">01</span>
+                        <span class="card-pretitle">Simulador</span>
+                        <h3 class="card-title">Matemáticas P1</h3>
+                        <p class="card-desc">Razonamiento numérico</p>
+                        <div class="card-button">Iniciar Simulador →</div>
+                    </button>
+
+                    <button class="test-card" data-form="FORM_MATE_2" onclick="openForm(this)">
+                        <span class="card-number">02</span>
+                        <span class="card-pretitle">Simulador</span>
+                        <h3 class="card-title">Matemáticas P2</h3>
+                        <p class="card-desc">Álgebra y problemas</p>
+                        <div class="card-button">Iniciar Simulador →</div>
+                    </button>
+
+                </div>
             </div>
-          </div>
+
         </article>
 
-        <!-- Lengua -->
+        <!-- ============================
+             LENGUA
+        ============================ -->
         <article class="accordion" data-acc>
-          <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
-            <div class="title-wrap">
-              <div class="icon-box" aria-hidden="true">✍️</div>
-              <div>
-                <div class="acc-title">Lengua y Literatura</div>
-                <div class="acc-sub">Comprensión • Gramática</div>
-              </div>
+
+            <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
+                <div class="title-wrap">
+                    <div class="icon-box" aria-hidden="true">✍️</div>
+                    <div>
+                        <div class="acc-title">Lengua y Literatura</div>
+                        <div class="acc-sub">Comprensión • Gramática</div>
+                    </div>
+                </div>
+                <span class="chev" aria-hidden="true">▸</span>
+            </button>
+
+            <div class="panel">
+                <div class="test-grid">
+
+                    <button class="test-card" data-form="FORM_LENGUA_1" onclick="openForm(this)">
+                        <span class="card-number">01</span>
+                        <span class="card-pretitle">Simulador</span>
+                        <h3 class="card-title">Lengua P1</h3>
+                        <p class="card-desc">Comprensión de textos</p>
+                        <div class="card-button">Iniciar Simulador →</div>
+                    </button>
+
+                </div>
             </div>
-            <span class="chev" aria-hidden="true">▸</span>
-          </button>
-          <div class="panel">
-            <div class="test-grid">
-              <button class="test-card" data-form="FORM_LENGUA_1" onclick="openForm(this)">
-                <span class="card-number">01</span>
-                <span class="card-pretitle">Simulador</span>
-                <h3 class="card-title">Lengua P1</h3>
-                <p class="card-desc">Comprensión de textos</p>
-                <div class="card-button">Iniciar Simulador →</div>
-              </button>
-            </div>
-          </div>
+
         </article>
 
-        <!-- Ingles -->
+        <!-- ============================
+             INGLÉS
+        ============================ -->
         <article class="accordion" data-acc>
-          <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
-            <div class="title-wrap">
-              <div class="icon-box" aria-hidden="true">🗣️</div>
-              <div>
-                <div class="acc-title">Inglés</div>
-                <div class="acc-sub">Comprensión y gramática</div>
-              </div>
+
+            <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
+                <div class="title-wrap">
+                    <div class="icon-box" aria-hidden="true">🗣️</div>
+                    <div>
+                        <div class="acc-title">Inglés</div>
+                        <div class="acc-sub">Comprensión y gramática</div>
+                    </div>
+                </div>
+                <span class="chev" aria-hidden="true">▸</span>
+            </button>
+
+            <div class="panel">
+                <div class="test-grid">
+
+                    <button class="test-card" data-form="FORM_INGLES_1" onclick="openForm(this)">
+                        <span class="card-number">01</span>
+                        <span class="card-pretitle">Simulador</span>
+                        <h3 class="card-title">Inglés P1</h3>
+                        <p class="card-desc">Evaluación de vocabulario y gramática</p>
+                        <div class="card-button">Iniciar Simulador →</div>
+                    </button>
+
+                </div>
             </div>
-            <span class="chev" aria-hidden="true">▸</span>
-          </button>
-          <div class="panel">
-            <div class="test-grid">
-              <button class="test-card" data-form="FORM_INGLES_1" onclick="openForm(this)">
-                <span class="card-number">01</span>
-                <span class="card-pretitle">Simulador</span>
-                <h3 class="card-title">Inglés P1</h3>
-                <p class="card-desc">Evaluación de vocabulario y gramática</p>
-                <div class="card-button">Iniciar Simulador →</div>
-              </button>
-            </div>
-          </div>
+
         </article>
 
-        <!-- Fisica -->
+        <!-- ============================
+             FÍSICA
+        ============================ -->
         <article class="accordion" data-acc>
-          <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
-            <div class="title-wrap">
-              <div class="icon-box" aria-hidden="true">🔬</div>
-              <div>
-                <div class="acc-title">Física</div>
-                <div class="acc-sub">Mecánica • Termodinámica</div>
-              </div>
+
+            <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
+                <div class="title-wrap">
+                    <div class="icon-box" aria-hidden="true">🔬</div>
+                    <div>
+                        <div class="acc-title">Física</div>
+                        <div class="acc-sub">Mecánica • Termodinámica</div>
+                    </div>
+                </div>
+                <span class="chev" aria-hidden="true">▸</span>
+            </button>
+            <div class="panel">
+                <div class="test-grid">
+                    <button class="test-card" data-form="FORM_FISICA_1" onclick="openForm(this)">
+                        <span class="card-number">01</span>
+                        <span class="card-pretitle">Simulador</span>
+                        <h3 class="card-title">Física P1</h3>
+                        <p class="card-desc">Conceptos básicos</p>
+                        <div class="card-button">Iniciar Simulador →</div>
+                    </button>
+                </div>
             </div>
-            <span class="chev" aria-hidden="true">▸</span>
-          </button>
-          <div class="panel">
-            <div class="test-grid">
-              <button class="test-card" data-form="FORM_FISICA_1" onclick="openForm(this)">
-                <span class="card-number">01</span>
-                <span class="card-pretitle">Simulador</span>
-                <h3 class="card-title">Física P1</h3>
-                <p class="card-desc">Conceptos básicos</p>
-                <div class="card-button">Iniciar Simulador →</div>
-              </button>
-            </div>
-          </div>
         </article>
-
-      </div>
-    </section>
-    <!-- GALERÍA -->
-    <section id="galeria">
-        <div class="contenedor">
-            <h2>GALERÍA</h2>
-            <section class="accordion" id="galeria" aria-labelledby="galTitle">
-      <div style="padding:18px">
-        <h2 id="galTitle">Galería</h2>
-        <div class="galeria" aria-hidden="false">
-          <img src="Mesa de trabajo 1 copia 2 (1).png" alt="Foto academia 1">
-          <img src="Mesa de trabajo 2.png" alt="Foto academia 2">
-          <img src="Mesa de trabajo 3 copia (1).png" alt="Foto academia 3">
-          <img src="Sin título.png" alt="Foto academia 4">
-        </div>
-      </div>
-    </section>
-
-    <!-- VIDEOS -->
-    <section id="videos">
-        <div class="contenedor">
-            <h2>VIDEOS</h2>
-            <div class="videos">
-               </div><iframe src="https://www.facebook.com/share/v/16Z6kP3rDc/"></iframe>
-                </div><iframe src="https://www.facebook.com/share/p/1AK5Mv4Qm2/"></iframe>
-            </div>
-        </div>
-    </section>
-
-    <!-- CONTACTO -->
-    <section id="contacto">
-        <div class="contenedor">
-            <h2>CONTACTO</h2>
-            <p>📍 Ecuador, Imbabura, Ibarra, Calle Juan de Velasco y Simon Bolivar, CC Casa Blanca, oficina #21 </p>
-            <p>📞 +593985486085_+593986912191_+593967135717</p>
-            <p>📧 spartanosmyr@gmail.com</p>
-
-    <section class="accordion" id="contacto" aria-labelledby="contactTitle">
-      <div style="padding:18px">
-        <h2 id="contactTitle">Contacto y Redes</h2>
-
-        <div class="contact-grid">
-          <div>
-            <p>¿Dudas? Escríbenos o accede al simulador mediante Google Forms.</p>
-
-            <form id="internalForm" action="enviar.php" method="POST" onsubmit="handleInternalForm(event)">
-              <label for="nombre">Nombre</label>
-              <input id="nombre" name="nombre" type="text" required>
-
-              <label for="email">Correo</label>
-              <input id="email" name="email" type="email" required>
-
-              <label for="mensaje">Mensaje</label>
-              <textarea id="mensaje" name="mensaje" rows="4"></textarea>
-
-              <button class="btn-primary" type="submit">Enviar</button>
-            </form>
-
-                
-            <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
-              <a class="boton" href="https://www.facebook.com/share/17cTLPot2N/?mibextid=wwXIfr " target="_blank" rel="noopener">Facebook</a>
-              <a class="boton" href="https://www.instagram.com/spartanosmyr?igsh=cGo2NHZrN3AyeTY1&utm_source=ig_contact_invite " target="_blank" rel="noopener">Instagram</a>
-              <a class="boton" href="https://www.tiktok.com/@spartanosmyr" onclick="opentiktok" style="background:var(--cafe);color:white">tiktok</a>
-            </div>
-          
-            </div>
-          </div>
-
-    <!-- WHATSAPP -->
-    <a class="whatsapp" href="https://wa.me/593999999999?text=Hola%20quiero%20información" target="_blank">💬</a>
-<footer>
-    <div class="container foot">
-      <div>&copy; <span id="year"></span> Spartanos MyR ACADEMY — Todos los derechos reservados</div>
-      <small style="opacity:0.85"> Juan de velazco y Simon bolivar, Centro Comercial Casa Blacaca Ofisina 21 · 0985486085· sebasjere501@gmail.com</small>
     </div>
-  </footer>
+</section>
 
-  <!-- JS -->
-  <script>
-    // --------------- CONFIG: reemplaza las URLs de forms por tus Google Forms públicos ---------------
+
+<!-- CONTACTO -->
+<section id="contacto">
+    <div class="contenedor">
+        <h2>CONTACTO</h2>
+        <p>📍 Ecuador, Imbabura, Ibarra — CC Casa Blanca, oficina #21</p>
+        <p>📞 +593 985 486 085</p>
+        <p>📧 spartanosmyr@gmail.com</p>
+    </div>
+</section>
+
+
+<!-- BOTÓN WHATSAPP -->
+<a class="whatsapp" href="https://wa.me/593985486085" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<!-- JS -->
+<script>
+    // --------------- CONFIG: REEMPLAZA LAS URLs DE TUS GOOGLE FORMS -----------------
     const formUrls = {
-      // ejemplos: pon la URL completa que obtengas desde Google Forms "Enviar > link"
-      // para abrir dentro del iframe. Puedes usar URLs /viewform
-      'FORM_SOCIALES_1': 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform',
-      'FORM_SOCIALES_2': 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform',
-      'FORM_MATE_1'   : 'https://docs.google.com/forms/d/e/FORM_ID_MATE_1/viewform',
-      'FORM_MATE_2'   : 'https://docs.google.com/forms/d/e/FORM_ID_MATE_2/viewform',
-      'FORM_LENGUA_1' : 'https://docs.google.com/forms/d/e/FORM_ID_LENGUA_1/viewform',
-      'FORM_INGLES_1' : 'https://docs.google.com/forms/d/e/FORM_ID_INGLES_1/viewform',
-      'FORM_FISICA_1' : 'https://docs.google.com/forms/d/e/FORM_ID_FISICA_1/viewform'
+        // EJEMPLOS: reemplaza FORM_ID_* por el ID real de tus formularios
+        "FORM_SOCIALES_1": "https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform",
+        "FORM_SOCIALES_2": "https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform",
+
+        "FORM_MATE_1":     "https://docs.google.com/forms/d/e/FORM_ID_MATE_1/viewform",
+        "FORM_MATE_2":     "https://docs.google.com/forms/d/e/FORM_ID_MATE_2/viewform",
+
+        "FORM_LENGUA_1":   "https://docs.google.com/forms/d/e/FORM_ID_LENGUA_1/viewform",
+
+        "FORM_INGLES_1":   "https://docs.google.com/forms/d/e/FORM_ID_INGLES_1/viewform",
+
+        "FORM_FISICA_1":   "https://docs.google.com/forms/d/e/FORM_ID_FISICA_1/viewform"
     };
-    <!-- FOOTER -->
-    <footer>
-        © 2025 SPARTANOS MyR ACADEMY INC DERECHOS RESERVADOS
-    </footer>
+</script>
+
+<!-- FOOTER -->
+<footer>
+    &copy; <span id="2025-2026"></span> SPARTANOS MyR ACADEMY — Todos los derechos reservados
+</footer>
+
+<script>
+    document.getElementById("2025-2026").textContent = new Date().getFullYear();
+</script>
 
 </body>
 </html>
