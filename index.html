@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -224,34 +225,37 @@
     </div>
 </section>
 <!-- PRUEBAS / SIMULADORES ACADÉMICOS -->
-<section class="accordion" id="formularios" aria-labelledby="pruebasTitle">
+<section class="accordion" id="formularios">
   <button class="header-btn" aria-expanded="true" onclick="togglePanel(this)">
     <div class="title-wrap">
-      <div class="icon-box" aria-hidden="true">📚</div>
+      <div class="icon-box">📚</div>
       <div>
         <div class="acc-title">Pruebas Académicas</div>
         <div class="acc-sub">Ciencias Sociales • Matemáticas • Lengua • Inglés • Física</div>
       </div>
     </div>
-    <span class="chev" aria-hidden="true">▾</span>
+    <span class="chev">▾</span>
   </button>
 
   <div class="panel open" id="pruebasPanel" style="padding:18px">
 
-    <!-- CIENCIAS SOCIALES -->
-    <article class="accordion" data-acc>
+    <!-- === CIENCIAS SOCIALES === -->
+    <article class="accordion">
       <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
         <div class="title-wrap">
-          <div class="icon-box" aria-hidden="true">🗺️</div>
+          <div class="icon-box">🗺️</div>
           <div>
             <div class="acc-title">Ciencias Sociales</div>
             <div class="acc-sub">Historia • Geografía • Sociedad</div>
           </div>
         </div>
-        <span class="chev" aria-hidden="true">▸</span>
+        <span class="chev">▸</span>
       </button>
+
       <div class="panel">
         <div class="test-grid">
+
+          <!-- Botón 1 -->
           <button class="test-card" data-form="FORM_SOCIALES_1" onclick="openForm(this)">
             <span class="card-number">01</span>
             <span class="card-pretitle">Simulador</span>
@@ -260,6 +264,7 @@
             <div class="card-button">Iniciar Simulador →</div>
           </button>
 
+          <!-- Botón 2 -->
           <button class="test-card" data-form="FORM_SOCIALES_2" onclick="openForm(this)">
             <span class="card-number">02</span>
             <span class="card-pretitle">Simulador</span>
@@ -267,24 +272,27 @@
             <p class="card-desc">Evaluación avanzada</p>
             <div class="card-button">Iniciar Simulador →</div>
           </button>
+
         </div>
       </div>
     </article>
 
-    <!-- MATEMÁTICAS -->
-    <article class="accordion" data-acc>
-      <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
+    <!-- === MATEMÁTICAS === -->
+    <article class="accordion">
+      <button class="header-btn" onclick="togglePanel(this)">
         <div class="title-wrap">
-          <div class="icon-box" aria-hidden="true">➗</div>
+          <div class="icon-box">➗</div>
           <div>
             <div class="acc-title">Matemáticas</div>
             <div class="acc-sub">Razonamiento • Cálculo</div>
           </div>
         </div>
-        <span class="chev" aria-hidden="true">▸</span>
+        <span class="chev">▸</span>
       </button>
+
       <div class="panel">
         <div class="test-grid">
+
           <button class="test-card" data-form="FORM_MATE_1" onclick="openForm(this)">
             <span class="card-number">01</span>
             <span class="card-pretitle">Simulador</span>
@@ -300,27 +308,28 @@
             <p class="card-desc">Álgebra y problemas</p>
             <div class="card-button">Iniciar Simulador →</div>
           </button>
+
         </div>
       </div>
     </article>
 
-    <!-- LENGUA -->
-    <article class="accordion" data-acc>
-      <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
+    <!-- === LENGUA === -->
+    <article class="accordion">
+      <button class="header-btn" onclick="togglePanel(this)">
         <div class="title-wrap">
-          <div class="icon-box" aria-hidden="true">✍️</div>
+          <div class="icon-box">✍️</div>
           <div>
             <div class="acc-title">Lengua y Literatura</div>
             <div class="acc-sub">Comprensión • Gramática</div>
           </div>
         </div>
-        <span class="chev" aria-hidden="true">▸</span>
+        <span class="chev">▸</span>
       </button>
+
       <div class="panel">
         <div class="test-grid">
           <button class="test-card" data-form="FORM_LENGUA_1" onclick="openForm(this)">
             <span class="card-number">01</span>
-            <span class="card-pretitle">Simulador</span>
             <h3 class="card-title">Lengua P1</h3>
             <p class="card-desc">Comprensión de textos</p>
             <div class="card-button">Iniciar Simulador →</div>
@@ -329,48 +338,48 @@
       </div>
     </article>
 
-    <!-- INGLÉS -->
-    <article class="accordion" data-acc>
-      <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
+    <!-- === INGLÉS === -->
+    <article class="accordion">
+      <button class="header-btn" onclick="togglePanel(this)">
         <div class="title-wrap">
-          <div class="icon-box" aria-hidden="true">🗣️</div>
+          <div class="icon-box">🗣️</div>
           <div>
             <div class="acc-title">Inglés</div>
-            <div class="acc-sub">Comprensión y gramática</div>
+            <div class="acc-sub">Comprensión • Gramática</div>
           </div>
         </div>
-        <span class="chev" aria-hidden="true">▸</span>
+        <span class="chev">▸</span>
       </button>
+
       <div class="panel">
         <div class="test-grid">
           <button class="test-card" data-form="FORM_INGLES_1" onclick="openForm(this)">
             <span class="card-number">01</span>
-            <span class="card-pretitle">Simulador</span>
             <h3 class="card-title">Inglés P1</h3>
-            <p class="card-desc">Evaluación de vocabulario y gramática</p>
+            <p class="card-desc">Vocabulario y gramática</p>
             <div class="card-button">Iniciar Simulador →</div>
           </button>
         </div>
       </div>
     </article>
 
-    <!-- FÍSICA -->
-    <article class="accordion" data-acc>
-      <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
+    <!-- === FÍSICA === -->
+    <article class="accordion">
+      <button class="header-btn" onclick="togglePanel(this)">
         <div class="title-wrap">
-          <div class="icon-box" aria-hidden="true">🔬</div>
+          <div class="icon-box">🔬</div>
           <div>
             <div class="acc-title">Física</div>
             <div class="acc-sub">Mecánica • Termodinámica</div>
           </div>
         </div>
-        <span class="chev" aria-hidden="true">▸</span>
+        <span class="chev">▸</span>
       </button>
+
       <div class="panel">
         <div class="test-grid">
           <button class="test-card" data-form="FORM_FISICA_1" onclick="openForm(this)">
             <span class="card-number">01</span>
-            <span class="card-pretitle">Simulador</span>
             <h3 class="card-title">Física P1</h3>
             <p class="card-desc">Conceptos básicos</p>
             <div class="card-button">Iniciar Simulador →</div>
@@ -381,7 +390,18 @@
   </div>
 </section>
 
-    
+<!-- GALERÍA -->
+<section id="galeria">
+    <div class="contenedor">
+        <h2>GALERÍA</h2>
+        <div class="galeria">
+            <img src="Mesa de trabajo 2.png">
+            <img src="Mesa de trabajo 3 copia.png">
+            <img src="Sin título.png">
+            <img src="Mesa de trabajo 1 copia 2 (1).png">
+        </div>
+    </div>
+</section>
 <!-- VIDEOS -->
 <section id="videos">
     <div class="contenedor">
@@ -429,20 +449,48 @@
     <i class="fab fa-whatsapp"></i>
 </a>
 
-<!-- JS -->
-  <script>
-    // --------------- CONFIG: reemplaza las URLs de forms por tus Google Forms públicos ---------------
-    const formUrls = {
-      // ejemplos: pon la URL completa que obtengas desde Google Forms "Enviar > link"
-      // para abrir dentro del iframe. Puedes usar URLs /viewform
-      'FORM_SOCIALES_1': 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform',
-      'FORM_SOCIALES_2': 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform',
-      'FORM_MATE_1'   : 'https://docs.google.com/forms/d/e/FORM_ID_MATE_1/viewform',
-      'FORM_MATE_2'   : 'https://docs.google.com/forms/d/e/FORM_ID_MATE_2/viewform',
-      'FORM_LENGUA_1' : 'https://docs.google.com/forms/d/e/FORM_ID_LENGUA_1/viewform',
-      'FORM_INGLES_1' : 'https://docs.google.com/forms/d/e/FORM_ID_INGLES_1/viewform',
-      'FORM_FISICA_1' : 'https://docs.google.com/forms/d/e/FORM_ID_FISICA_1/viewform'
-    };
+<script>
+/* CONFIGURACIÓN DE URLS PARA CADA SIMULADOR */
+const formUrls = {
+  "FORM_SOCIALES_1": "https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform",
+  "FORM_SOCIALES_2": "https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform",
+
+  "FORM_MATE_1": "https://docs.google.com/forms/d/e/FORM_ID_MATE_1/viewform",
+  "FORM_MATE_2": "https://docs.google.com/forms/d/e/FORM_ID_MATE_2/viewform",
+
+  "FORM_LENGUA_1": "https://docs.google.com/forms/d/e/FORM_ID_LENGUA_1/viewform",
+
+  "FORM_INGLES_1": "https://docs.google.com/forms/d/e/FORM_ID_INGLES_1/viewform",
+
+  "FORM_FISICA_1": "https://docs.google.com/forms/d/e/FORM_ID_FISICA_1/viewform"
+};
+
+/* ABRIR FORMULARIO */
+function openForm(btn) {
+  const key = btn.dataset.form;
+  const url = formUrls[key];
+
+  if (!url) {
+    alert("Formulario no configurado.");
+    return;
+  }
+
+  window.open(url, "_blank"); // abrir simulador
+}
+
+/* FUNCIÓN DE ACORDEÓN */
+function togglePanel(btn) {
+  const expanded = btn.getAttribute("aria-expanded") === "true";
+  btn.setAttribute("aria-expanded", !expanded);
+
+  const panel = btn.nextElementSibling;
+  panel.style.display = expanded ? "none" : "block";
+
+  const icon = btn.querySelector(".chev");
+  icon.textContent = expanded ? "▸" : "▾";
+}
+</script>
+
 
     // WhatsApp number (formato internacional sin signos). Cambia por tu número.
     const WA_PHONE = '593985486085'; // ejemplo Ecuador +593985486085
@@ -506,293 +554,3 @@
       e.target.reset();
     }
 
-
-      /* ==== ACORDEÓN PRINCIPAL ==== */
-.accordion {
-  width: 100%;
-  margin: 10px auto;
-  border-radius: 10px;
-  overflow: hidden;
-  background: rgba(20,20,20,0.7);
-  border: 1px solid #444;
-  backdrop-filter: blur(4px);
-}
-
-/* Botón de cabecera */
-.header-btn {
-  width: 100%;
-  background: #1e1e1e;
-  color: #fff;
-  padding: 16px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border: none;
-  cursor: pointer;
-}
-
-.header-btn:hover {
-  background: #2a2a2a;
-}
-
-/* Títulos */
-.title-wrap {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
-.icon-box {
-  font-size: 26px;
-}
-
-/* Flecha */
-.chev {
-  transition: 0.3s;
-  font-size: 20px;
-}
-
-.header-btn[aria-expanded="true"] .chev {
-  transform: rotate(180deg);
-}
-
-/* Panel */
-.panel {
-  display: none;
-  background: rgba(0,0,0,0.4);
-  padding: 15px 20px;
-}
-
-.panel.open {
-  display: block;
-}
-
-/* ==== TARJETAS DE SIMULADORES ==== */
-.test-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
-  gap: 15px;
-  margin-top: 15px;
-}
-
-.test-card {
-  background: #101010;
-  padding: 18px;
-  border: 1px solid #333;
-  border-radius: 10px;
-  color: #fff;
-  cursor: pointer;
-  text-align: left;
-  transition: 0.25s;
-}
-
-.test-card:hover {
-  background: #191919;
-  transform: scale(1.03);
-}
-
-.card-number {
-  font-size: 26px;
-  font-weight: bold;
-  color: #58a6ff;
-}
-
-.card-pretitle {
-  font-size: 12px;
-  opacity: .7;
-}
-
-.card-title {
-  margin: 0;
-  font-size: 18px;
-}
-
-.card-button {
-  margin-top: 10px;
-  padding: 8px 12px;
-  background: #2b6cb0;
-  width: fit-content;
-  border-radius: 6px;
-}
-<script>
-function togglePanel(btn) {
-  const expanded = btn.getAttribute("aria-expanded") === "true";
-  btn.setAttribute("aria-expanded", !expanded);
-
-  const panel = btn.nextElementSibling;
-  panel.classList.toggle("open");
-}
-
-/* Formularios */
-const formUrls = {
-  'FORM_SOCIALES_1': 'URL_FORMULARIO',
-  'FORM_SOCIALES_2': 'URL_FORMULARIO',
-  'FORM_MATE_1': 'URL_FORMULARIO',
-  'FORM_MATE_2': 'URL_FORMULARIO',
-  'FORM_LENGUA_1': 'URL_FORMULARIO',
-  'FORM_INGLES_1': 'URL_FORMULARIO',
-  'FORM_FISICA_1': 'URL_FORMULARIO',
-};
-
-function openForm(btn) {
-  const code = btn.getAttribute("data-form");
-  const url = formUrls[code];
-
-  if (!url) {
-    alert("⚠ Formulario no configurado.");
-    return;
-  }
-
-  window.open(url, "_blank");
-}
-</script>
-<section class="accordion" id="formularios">
-  <button class="header-btn" aria-expanded="true" onclick="togglePanel(this)">
-    <div class="title-wrap">
-      <div class="icon-box">📚</div>
-      <div>
-        <div class="acc-title">Pruebas Académicas</div>
-        <div class="acc-sub">Ciencias Sociales • Matemáticas • Lengua • Inglés • Física</div>
-      </div>
-    </div>
-    <span class="chev">▾</span>
-  </button>
-
-  <div class="panel open">
-
-    <!-- CIENCIAS SOCIALES -->
-    <article class="accordion">
-      <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
-        <div class="title-wrap">
-          <div class="icon-box">🗺️</div>
-          <div>
-            <div class="acc-title">Ciencias Sociales</div>
-            <div class="acc-sub">Historia • Geografía • Sociedad</div>
-          </div>
-        </div>
-        <span class="chev">▸</span>
-      </button>
-
-      <div class="panel">
-        <div class="test-grid">
-          <button class="test-card" data-form="FORM_SOCIALES_1" onclick="openForm(this)">
-            <span class="card-number">01</span>
-            <span class="card-pretitle">Simulador</span>
-            <h3 class="card-title">Sociales P1</h3>
-            <div class="card-button">Iniciar Simulador →</div>
-          </button>
-
-          <button class="test-card" data-form="FORM_SOCIALES_2" onclick="openForm(this)">
-            <span class="card-number">02</span>
-            <span class="card-pretitle">Simulador</span>
-            <h3 class="card-title">Sociales P2</h3>
-            <div class="card-button">Iniciar Simulador →</div>
-          </button>
-        </div>
-      </div>
-    </article>
-
-    <!-- MATEMÁTICAS -->
-    <article class="accordion">
-      <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
-        <div class="title-wrap">
-          <div class="icon-box">➗</div>
-          <div>
-            <div class="acc-title">Matemáticas</div>
-            <div class="acc-sub">Razonamiento • Cálculo</div>
-          </div>
-        </div>
-        <span class="chev">▸</span>
-      </button>
-
-      <div class="panel">
-        <div class="test-grid">
-          <button class="test-card" data-form="FORM_MATE_1" onclick="openForm(this)">
-            <span class="card-number">01</span>
-            <h3 class="card-title">Matemáticas P1</h3>
-            <div class="card-button">Iniciar Simulador →</div>
-          </button>
-
-          <button class="test-card" data-form="FORM_MATE_2" onclick="openForm(this)">
-            <span class="card-number">02</span>
-            <h3 class="card-title">Matemáticas P2</h3>
-            <div class="card-button">Iniciar Simulador →</div>
-          </button>
-        </div>
-      </div>
-    </article>
-
-    <!-- LENGUA -->
-    <article class="accordion">
-      <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
-        <div class="title-wrap">
-          <div class="icon-box">✍️</div>
-          <div>
-            <div class="acc-title">Lengua y Literatura</div>
-            <div class="acc-sub">Comprensión • Gramática</div>
-          </div>
-        </div>
-        <span class="chev">▸</span>
-      </button>
-
-      <div class="panel">
-        <div class="test-grid">
-          <button class="test-card" data-form="FORM_LENGUA_1" onclick="openForm(this)">
-            <span class="card-number">01</span>
-            <h3 class="card-title">Lengua P1</h3>
-            <div class="card-button">Iniciar Simulador →</div>
-          </button>
-        </div>
-      </div>
-    </article>
-
-    <!-- INGLÉS -->
-    <article class="accordion">
-      <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
-        <div class="title-wrap">
-          <div class="icon-box">🗣️</div>
-          <div>
-            <div class="acc-title">Inglés</div>
-            <div class="acc-sub">Comprensión y gramática</div>
-          </div>
-        </div>
-        <span class="chev">▸</span>
-      </button>
-
-      <div class="panel">
-        <div class="test-grid">
-          <button class="test-card" data-form="FORM_INGLES_1" onclick="openForm(this)">
-            <span class="card-number">01</span>
-            <h3 class="card-title">Inglés P1</h3>
-            <div class="card-button">Iniciar Simulador →</div>
-          </button>
-        </div>
-      </div>
-    </article>
-
-    <!-- FÍSICA -->
-    <article class="accordion">
-      <button class="header-btn" aria-expanded="false" onclick="togglePanel(this)">
-        <div class="title-wrap">
-          <div class="icon-box">🔬</div>
-          <div>
-            <div class="acc-title">Física</div>
-            <div class="acc-sub">Mecánica • Termodinámica</div>
-          </div>
-        </div>
-        <span class="chev">▸</span>
-      </button>
-
-      <div class="panel">
-        <div class="test-grid">
-          <button class="test-card" data-form="FORM_FISICA_1" onclick="openForm(this)">
-            <span class="card-number">01</span>
-            <h3 class="card-title">Física P1</h3>
-            <div class="card-button">Iniciar Simulador →</div>
-          </button>
-        </div>
-      </div>
-    </article>
-
-  </div>
-</section>
