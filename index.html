@@ -1,8 +1,8 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>SPARTANOS MyR ACADEMY — Versión Élite</title>
 
   <!-- ICONOS -->
@@ -23,28 +23,32 @@
       --transition: 200ms ease;
     }
 
-    /* ===== reset ===== */
-      margin: 0;
-    height: 100vh;
+    *{box-sizing:border-box;}
+    html, body {height:100%; margin:0;}
+    body {
+      font-family: Inter, 'Oswald', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color: #fff;
+      background-image:
+        linear-gradient(rgba(2,4,2,0.6), rgba(2,4,2,0.6)),
+        url('3.JPG'); /* Imagen local */
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      scroll-behavior: smooth;
+    }
 
-    /* Imagen local (debes colocar el archivo en la misma carpeta que tu HTML) */
-    background-image: url("3.jpg");
-
-    /* Ajustes para que se vea bien */
-    background-size: cover;      /* La imagen cubre toda la pantalla */
-    background-position: center; /* Centrada */
-    background-repeat: no-repeat;/* No se repite */
-  }
-
-  h1 {
-    color: white;
-    text-align: center;
-    margin-top: 20%;
-    text-shadow: 2px 2px 5px black; /* Spartanos MyR Academy INC */
-  }
-</style>
+    h1 {
+      color: white;
+      text-align: center;
+      margin-top: 20%;
+      text-shadow: 2px 2px 5px black;
+    }
+  </style>
 </head>
 <body>
+
   <h1>Mi Fondo de Pantalla Local</h1>
 </body>
 </html>
