@@ -1,357 +1,640 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Spartanos MyR Academy</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>SPARTANOS MyR ACADEMY — Versión Élite</title>
 
-<!-- ESTILOS GENERALES -->
-<style>
-/* ======= FONDO MILITAR ======= */
-body{
-  margin:0;
-  font-family: "Arial", sans-serif;
-  background-image:
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-    url("https://imgur.com/a/Mcvhhg6");
-  background-size:cover;
-  background-position:center;
-  background-attachment:fixed;
-  color:white;
-}
+  <!-- ICONOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-/* ======= CONTENEDOR GLOBAL ======= */
-.contenedor{
-  max-width:1100px;
-  margin:auto;
-  padding:25px;
-}
+  <!-- GOOGLE FONTS -->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 
-/* ======= LOGO ======= */
-.logo{
-  text-align:center;
-  margin-top:20px;
-}
-.logo img{
-  width:160px;
-  border-radius:10px;
-}
+  <style>
+    :root{
+      --verde-camuflaje:#6b8f45;
+      --verde-oscuro:#3c4a3f;
+      --plomo:#9aa0a6;
+      --negro:#0b0b0b;
+      --glass: rgba(12,12,12,0.55);
+      --accent:#d9e8cf;
+      --ui-bg: rgba(255,255,255,0.96);
+      --transition: 200ms ease;
+    }
 
-/* ======= TITULOS ======= */
-h1,h2,h3{
-  text-align:center;
-}
+    /* ===== reset ===== */
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0}
+    body{
+      font-family:Inter, 'Oswald', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+      color: #fff;
+      background-image:
+        linear-gradient(rgba(2,4,2,0.6), rgba(2,4,2,0.6)),
+        url('https://i.imgur.com/akg8n2M.jpeg'); /* fondo marca de agua */
+      background-size:cover;background-position:center;background-attachment:fixed;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+      scroll-behavior:smooth;
+    }
 
-/* ===== GALERÍA ===== */
-.galeria{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap:15px;
-  margin-top:20px;
-}
-.galeria img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  border-radius:10px;
-  border:3px solid rgba(255,255,255,0.4);
-  transition:0.25s;
-}
-.galeria img:hover{
-  transform:scale(1.05);
-  box-shadow:0 10px 30px rgba(0,0,0,0.65);
-}
+    /* ===== header ===== */
+    header.site-header{
+      position:fixed;top:0;left:0;right:0;z-index:1200;
+      background:linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,0.35));
+      border-bottom:2px solid rgba(255,255,255,0.03);
+      backdrop-filter: blur(4px);
+    }
+    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;gap:12px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:52px;border-radius:8px}
+    .brand h1{font-size:18px;margin:0;color:var(--accent);letter-spacing:0.6px}
+    nav.main-nav{display:flex;gap:10px;align-items:center}
+    nav.main-nav a{color:var(--accent);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600;transition:var(--transition)}
+    nav.main-nav a:hover{background:rgba(255,255,255,0.03);color:var(--verde-camuflaje)}
+    .hamburger{display:none;background:transparent;border:0;color:var(--accent);font-size:22px;cursor:pointer}
 
-/* ===== VIDEOS ===== */
-.videos iframe{
-  width:100%;
-  height:300px;
-  border-radius:10px;
-  border:2px solid rgba(255,255,255,0.4);
-  margin-bottom:20px;
-}
+    /* ===== container / hero ===== */
+    .container{max-width:1150px;margin:0 auto;padding:110px 18px 40px}
+    .hero{display:flex;align-items:center;gap:18px;justify-content:space-between;flex-wrap:wrap}
+    .hero-card{flex:1;min-width:260px;background:var(--ui-bg);color:var(--negro);border-radius:12px;padding:24px;box-shadow:0 12px 40px rgba(0,0,0,0.45)}
+    .hero-card h2{margin:0 0 8px 0;font-family:Oswald}
+    .hero-card p{margin:0 0 12px 0;color:#333}
+    .chips{display:flex;gap:8px;flex-wrap:wrap}
+    .chip{background:var(--verde-camuflaje);color:white;padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px}
 
-/* ===== ICONOS CONTACTO ===== */
-.contactos-icons{
-  text-align:center;
-  margin-top:30px;
-}
-.contactos-icons a{
-  display:inline-block;
-  margin:10px;
-  font-size:40px;
-  color:white;
-  text-decoration:none;
-  transition:0.3s;
-}
-.contactos-icons a:hover{
-  transform:scale(1.2);
-}
+    /* ===== sections ===== */
+    section.page{margin-top:28px}
+    .card{background:var(--glass);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 8px 30px rgba(0,0,0,0.5)}
+    .section-title{font-size:20px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
+    .lead{color:rgba(255,255,255,0.92);max-width:900px;margin:0 auto 8px auto}
 
-/* ======= ACORDEÓN SIMULADORES ======= */
-.accordion .header-btn{
-  width:100%;
-  padding:15px;
-  background:#1c1c1c;
-  border:none;
-  color:white;
-  font-size:18px;
-  text-align:left;
-  margin-top:10px;
-  cursor:pointer;
-  border-radius:8px;
-}
-.panel{
-  display:none;
-  background:#111;
-  padding:15px;
-  border-radius:5px;
-}
-.panel.open{
-  display:block;
-}
+    /* ===== gallery ===== */
+    .galeria{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+    .galeria img{width:100%;height:160px;object-fit:cover;border-radius:10px;border:3px solid rgba(0,0,0,0.35);transition:transform 0.18s,box-shadow 0.18s}
+    .galeria img:hover{transform:scale(1.04);box-shadow:0 12px 36px rgba(0,0,0,0.6);border-color:var(--verde-camuflaje)}
 
-/* ===== TEST CARDS ===== */
-.test-grid{
-  display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
-  gap:15px;
-}
-.test-card{
-  background:#0d0d0d;
-  padding:15px;
-  border-radius:10px;
-  border:2px solid #333;
-  cursor:pointer;
-  transition:0.2s;
-}
-.test-card:hover{
-  transform:scale(1.05);
-  background:#222;
-}
-.card-button{
-  margin-top:10px;
-  padding:8px;
-  background:#008f39;
-  text-align:center;
-  border-radius:5px;
-}
+    /* ===== videos ===== */
+    .videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
+    .videos-grid iframe{width:100%;height:320px;border-radius:8px;border:0;box-shadow:0 8px 30px rgba(0,0,0,0.5)}
 
-/* ===== IFRAME SIMULADORES ===== */
-#simuladorFrame{
-  width:100%;
-  height:600px;
-  border-radius:10px;
-  border:2px solid white;
-  display:none;
-  margin-top:20px;
-}
+    /* ===== social buttons (contact) ===== */
+    .social-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px}
+    .social-btn{display:inline-flex;gap:8px;align-items:center;padding:10px 14px;border-radius:999px;background:linear-gradient(180deg,var(--verde-oscuro), #2f3a33);color:white;text-decoration:none;border:2px solid rgba(255,255,255,0.03);font-weight:700}
+    .social-btn i{font-size:18px}
+    .social-btn:hover{transform:translateY(-4px);box-shadow:0 12px 34px rgba(0,0,0,0.45)}
 
-/* ===== BOTÓN WHATSAPP FLOTANTE ===== */
-#whatsappFloat{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:65px;
-  height:65px;
-  background:#25D366;
-  border-radius:50%;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  font-size:40px;
-  color:white;
-  text-decoration:none;
-  box-shadow: 0 5px 25px rgba(0,0,0,0.6);
-  z-index:9999;
-}
-#whatsappFloat:hover{
-  transform:scale(1.1);
-}
-</style>
+    /* ===== acordion simuladores ===== */
+    .accordion{display:grid;gap:10px}
+    .subject{background:var(--ui-bg);color:var(--negro);padding:10px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.35)}
+    .subject .head{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;padding:8px}
+    .subject .info{display:flex;gap:12px;align-items:center}
+    .subject .icon{width:44px;height:44px;border-radius:8px;background:var(--plomo);display:grid;place-items:center;color:white;font-size:20px}
+    .chev{transition:transform .18s}
+    .panel{max-height:0;overflow:hidden;transition:max-height .36s,padding .36s}
+    .panel.open{padding:12px 6px 18px 6px;max-height:420px}
+    .btn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
+    .sim-btn{background:var(--verde-oscuro);color:white;padding:10px;border-radius:10px;border:0;font-weight:800;cursor:pointer}
+    .sim-btn:hover{background:#2f6c2a}
 
+    /* ===== visor modal ===== */
+    .visor{position:fixed;inset:0;display:none;place-items:center;padding:18px;z-index:2000;background:rgba(2,4,2,0.86)}
+    .visor.open{display:grid}
+    .frame-wrap{width:100%;max-width:1200px;height:86vh;background:white;border-radius:10px;overflow:hidden;box-shadow:0 20px 70px rgba(0,0,0,0.7)}
+    iframe#formFrame{width:100%;height:100%;border:0}
+    .visor .close{position:absolute;right:26px;top:22px;background:var(--verde-camuflaje);border:0;color:#07100b;padding:10px 14px;border-radius:8px;font-weight:800;cursor:pointer}
+
+    /* ===== chatbot floating ===== */
+    .floating-chat{position:fixed;right:20px;bottom:100px;z-index:9998;display:flex;flex-direction:column;gap:10px}
+    .chat-btn{width:64px;height:64px;border-radius:50%;background:#222;display:grid;place-items:center;color:white;font-size:28px;cursor:pointer;box-shadow:0 8px 30px rgba(0,0,0,0.5)}
+    .chat-window{position:fixed;right:20px;bottom:180px;width:360px;height:480px;background:white;border-radius:12px;box-shadow:0 18px 60px rgba(0,0,0,0.6);overflow:hidden;display:none;flex-direction:column}
+    .chat-window.open{display:flex}
+    .chat-window header{background:var(--verde-oscuro);color:white;padding:10px;display:flex;align-items:center;justify-content:space-between}
+    .chat-window iframe{flex:1;border:0}
+
+    /* ===== admin modal (demo) ===== */
+    .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,0.6);z-index:3000}
+    .modal.open{display:grid}
+    .modal .dialog{background:var(--ui-bg);color:var(--negro);border-radius:12px;padding:20px;width:360px;box-shadow:0 18px 50px rgba(0,0,0,0.5)}
+    .modal input{width:100%;padding:10px;margin:8px 0;border-radius:8px;border:1px solid rgba(0,0,0,0.08)}
+
+    /* ===== floating whatsapp ===== */
+    #whatsappFloat{position:fixed;bottom:22px;right:22px;width:68px;height:68px;background:#25D366;border-radius:50%;display:grid;place-items:center;font-size:36px;color:white;box-shadow:0 8px 30px rgba(0,0,0,0.6);z-index:9999}
+    #whatsappFloat:hover{transform:scale(1.08)}
+
+    /* ===== theme toggle (night mode) ===== */
+    .top-controls{display:flex;gap:8px;align-items:center}
+    .toggle{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:6px 10px;border-radius:8px;color:var(--accent);cursor:pointer}
+
+    /* ===== responsive ===== */
+    @media(max-width:900px){
+      nav.main-nav{display:none}
+      .hamburger{display:inline-block}
+      .container{padding:120px 16px 28px}
+    }
+  </style>
 </head>
 <body>
 
-<!-- ================= LOGO ================= -->
-<div class="logo">
-  <img src="https://imgur.com/a/0rj4Mcy" alt="Logo Spartanos">
-  <h1>SPARTANOS MyR Academy</h1>
-</div>
-
-<div class="contenedor">
-
-<!-- ================ INICIO / INTRODUCCIÓN ================= -->
-<section id="inicio">
-  <h2>Bienvenidos a Spartanos MyR Academy</h2>
-  <p style="text-align:center; font-size:18px;">
-    Formación táctica, académica y física para aspirantes a Fuerzas Armadas, Policía Nacional y entidades de seguridad.
-  </p>
-</section>
-
-<!-- ============= MISIÓN Y VISIÓN ============= -->
-<section id="mision-vision">
-  <h2>Misión</h2>
-  <p>Desarrollar aspirantes altamente capacitados en conocimientos, capacidades físicas y disciplina táctica.</p>
-
-  <h2>Visión</h2>
-  <p>Convertirnos en la mejor academia de formación militar y policial del país.</p>
-</section>
-
-<!-- ================ GALERÍA ================= -->
-<section id="galeria">
-  <h2>Galería</h2>
-  <div class="galeria">
-    <img src="https://imgur.com/a/ZAEdJur.jpeg">
-    <img src="https://imgur.com/a/euIZdt2.jpeg">
-    <img src="https://imgur.com/a/65DycAG.jpeg">
-    <img src="https://imgur.com/a/2MRaOYd.jpeg">
-  </div>
-</section>
-
-<!-- ================ VIDEOS ================= -->
-<section id="videos">
-  <h2>Videos</h2>
-  <div class="videos">
-    <iframe src="https://www.facebook.com/share/v/16Z6kP3rDc/"></iframe>
-    <iframe src="https://www.facebook.com/share/p/1AK5Mv4Qm2/"></iframe>
-  </div>
-</section>
-
-<!-- ================ SIMULADORES ================= -->
-<section id="formularios">
-  <h2>Simuladores Académicos</h2>
-
-  <!-- BOTONES DE MATERIAS -->
-  <button class="header-btn" onclick="togglePanel(this)">Ciencias Sociales</button>
-  <div class="panel">
-    <div class="test-grid">
-      <button class="test-card" onclick="openSim('FORM_SOC_1')">Sociales 1</button>
-      <button class="test-card" onclick="openSim('FORM_SOC_2')">Sociales 2</button>
-    </div>
-  </div>
-
-  <button class="header-btn" onclick="togglePanel(this)">Matemáticas</button>
-  <div class="panel">
-    <div class="test-grid">
-      <button class="test-card" onclick="openSim('FORM_MATE_1')">Matemáticas 1</button>
-      <button class="test-card" onclick="openSim('FORM_MATE_2')">Matemáticas 2</button>
-    </div>
-  </div>
-
-  <button class="header-btn" onclick="togglePanel(this)">Física</button>
-  <div class="panel">
-    <div class="test-grid">
-      <button class="test-card" onclick="openSim('FORM_FIS_1')">Física 1</button>
-      <button class="test-card" onclick="openSim('FORM_FIS_2')">Física 2</button>
-    </div>
-  </div>
-
-  <button class="header-btn" onclick="togglePanel(this)">Lengua y Literatura</button>
-  <div class="panel">
-    <div class="test-grid">
-      <button class="test-card" onclick="openSim('FORM_LENG_1')">Lengua 1</button>
-      <button class="test-card" onclick="openSim('FORM_LENG_2')">Lengua 2</button>
-    </div>
-  </div>
-
-  <button class="header-btn" onclick="togglePanel(this)">Inglés</button>
-  <div class="panel">
-    <div class="test-grid">
-      <button class="test-card" onclick="openSim('FORM_ING_1')">Inglés 1</button>
-      <button class="test-card" onclick="openSim('FORM_ING_2')">Inglés 2</button>
-    </div>
-  </div>
-
-  <button class="header-btn" onclick="togglePanel(this)">Psicología</button>
-  <div class="panel">
-    <div class="test-grid">
-      <button class="test-card" onclick="openSim('FORM_PSI_1')">Psicología 1</button>
-      <button class="test-card" onclick="openSim('FORM_PSI_2')">Psicología 2</button>
-    </div>
-  </div>
-</section>
-
-<!-- IFRAME DONDE SE ABREN LOS FORMS -->
-<iframe id="simuladorFrame"></iframe>
- <!-- VISOR / MODAL para Google Forms -->
-  <div id="visor" class="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitle">
-    <button class="close" aria-label="Cerrar visor" onclick="closeVisor()">Cerrar ✖</button>
-    <div class="frame-wrap" role="document">
-      <iframe id="iframeForm" title="Simulador - Spartanos" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-  </div>
-  <footer class="site-footer">
-    <div style="max-width:1150px;margin:0 auto;padding:4px 16px;">
-      <div style="margin-bottom:8px;">&copy; <span id="year"></span> SPARTANOS MyR ACADEMY — Todos los derechos reservados</div>
-      <small style="opacity:0.9">Juan de Velasco y Simón Bolívar · CC Casa Blanca Oficina 21 · +593 985 486 085 · spartanosmyr@gmail.com</small>
-    </div>
-  </footer>
-
-<!-- ================ CONTACTOS ================= -->
-<section id="contactos">
-  <h2>Contactos</h2>
-  <div class="contactos-icons">
-    <a href="#" target="_blank">📘</a>
-    <a href="#" target="_blank">📷</a>
-    <a href="#" target="_blank">🎵</a>
-    <a href="#" target="_blank">📍</a>
-    <a href="#" target="_blank">💬</a>
-  </div>
-</section>
-
-</div>
-<!-- CONTACTOS -->
-    <section id="contactos" class="page-section">
-      <div class="section-title">Contactos & Ubicación</div>
-      <p class="lead">Contáctanos para inscripciones y consultas. Haz clic en los iconos para ir a nuestras redes o ubicación.</p>
-
-      <div class="social-buttons" role="navigation" aria-label="Redes sociales">
-        <a class="social-btn" href="https://www.facebook.com/profile.php?id=61584114427412" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a>
-        <a class="social-btn" href="https://www.instagram.com/spartanosmyr" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
-        <a class="social-btn" href="https://www.tiktok.com/@spartanosmyr" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i> TikTok</a>
-        <a class="social-btn" href="https://wa.me/593985486085?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a class="social-btn" href="https://maps.app.goo.gl/H5aybW6S267hcZHJ7" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Ubicación</a>
+  <!-- HEADER -->
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="brand">
+        <img src="https://i.imgur.com/gC1Cw5H.png" alt="Logo Spartanos">
+        <div>
+          <h1>SPARTANOS MyR ACADEMY</h1>
+          <div style="font-size:12px;color:rgba(255,255,255,0.75)">Excelencia en Preparación Académica</div>
+        </div>
       </div>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <nav class="main-nav" role="navigation" aria-label="Main">
+          <a href="#inicio">Inicio</a>
+          <a href="#introduccion">Introducción</a>
+          <a href="#mision">Misión</a>
+          <a href="#vision">Visión</a>
+          <a href="#galeria">Galería</a>
+          <a href="#videos">Videos</a>
+          <a href="#simuladores">Simuladores</a>
+          <a href="#contactos">Contactos</a>
+        </nav>
+
+        <div class="top-controls" style="margin-left:12px">
+          <button class="toggle" id="soundToggle" title="Sonidos">🔊</button>
+          <button class="toggle" id="themeToggle" title="Modo noche/diurno">🌙</button>
+          <button class="toggle" id="adminOpen" title="Panel Admin">Admin</button>
+          <button class="hamburger" id="mobileMenuBtn" aria-label="Abrir menú">☰</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTAINER -->
+  <main class="container" role="main">
+
+    <!-- HERO -->
+    <section id="inicio" class="hero">
+      <div class="hero-card">
+        <h2>Simuladores de Pruebas Académicas — Spartanos MyR Academy</h2>
+        <p class="lead">Preparación orientada a ingreso policial, militar y académico. Simuladores diseñados por instructores y con auto-evaluación.</p>
+        <div class="chips">
+          <span class="chip">Acceso ilimitado</span>
+          <span class="chip">Resultados instant</span>
+          <span class="chip">Compatible móvil</span>
+        </div>
+      </div>
+
+      <div style="min-width:220px;text-align:right">
+        <a class="sim-btn" href="#simuladores" style="background:var(--verde-camuflaje);color:#07100b;padding:12px 16px;border-radius:10px;text-decoration:none;display:inline-block">Ver Simuladores</a>
+      </div>
+    </section>
+
+    <!-- INTRO -->
+    <section id="introduccion" class="page">
+      <div class="card">
+        <div class="section-title">Introducción</div>
+        <p class="lead">En Spartanos MyR Academy nos dedicamos a preparar aspirantes con disciplina, técnica y conocimientos para los procesos de selección policial y militar. Nuestra plataforma combina simuladores académicos con capacitación física y psicológica.</p>
+      </div>
+    </section>
+
+    <!-- MISION -->
+    <section id="mision" class="page">
+      <div class="card">
+        <div class="section-title">Misión</div>
+        <p class="lead">Formar aspirantes con valores, conocimientos y habilidades para servir con excelencia.</p>
+      </div>
+    </section>
+
+    <!-- VISION -->
+    <section id="vision" class="page">
+      <div class="card">
+        <div class="section-title">Visión</div>
+        <p class="lead">Ser la academia líder en preparación integral para ingresos a instituciones de seguridad y defensa.</p>
+      </div>
+    </section>
+
+    <!-- GALERIA -->
+    <section id="galeria" class="page">
+      <div class="section-title">Galería</div>
+      <div class="galeria card" aria-hidden="false">
+        <!-- reemplaza estas imágenes si quieres -->
+        <img src="https://i.imgur.com/IqbKJ5v.jpeg" alt="Foto 1">
+        <img src="https://i.imgur.com/U0rYHxn.jpeg" alt="Foto 2">
+        <img src="https://i.imgur.com/7HPjs1o.jpeg" alt="Foto 3">
+        <img src="https://i.imgur.com/A8uFoDW.jpeg" alt="Foto 4">
+      </div>
+    </section>
+
+    <!-- VIDEOS -->
+    <section id="videos" class="page">
+      <div class="section-title">Videos Autorizados</div>
+      <p class="lead">Material oficial para apoyo de instrucción.</p>
+      <div class="videos-grid card">
+        <!-- Reemplaza por tus embeds autorizados -->
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video 1" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/7Q1g0GyD6wU" title="Video 2" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- SIMULADORES -->
+    <section id="simuladores" class="page">
+      <div class="section-title">Simuladores Académicos (haz clic en la materia)</div>
+      <p class="lead">Los simuladores se abren en un visor dentro de la página (iframe). Si tu Google Form NO permite embedding, lo abriremos en nueva pestaña.</p>
+
+      <div class="accordion card" role="tablist" aria-label="Simuladores">
+        <!-- Ciencias Sociales -->
+        <div class="subject" data-sub="sociales">
+          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
+            <div class="info">
+              <div class="icon">🗺️</div>
+              <div>
+                <strong>Ciencias Sociales</strong><div class="muted">Historia • Geografía • Sociedad</div>
+              </div>
+            </div>
+            <div class="chev">▸</div>
+          </div>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_SOCIALES_1" onclick="openForm(this)">Ciencias Sociales 1</button>
+              <button class="sim-btn" data-form="FORM_SOCIALES_2" onclick="openForm(this)">Ciencias Sociales 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matemáticas -->
+        <div class="subject" data-sub="mate">
+          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
+            <div class="info">
+              <div class="icon">➗</div>
+              <div><strong>Matemáticas</strong><div class="muted">Razonamiento • Cálculo</div></div>
+            </div>
+            <div class="chev">▸</div>
+          </div>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_MATE_1" onclick="openForm(this)">Matemáticas 1</button>
+              <button class="sim-btn" data-form="FORM_MATE_2" onclick="openForm(this)">Matemáticas 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Física -->
+        <div class="subject" data-sub="fisica">
+          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
+            <div class="info">
+              <div class="icon">🔬</div>
+              <div><strong>Física</strong><div class="muted">Mecánica • Termodinámica</div></div>
+            </div>
+            <div class="chev">▸</div>
+          </div>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_FISICA_1" onclick="openForm(this)">Física 1</button>
+              <button class="sim-btn" data-form="FORM_FISICA_2" onclick="openForm(this)">Física 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lengua y Literatura -->
+        <div class="subject" data-sub="lengua">
+          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
+            <div class="info">
+              <div class="icon">✍️</div>
+              <div><strong>Lengua y Literatura</strong><div class="muted">Comprensión • Gramática</div></div>
+            </div>
+            <div class="chev">▸</div>
+          </div>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_LENGUA_1" onclick="openForm(this)">Lengua 1</button>
+              <button class="sim-btn" data-form="FORM_LENGUA_2" onclick="openForm(this)">Lengua 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inglés -->
+        <div class="subject" data-sub="ingles">
+          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
+            <div class="info">
+              <div class="icon">🗣️</div>
+              <div><strong>Inglés</strong><div class="muted">Comprensión • Vocabulario</div></div>
+            </div>
+            <div class="chev">▸</div>
+          </div>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_INGLES_1" onclick="openForm(this)">Inglés 1</button>
+              <button class="sim-btn" data-form="FORM_INGLES_2" onclick="openForm(this)">Inglés 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Psicología -->
+        <div class="subject" data-sub="psico">
+          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
+            <div class="info">
+              <div class="icon">🧠</div>
+              <div><strong>Psicología</strong><div class="muted">Evaluaciones psicológicas</div></div>
+            </div>
+            <div class="chev">▸</div>
+          </div>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_PSICO_1" onclick="openForm(this)">Psicología 1</button>
+              <button class="sim-btn" data-form="FORM_PSICO_2" onclick="openForm(this)">Psicología 2</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACTOS -->
+    <section id="contactos" class="page">
+      <div class="section-title">Contactos & Ubicación</div>
+      <p class="lead">Contáctanos para inscripciones, consultas o entrenamientos personalizados. Haz clic en los iconos para ir a nuestras redes.</p>
+
+      <div class="social-row">
+        <!-- replace href with your links -->
+        <a class="social-btn" href="https://facebook.com/TU_PAGINA" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a class="social-btn" href="https://instagram.com/TU_USUARIO" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
+        <a class="social-btn" href="https://www.tiktok.com/@TU_USUARIO" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a class="social-btn" href="https://wa.me/593985486085?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a class="social-btn" href="https://www.google.com/maps/place/TU+UBICACION" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Ubicación</a>
+      </div>
+
+      <!-- Inscripciones (envío a Google Apps Script webhook -> Google Sheets) -->
+      <div style="max-width:720px;margin:18px auto 0 auto;" class="card">
+        <div style="font-weight:800;margin-bottom:8px">Formulario de Inscripción</div>
+        <form id="inscripcionForm">
+          <input name="nombre" id="ins_nombre" placeholder="Nombre completo" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
+          <input name="telefono" id="ins_telefono" placeholder="Teléfono" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
+          <input name="email" id="ins_email" type="email" placeholder="Correo" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
+          <select id="ins_programa" name="programa" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
+            <option value="">Selecciona programa</option>
+            <option>Preparación Policial</option>
+            <option>Preparación Militar</option>
+            <option>Simuladores Académicos</option>
+          </select>
+          <div style="display:flex;gap:8px">
+            <button type="submit" style="flex:1;padding:10px;border-radius:8px;border:0;background:var(--verde-camuflaje);color:#07100b;font-weight:800">Inscribirme</button>
+            <button type="button" id="insClear" style="flex:0 0 120px;padding:10px;border-radius:8px;border:0;background:#444;color:white">Limpiar</button>
+          </div>
+          <small style="display:block;margin-top:8px;color:rgba(255,255,255,0.75)">La inscripción se enviará a la hoja de cálculo conectada.</small>
+        </form>
+      </div>
+
     </section>
 
   </main>
 
-<!-- BOTÓN WHATSAPP FLOTANTE -->
-<a id="whatsappFloat" href="https://wa.me/593986912191" target="_blank">💬</a>
+  <!-- VISOR / MODAL para Google Forms -->
+  <div id="visor" class="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitle">
+    <button class="close" aria-label="Cerrar visor" onclick="closeVisor()">Cerrar ✖</button>
+    <div class="frame-wrap" role="document">
+      <iframe id="formFrame" title="Simulador - Spartanos" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
 
-<!-- ========== JS SIMULADORES ========== -->
-<script>
-const formUrls = {
-  "FORM_SOC_1": "https://docs.google.com/forms/d/e/FORM_ID_SOC1/viewform",
-  "FORM_SOC_2": "https://docs.google.com/forms/d/e/FORM_ID_SOC2/viewform",
+  <!-- CHATBOT FLOTANTE -->
+  <div class="floating-chat" aria-hidden="false">
+    <div class="chat-btn" id="chatToggle" title="Abrir Chat">🤖</div>
+  </div>
 
-  "FORM_MATE_1": "https://docs.google.com/forms/d/e/FORM_ID_MATE1/viewform",
-  "FORM_MATE_2": "https://docs.google.com/forms/d/e/FORM_ID_MATE2/viewform",
+  <div id="chatWindow" class="chat-window" role="dialog" aria-label="Chatbot">
+    <header>
+      <div>Spartanos Chat</div>
+      <div style="display:flex;gap:8px;align-items:center">
+        <button id="chatClose" style="background:transparent;border:0;color:white;font-weight:700;cursor:pointer">Cerrar</button>
+      </div>
+    </header>
+    <!-- Replace src with your chatbot embed URL (Chatbase, Botpress, etc.) -->
+    <iframe id="chatFrame" src="https://www.chatbase.co/chatbot-iframe" title="Chatbot"></iframe>
+  </div>
 
-  "FORM_FIS_1": "https://docs.google.com/forms/d/e/FORM_ID_FIS1/viewform",
-  "FORM_FIS_2": "https://docs.google.com/forms/d/e/FORM_ID_FIS2/viewform",
+  <!-- ADMIN PANEL (demo local) -->
+  <div id="adminModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
+    <div class="dialog" role="document">
+      <h3 id="adminTitle">Panel Administrador (demo)</h3>
+      <input id="adminUser" placeholder="Usuario">
+      <input id="adminPass" placeholder="Contraseña" type="password">
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button id="adminLogin" style="flex:1;padding:10px;background:var(--verde-camuflaje);border:0;border-radius:8px;font-weight:800">Ingresar</button>
+        <button id="adminClose" style="flex:0 0 100px;padding:10px;background:#444;border:0;border-radius:8px;color:white">Cancelar</button>
+      </div>
+      <small style="display:block;margin-top:8px;color:#666">Este login es DEMO (cliente). Para producción usa autenticación segura (Firebase/Auth, OAuth o tu backend).</small>
+    </div>
+  </div>
 
-  "FORM_LENG_1": "https://docs.google.com/forms/d/e/FORM_ID_LENG1/viewform",
-  "FORM_LENG_2": "https://docs.google.com/forms/d/e/FORM_ID_LENG2/viewform",
+  <!-- BOTÓN WHATSAPP FLOTANTE -->
+  <a id="whatsappFloat" href="https://wa.me/593999999999?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" aria-label="WhatsApp">💬</a>
 
-  "FORM_ING_1": "https://docs.google.com/forms/d/e/FORM_ID_ING1/viewform",
-  "FORM_ING_2": "https://docs.google.com/forms/d/e/FORM_ID_ING2/viewform",
+  <!-- FOOTER -->
+  <footer style="padding:24px;text-align:center;background:linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.3));margin-top:40px">
+    <div style="max-width:1200px;margin:auto;color:rgba(255,255,255,0.9)">&copy; <span id="year"></span> Spartanos MyR ACADEMY — Todos los derechos reservados</div>
+    <small style="opacity:0.85">Juan de Velasco y Simón Bolívar · CC Casa Blanca Oficina 21 · +593 985 486 085 · spartanosmyr@gmail.com</small>
+  </footer>
 
-  "FORM_PSI_1": "https://docs.google.com/forms/d/e/FORM_ID_PSI1/viewform",
-  "FORM_PSI_2": "https://docs.google.com/forms/d/e/FORM_ID_PSI2/viewform"
-};
+  <!-- SCRIPTS -->
+  <script>
+    // ========== CONFIG: REEMPLAZA ESTAS URLs CON TUS GOOGLE FORMS (usar ?embedded=true si es posible) ==========
+    const formUrls = {
+      FORM_SOCIALES_1: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform?embedded=true',
+      FORM_SOCIALES_2: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform?embedded=true',
 
-function togglePanel(btn){
-  const panel = btn.nextElementSibling;
-  panel.classList.toggle("open");
-}
+      FORM_MATE_1: 'https://docs.google.com/forms/d/e/FORM_ID_MATE_1/viewform?embedded=true',
+      FORM_MATE_2: 'https://docs.google.com/forms/d/e/FORM_ID_MATE_2/viewform?embedded=true',
 
-function openSim(code){
-  document.getElementById("simuladorFrame").style.display="block";
-  document.getElementById("simuladorFrame").src = formUrls[code];
-}
-</script>
+      FORM_FISICA_1: 'https://docs.google.com/forms/d/e/FORM_ID_FISICA_1/viewform?embedded=true',
+      FORM_FISICA_2: 'https://docs.google.com/forms/d/e/FORM_ID_FISICA_2/viewform?embedded=true',
+
+      FORM_LENGUA_1: 'https://docs.google.com/forms/d/e/FORM_ID_LENGUA_1/viewform?embedded=true',
+      FORM_LENGUA_2: 'https://docs.google.com/forms/d/e/FORM_ID_LENGUA_2/viewform?embedded=true',
+
+      FORM_INGLES_1: 'https://docs.google.com/forms/d/e/FORM_ID_INGLES_1/viewform?embedded=true',
+      FORM_INGLES_2: 'https://docs.google.com/forms/d/e/FORM_ID_INGLES_2/viewform?embedded=true',
+
+      FORM_PSICO_1: 'https://docs.google.com/forms/d/e/FORM_ID_PSICO_1/viewform?embedded=true',
+      FORM_PSICO_2: 'https://docs.google.com/forms/d/e/FORM_ID_PSICO_2/viewform?embedded=true'
+    };
+
+    // ========== INSCRIPCIONES: REEMPLAZA por tu URL de Google Apps Script (web app) ==========
+    // Cómo crear: Google Sheets -> Tools > Script editor -> crear web app que reciba POST y lo guarde -> desplegar como web app (anyone, even anonymous)
+    const INSCRIPCIONES_WEBHOOK = 'https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec';
+
+    // Elements
+    const visor = document.getElementById('visor');
+    const formFrame = document.getElementById('formFrame');
+
+    // Open form (tries iframe, if blocked opens in new tab)
+    function openForm(btn){
+      const key = btn.getAttribute('data-form') || btn.dataset.form;
+      const url = formUrls[key];
+      if(!url){ alert('Formulario no configurado. Reemplaza formUrls en el script.'); return; }
+
+      // Try embedding in iframe; if X-Frame-Options blocks, user can still open in new tab
+      formFrame.src = url;
+      visor.classList.add('open');
+      visor.setAttribute('aria-hidden', 'false');
+
+      // small timeout: if iframe loads blank due to frame blocking, offer open in new tab
+      setTimeout(()=> {
+        try {
+          const fdoc = document.getElementById('formFrame').contentDocument;
+          // if cross-origin, accessing contentDocument may throw; ignore safely
+        } catch(e){
+          // If blocked, offer user to open in a new tab
+          // (We do not auto-open because browsers may block popups)
+          const openNew = confirm('Si el formulario no se muestra incrustado, ¿abrir en nueva pestaña?');
+          if(openNew) window.open(url,'_blank');
+        }
+      }, 900);
+    }
+
+    function closeVisor(){
+      formFrame.src = '';
+      visor.classList.remove('open');
+      visor.setAttribute('aria-hidden','true');
+    }
+
+    // Toggle subject panels
+    function toggleSubject(head){
+      const subject = head.closest('.subject');
+      const panel = subject.querySelector('.panel');
+      const expanded = head.getAttribute('aria-expanded') === 'true';
+      // close others
+      document.querySelectorAll('.subject .panel.open').forEach(p=>{
+        if(p !== panel){ p.classList.remove('open'); p.closest('.subject').querySelector('.head').setAttribute('aria-expanded','false'); p.closest('.subject').querySelector('.chev').style.transform='rotate(0deg)'; }
+      });
+      if(!expanded){
+        panel.classList.add('open');
+        head.setAttribute('aria-expanded','true');
+        head.querySelector('.chev').style.transform = 'rotate(90deg)';
+      } else {
+        panel.classList.remove('open');
+        head.setAttribute('aria-expanded','false');
+        head.querySelector('.chev').style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // Accessibility: close with escape
+    window.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeVisor(); closeChat(); closeAdmin(); }});
+
+    // ========== CHATBOT ==========
+    const chatToggle = document.getElementById('chatToggle');
+    const chatWindow = document.getElementById('chatWindow');
+    const chatFrame = document.getElementById('chatFrame');
+    const chatClose = document.getElementById('chatClose');
+    chatToggle.addEventListener('click', ()=> {
+      chatWindow.classList.toggle('open');
+      // Optionally lazy-load chatbot url:
+      if(!chatFrame.src || chatFrame.src === '') {
+        chatFrame.src = 'https://www.chatbase.co/chatbot-iframe'; // replace with your chatbot embed
+      }
+    });
+    chatClose.addEventListener('click', closeChat);
+    function closeChat(){ chatWindow.classList.remove('open'); }
+
+    // ========== ADMIN DEMO ==========
+    const adminOpenBtn = document.getElementById('adminOpen');
+    const adminModal = document.getElementById('adminModal');
+    const adminClose = document.getElementById('adminClose');
+    const adminLogin = document.getElementById('adminLogin');
+    adminOpenBtn.addEventListener('click', ()=> adminModal.classList.add('open'));
+    adminClose.addEventListener('click', closeAdmin);
+    function closeAdmin(){ adminModal.classList.remove('open'); }
+    adminLogin.addEventListener('click', ()=>{
+      const u = document.getElementById('adminUser').value;
+      const p = document.getElementById('adminPass').value;
+      // DEMO credentials: admin / Spartanos123 (client-side demo only)
+      if(u === 'admin' && p === 'Spartanos123'){
+        alert('Acceso demo autorizado. (Este panel es solo demo — para producción usa Auth real.)');
+        closeAdmin();
+        // show a simple admin action: list of forms (demo)
+        const forms = Object.keys(formUrls).map(k=> `${k}: ${formUrls[k]}`).join('\\n');
+        alert('Formularios configurados:\\n\\n' + forms);
+      } else {
+        alert('Credenciales incorrectas (demo).');
+      }
+    });
+
+    // ========== MOBILE MENU (simple) ==========
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    mobileBtn.addEventListener('click', ()=>{
+      const nav = document.querySelector('nav.main-nav');
+      if(nav.style.display === 'flex') nav.style.display = 'none';
+      else nav.style.display = 'flex';
+    });
+
+    // ========== WHATSAPP FLOAT behavior: always visible ==========
+    // (No extra JS required; link in HTML)
+
+    // ========== THEME / SOUND toggles ==========
+    const themeToggle = document.getElementById('themeToggle');
+    const soundToggle = document.getElementById('soundToggle');
+    let soundEnabled = false;
+    soundToggle.addEventListener('click', ()=> {
+      soundEnabled = !soundEnabled;
+      soundToggle.style.background = soundEnabled ? 'linear-gradient(180deg,#2f6c2a,#1f421c)' : 'transparent';
+      playSound('toggle');
+    });
+    themeToggle.addEventListener('click', ()=> {
+      document.body.classList.toggle('dark-mode');
+      themeToggle.style.background = document.body.classList.contains('dark-mode') ? 'linear-gradient(180deg,#2f6c2a,#1f421c)' : 'transparent';
+    });
+
+    // small sound packs (base64 blink) just for small UX
+    const sounds = {
+      'toggle': 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA='
+    };
+    function playSound(name){
+      if(!soundEnabled) return;
+      const a = new Audio(sounds[name]);
+      a.play().catch(()=>{ /* ignore autoplay errors */ });
+    }
+
+    // ========== INSCRIPCIONES: enviar a Google Apps Script webhook ==========
+    const insForm = document.getElementById('inscripcionForm');
+    const insClear = document.getElementById('insClear');
+    insClear.addEventListener('click', ()=> insForm.reset());
+    insForm.addEventListener('submit', async (e)=>{
+      e.preventDefault();
+      const data = {
+        nombre: document.getElementById('ins_nombre').value,
+        telefono: document.getElementById('ins_telefono').value,
+        email: document.getElementById('ins_email').value,
+        programa: document.getElementById('ins_programa').value,
+        fecha: new Date().toISOString()
+      };
+      // If you provided INSCRIPCIONES_WEBHOOK, it will POST; otherwise show demo alert
+      if(INSCRIPCIONES_WEBHOOK && !INSCRIPCIONES_WEBHOOK.includes('YOUR_SCRIPT_ID')){
+        try{
+          await fetch(INSCRIPCIONES_WEBHOOK, {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify(data)});
+          alert('Inscripción recibida. Gracias — revisar hoja de cálculo.');
+          insForm.reset();
+        }catch(err){
+          alert('Error al enviar inscripción. Revisa INSCRIPCIONES_WEBHOOK en el código. (Demo)');
+          console.error(err);
+        }
+      } else {
+        alert('Demo: inscripción lista (no enviada). Reemplaza INSCRIPCIONES_WEBHOOK con tu Google Apps Script URL para guardar en Sheets.');
+        console.log(data);
+        insForm.reset();
+      }
+    });
+
+    // ========== UTILS: set footer year ==========
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ========== helper close chat/admin on outside click ==========
+    window.addEventListener('click', (e)=>{
+      if(e.target.classList && e.target.classList.contains('visor')) closeVisor();
+    });
+
+    // ========== small accessibility: focus outlines on keyboard nav ==========
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Tab') document.body.classList.add('kbd-nav');
+    });
+  </script>
 
 </body>
 </html>
