@@ -22,19 +22,7 @@
       --ui-bg: rgba(255,255,255,0.96);
       --transition: 200ms ease;
     }
-body::before {
-    content:"";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width:175%;
-    height:150%;
-    background: url('3.jpg') repeat center center; /* Logo repetido */
-    background-size: 115px; /* Ajusta el tamaño según tu logo */
-    opacity:5%;    /* Transparencia */
-    pointer-events: 110%;    /* Permite interactuar con la página */
-    z-index: 9999;
-  }
+
 
     /* ===== reset ===== */
     *{box-sizing:border-box}
@@ -125,10 +113,21 @@ body::before {
       .hamburger{display:inline-block}
       .container{padding:120px 16px 28px}
     }
-  </style>
-</head>
-<body>
-
+    
+/* ===== MARCA DE AGUA ===== */
+body::before {
+    content:"";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:175%;
+    height:150%;
+    background: url('3.jpg') repeat center center; /* Logo repetido */
+    background-size: 115px; /* Ajusta el tamaño según tu logo */
+    opacity:5%;    /* Transparencia */
+    pointer-events: 110%;    /* Permite interactuar con la página */
+    z-index: 9999;
+  }
   <!-- HEADER -->
   <header class="site-header" role="banner">
     <div class="header-inner">
