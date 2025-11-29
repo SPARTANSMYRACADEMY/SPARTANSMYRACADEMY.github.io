@@ -22,6 +22,67 @@
             background-position: center;
             background-attachment: fixed;
         }
+<!— Asegúrate de incluir Font Awesome en el <head> —>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-p6eX6Qv1Z5x3e5Q+vWoG7V3YHB5z3OQbO/9HgD+p/4fQYQyqvyhY4JJ1SGoBj7Dv/ 8oI1pJCuV0B4i5iZP4dLg=="
+      crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<section id="redes" class="social-section">
+  <div class="social-container">
+    <a class="social-btn fb" href="https://facebook.com/TU_PAGINA" target="_blank" aria-label="Facebook">
+      <i class="fab fa-facebook-f"></i>
+    </a>
+    <a class="social-btn ig" href="https://instagram.com/TU_USUARIO" target="_blank" aria-label="Instagram">
+      <i class="fab fa-instagram"></i>
+    </a>
+    <a class="social-btn tt" href="https://www.tiktok.com/@TU_USUARIO" target="_blank" aria-label="TikTok">
+      <i class="fab fa-tiktok"></i>
+    </a>
+    <a class="social-btn wa" href="https://wa.me/NUMERO" target="_blank" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+  </div>
+</section>
+/* ————— Social media section ————— */
+.social-section {
+  width: 100%;
+  padding: 20px 0;
+  background: transparent; /* o cambia según tu diseño */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-container {
+  display: flex;
+  gap: 15px;
+}
+
+.social-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #4b5f3a; /* verde militar / ajusta a tu paleta */
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.social-btn:hover {
+  background: #5f7550;
+  transform: scale(1.1);
+}
+
+/* Opcional: estilos específicos por red */
+/* .social-btn.fb { background: #3b5998; } */
+/* .social-btn.ig { background: #e4405f; } */
+/* .social-btn.tt { background: #000; } */
+/* .social-btn.wa { background: #25D366; } */
 
         /* NAV */
         nav {
