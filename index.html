@@ -131,6 +131,19 @@
       .hamburger{display:inline-block}
       .container{padding:120px 16px 28px}
     }
+    /* ===== MARCA DE AGUA ===== */
+body::before {
+    content:"";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width:175%;
+    height:150%;
+    background: url('3.jpg') repeat center center; /* Logo repetido */
+    background-size: 200px; /* Ajusta el tamaño según tu logo */
+    opacity:5%;    /* Transparencia */
+    pointer-events: 110%;    /* Permite interactuar con la página */
+    z-index: 9999;
   </style>
 </head>
 <body>
