@@ -31,7 +31,7 @@
       color: #fff;
       background-image:
         linear-gradient(rgba(2,4,2,0.6), rgba(2,4,2,0.6)),
-        url('https://i.imgur.com/akg8n2M.jpeg'); /* fondo marca de agua */
+        imge ("3.jpg"); /* fondo marca de agua */
       background-size:cover;background-position:center;background-attachment:fixed;
       -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
       scroll-behavior:smooth;
@@ -139,7 +139,7 @@
   <header class="site-header" role="banner">
     <div class="header-inner">
       <div class="brand">
-        <img src="https://i.imgur.com/gC1Cw5H.png" alt="Logo Spartanos">
+        <img src="Mesa de trabajo 2.png" alt="Logo Spartanos">
         <div>
           <h1>SPARTANOS MyR ACADEMY</h1>
           <div style="font-size:12px;color:rgba(255,255,255,0.75)">Excelencia en Preparación Académica</div>
@@ -192,7 +192,15 @@
     <section id="introduccion" class="page">
       <div class="card">
         <div class="section-title">Introducción</div>
-        <p class="lead">En Spartanos MyR Academy nos dedicamos a preparar aspirantes con disciplina, técnica y conocimientos para los procesos de selección policial y militar. Nuestra plataforma combina simuladores académicos con capacitación física y psicológica.</p>
+        <p class="lead">Es una institución de formación física y
+académica especializada en la preparación
+para el ingreso a las Fuerzas Armadas y a la
+Policía Nacional del Ecuador. Desde abril de
+2023, hemos construido un espacio donde la
+disciplina, el entrenamiento riguroso y la
+excelencia se convierten en herramientas
+fundamentales para transformar a jóvenes
+aspirantes en candidatos preparados y seguros de sus capacidades.</p>
       </div>
     </section>
 
@@ -200,7 +208,13 @@
     <section id="mision" class="page">
       <div class="card">
         <div class="section-title">Misión</div>
-        <p class="lead">Formar aspirantes con valores, conocimientos y habilidades para servir con excelencia.</p>
+        <p class="lead">Formar aspirantes altamente preparados
+física, académica y mentalmente, brindando 
+una capacitación de excelencia que les
+permita afrontar exitosamente los procesos 
+de ingreso a las Fuerzas Armadas y a la
+Policía Nacional, promoviendo valores de
+disciplina, liderazgo y vocación de servicio.</p>
       </div>
     </section>
 
@@ -208,7 +222,14 @@
     <section id="vision" class="page">
       <div class="card">
         <div class="section-title">Visión</div>
-        <p class="lead">Ser la academia líder en preparación integral para ingresos a instituciones de seguridad y defensa.</p>
+        <p class="lead">Ser la academia de preparación policial y
+militar líder en el norte del país, reconocida
+por su rigor formativo, la calidad de su
+entrenamiento, la solidez de sus resultados
+y el impacto positivo en la vida de cada
+estudiante, formando generaciones capa-
+ces de servir con honor y compromiso a la
+sociedad.</p>
       </div>
     </section>
 
@@ -355,11 +376,11 @@
 
       <div class="social-row">
         <!-- replace href with your links -->
-        <a class="social-btn" href="https://facebook.com/TU_PAGINA" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
-        <a class="social-btn" href="https://instagram.com/TU_USUARIO" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
-        <a class="social-btn" href="https://www.tiktok.com/@TU_USUARIO" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok</a>
-        <a class="social-btn" href="https://wa.me/593985486085?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a class="social-btn" href="https://www.google.com/maps/place/TU+UBICACION" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Ubicación</a>
+        <a class="social-btn" href="https://www.facebook.com/profile.php?id=61584114427412" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a class="social-btn" href="https://www.instagram.com/spartanosmyr" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
+        <a class="social-btn" href="https://www.tiktok.com/@spartanosmyr" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a class="social-btn" href="https://wa.me/593986912191?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a class="social-btn" href="https://maps.app.goo.gl/qXHnbpxcqG8XPnpW7" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Ubicación</a>
       </div>
 
       <!-- Inscripciones (envío a Google Apps Script webhook -> Google Sheets) -->
@@ -395,22 +416,6 @@
     </div>
   </div>
 
-  <!-- CHATBOT FLOTANTE -->
-  <div class="floating-chat" aria-hidden="false">
-    <div class="chat-btn" id="chatToggle" title="Abrir Chat">🤖</div>
-  </div>
-
-  <div id="chatWindow" class="chat-window" role="dialog" aria-label="Chatbot">
-    <header>
-      <div>Spartanos Chat</div>
-      <div style="display:flex;gap:8px;align-items:center">
-        <button id="chatClose" style="background:transparent;border:0;color:white;font-weight:700;cursor:pointer">Cerrar</button>
-      </div>
-    </header>
-    <!-- Replace src with your chatbot embed URL (Chatbase, Botpress, etc.) -->
-    <iframe id="chatFrame" src="https://www.chatbase.co/chatbot-iframe" title="Chatbot"></iframe>
-  </div>
-
   <!-- ADMIN PANEL (demo local) -->
   <div id="adminModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="adminTitle">
     <div class="dialog" role="document">
@@ -421,9 +426,128 @@
         <button id="adminLogin" style="flex:1;padding:10px;background:var(--verde-camuflaje);border:0;border-radius:8px;font-weight:800">Ingresar</button>
         <button id="adminClose" style="flex:0 0 100px;padding:10px;background:#444;border:0;border-radius:8px;color:white">Cancelar</button>
       </div>
-      <small style="display:block;margin-top:8px;color:#666">Este login es DEMO (cliente). Para producción usa autenticación segura (Firebase/Auth, OAuth o tu backend).</small>
+      <small style="display:block;margin-top:8px;color:#666"></small>
     </div>
   </div>
+  <!-- BOTÓN PARA ABRIR PANEL ADMIN -->
+<button id="btnAdmin" style="position:fixed;bottom:80px;right:20px;padding:12px 18px;background:var(--verde-camuflaje);color:#fff;border:none;border-radius:8px;font-weight:bold;cursor:pointer;z-index:1500;">
+  Panel Admin
+</button>
+
+<!-- MODAL LOGIN ADMIN -->
+<div id="adminModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="adminTitle" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(4px);z-index:2000;place-items:center;display:grid;">
+  <div class="dialog" role="document" style="background:white;padding:28px;border-radius:12px;max-width:360px;width:100%;text-align:center;">
+    <h3 id="adminTitle">Panel Administrador (demo)</h3>
+    <input id="adminUser" placeholder="Usuario" style="width:80%;padding:10px;margin:10px 0;border-radius:6px;border:1px solid #ccc;">
+    <input id="adminPass" placeholder="Contraseña" type="password" style="width:80%;padding:10px;margin:10px 0;border-radius:6px;border:1px solid #ccc;">
+    <div style="display:flex;gap:8px;margin-top:12px;justify-content:center;">
+      <button id="adminLogin" style="flex:1;padding:10px;background:var(--verde-camuflaje);border:0;border-radius:8px;font-weight:800;color:#fff">Ingresar</button>
+      <button id="adminClose" style="flex:0 0 100px;padding:10px;background:#444;border:0;border-radius:8px;color:white">Cancelar</button>
+    </div>
+    <small style="display:block;margin-top:8px;color:#666"></small>
+  </div>
+</div>
+
+<!-- PANEL ADMIN -->
+<div id="adminPanel" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:1500;color:#fff;padding:28px;overflow:auto;">
+  <h2>Bienvenido al Panel Admin DEMO</h2>
+  <button id="adminLogout" style="padding:10px 14px;background:#a00;border:none;border-radius:8px;color:#fff;font-weight:bold;cursor:pointer;margin-bottom:20px;">Cerrar sesión</button>
+  
+  <section>
+    <h3>Simuladores</h3>
+    <div id="adminSimuladores" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;"></div>
+  </section>
+  
+  <section style="margin-top:30px;">
+    <h3>Lista de Estudiantes (demo)</h3>
+    <table style="width:100%;border-collapse:collapse;color:#fff;">
+      <thead>
+        <tr>
+          <th style="border:1px solid #fff;padding:8px;">#</th>
+          <th style="border:1px solid #fff;padding:8px;">Nombre</th>
+          <th style="border:1px solid #fff;padding:8px;">Correo</th>
+        </tr>
+      </thead>
+      <tbody id="studentList"></tbody>
+    </table>
+  </section>
+</div>
+
+<script>
+  // ---------- LOGIN DEMO ----------
+  const DEMO_USER = "1004785422";
+  const DEMO_PASS = "1004785422S";
+
+  const adminModal = document.getElementById("adminModal");
+  const adminPanel = document.getElementById("adminPanel");
+
+  document.getElementById("btnAdmin").addEventListener("click", ()=> adminModal.style.display="grid");
+  document.getElementById("adminClose").addEventListener("click", ()=> adminModal.style.display="none");
+
+  document.getElementById("adminLogin").addEventListener("click", ()=>{
+    const user = document.getElementById("adminUser").value.trim();
+    const pass = document.getElementById("adminPass").value.trim();
+    const msg = adminModal.querySelector("small");
+
+    if(user===DEMO_USER && pass===DEMO_PASS){
+      msg.style.color="green";
+      msg.textContent="Acceso correcto ✔";
+      setTimeout(()=>{
+        adminModal.style.display="none";
+        adminPanel.style.display="block";
+      }, 500);
+    } else {
+      msg.style.color="red";
+      msg.textContent="Usuario o contraseña incorrectos ✖";
+    }
+  });
+
+  document.getElementById("adminLogout").addEventListener("click", ()=>{
+    adminPanel.style.display="none";
+    adminModal.style.display="grid";
+  });
+
+  // ---------- SIMULADORES DEMO ----------
+  const simuladores = [
+    {materia:"Ciencias Sociales 1", url:"https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform?embedded=true"},
+    {materia:"Ciencias Sociales 2", url:"https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform?embedded=true"},
+    {materia:"Matemáticas 1", url:"https://docs.google.com/forms/d/e/FORM_ID_MATE_1/viewform?embedded=true"},
+    {materia:"Matemáticas 2", url:"https://docs.google.com/forms/d/e/FORM_ID_MATE_2/viewform?embedded=true"},
+    {materia:"Física 1", url:"https://docs.google.com/forms/d/e/FORM_ID_FISICA_1/viewform?embedded=true"},
+    {materia:"Física 2", url:"https://docs.google.com/forms/d/e/FORM_ID_FISICA_2/viewform?embedded=true"}
+  ];
+
+  const adminSimContainer = document.getElementById("adminSimuladores");
+  simuladores.forEach((sim,i)=>{
+    const btn = document.createElement("button");
+    btn.textContent = sim.materia;
+    btn.style.padding="10px";
+    btn.style.borderRadius="8px";
+    btn.style.background="var(--verde-camuflaje)";
+    btn.style.border="none";
+    btn.style.color="#fff";
+    btn.style.fontWeight="700";
+    btn.style.cursor="pointer";
+    btn.addEventListener("click", ()=>{
+      window.open(sim.url,"_blank");
+    });
+    adminSimContainer.appendChild(btn);
+  });
+
+  // ---------- ESTUDIANTES DEMO ----------
+  const students = [
+    {nombre:"Juan Pérez", correo:"juan@example.com"},
+    {nombre:"Ana López", correo:"ana@example.com"},
+    {nombre:"Carlos Ruiz", correo:"carlos@example.com"}
+  ];
+  const studentList = document.getElementById("studentList");
+  students.forEach((s,i)=>{
+    const tr = document.createElement("tr");
+    tr.innerHTML = `<td style="border:1px solid #fff;padding:6px">${i+1}</td><td style="border:1px solid #fff;padding:6px">${s.nombre}</td><td style="border:1px solid #fff;padding:6px">${s.correo}</td>`;
+    studentList.appendChild(tr);
+  });
+</script>
+
 
   <!-- BOTÓN WHATSAPP FLOTANTE -->
   <a id="whatsappFloat" href="https://wa.me/593999999999?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" aria-label="WhatsApp">💬</a>
