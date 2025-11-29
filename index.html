@@ -13,7 +13,7 @@ body{
   font-family: "Arial", sans-serif;
   background-image:
     linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-    url("https://i.imgur.com/akg8n2M.jpeg");
+    url("https://imgur.com/a/Mcvhhg6");
   background-size:cover;
   background-position:center;
   background-attachment:fixed;
@@ -175,7 +175,7 @@ h1,h2,h3{
 
 <!-- ================= LOGO ================= -->
 <div class="logo">
-  <img src="https://i.imgur.com/gC1Cw5H.png" alt="Logo Spartanos">
+  <img src="https://imgur.com/a/0rj4Mcy" alt="Logo Spartanos">
   <h1>SPARTANOS MyR Academy</h1>
 </div>
 
@@ -202,10 +202,10 @@ h1,h2,h3{
 <section id="galeria">
   <h2>Galería</h2>
   <div class="galeria">
-    <img src="https://i.imgur.com/IqbKJ5v.jpeg">
-    <img src="https://i.imgur.com/U0rYHxn.jpeg">
-    <img src="https://i.imgur.com/7HPjs1o.jpeg">
-    <img src="https://i.imgur.com/A8uFoDW.jpeg">
+    <img src="https://imgur.com/a/ZAEdJur.jpeg">
+    <img src="https://imgur.com/a/euIZdt2.jpeg">
+    <img src="https://imgur.com/a/65DycAG.jpeg">
+    <img src="https://imgur.com/a/2MRaOYd.jpeg">
   </div>
 </section>
 
@@ -274,6 +274,19 @@ h1,h2,h3{
 
 <!-- IFRAME DONDE SE ABREN LOS FORMS -->
 <iframe id="simuladorFrame"></iframe>
+ <!-- VISOR / MODAL para Google Forms -->
+  <div id="visor" class="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitle">
+    <button class="close" aria-label="Cerrar visor" onclick="closeVisor()">Cerrar ✖</button>
+    <div class="frame-wrap" role="document">
+      <iframe id="iframeForm" title="Simulador - Spartanos" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
+  </div>
+  <footer class="site-footer">
+    <div style="max-width:1150px;margin:0 auto;padding:4px 16px;">
+      <div style="margin-bottom:8px;">&copy; <span id="year"></span> SPARTANOS MyR ACADEMY — Todos los derechos reservados</div>
+      <small style="opacity:0.9">Juan de Velasco y Simón Bolívar · CC Casa Blanca Oficina 21 · +593 985 486 085 · spartanosmyr@gmail.com</small>
+    </div>
+  </footer>
 
 <!-- ================ CONTACTOS ================= -->
 <section id="contactos">
@@ -288,9 +301,24 @@ h1,h2,h3{
 </section>
 
 </div>
+<!-- CONTACTOS -->
+    <section id="contactos" class="page-section">
+      <div class="section-title">Contactos & Ubicación</div>
+      <p class="lead">Contáctanos para inscripciones y consultas. Haz clic en los iconos para ir a nuestras redes o ubicación.</p>
+
+      <div class="social-buttons" role="navigation" aria-label="Redes sociales">
+        <a class="social-btn" href="https://www.facebook.com/profile.php?id=61584114427412" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a class="social-btn" href="https://www.instagram.com/spartanosmyr" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+        <a class="social-btn" href="https://www.tiktok.com/@spartanosmyr" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a class="social-btn" href="https://wa.me/593985486085?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a class="social-btn" href="https://maps.app.goo.gl/H5aybW6S267hcZHJ7" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Ubicación</a>
+      </div>
+    </section>
+
+  </main>
 
 <!-- BOTÓN WHATSAPP FLOTANTE -->
-<a id="whatsappFloat" href="https://wa.me/593000000000" target="_blank">💬</a>
+<a id="whatsappFloat" href="https://wa.me/593986912191" target="_blank">💬</a>
 
 <!-- ========== JS SIMULADORES ========== -->
 <script>
