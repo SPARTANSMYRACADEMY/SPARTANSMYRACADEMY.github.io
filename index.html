@@ -604,3 +604,297 @@
   </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SPARTANOS MyR Academy</title>
+
+  <!-- ICONOS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <!-- ESTILOS GENERALES -->
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: Arial, sans-serif;
+      background: url('https://i.imgur.com/akg8n2M.jpeg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+      backdrop-filter: brightness(0.75);
+    }
+
+    header {
+      background: rgba(0,0,0,0.7);
+      padding: 20px;
+      text-align: center;
+    }
+    header img { width: 130px; margin-bottom: 10px; }
+    nav a {
+      color: #9fd4a7;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    section { padding: 60px 20px; text-align: center; }
+    h2 { font-size: 36px; margin-bottom: 20px; text-transform: uppercase; }
+    p { max-width: 800px; margin: 0 auto 20px auto; font-size: 20px; }
+
+    /* GALERÍA */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .galeria img {
+      width: 100%;
+      border-radius: 10px;
+      border: 3px solid #3d4d3d;
+    }
+
+    /* VIDEOS */
+    .videos iframe {
+      width: 340px;
+      height: 200px;
+      border-radius: 10px;
+      border: 3px solid #3d4d3d;
+      margin: 10px;
+    }
+
+    /* CONTACTOS */
+    .social-buttons {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 15px;
+    }
+    .social-buttons a {
+      padding: 12px 20px;
+      border-radius: 50px;
+      background: #1d1f1d;
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 2px solid #567a57;
+      transition: 0.3s;
+    }
+    .social-buttons a:hover {
+      background: #2f4630;
+      transform: scale(1.05);
+    }
+
+    /* SIMULADORES */
+    .simu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+    .test-card {
+      padding: 20px;
+      background: #1a1f1a;
+      border: 2px solid #2c3d2c;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .test-card:hover {
+      background: #2b352b;
+      transform: scale(1.03);
+    }
+
+    /* VISOR */
+    .visor {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(5, 10, 5, 0.95);
+      backdrop-filter: blur(4px);
+      padding: 20px;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .visor.oculto { display: none; }
+    #iframeSimulador {
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+      background: white;
+    }
+    .cerrarVisor {
+      background: #a00;
+      padding: 10px 15px;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+      border-radius: 8px;
+      align-self: flex-end;
+      font-size: 16px;
+    }
+
+    footer {
+      background: rgba(0,0,0,0.75);
+      padding: 20px;
+      text-align: center;
+      margin-top: 50px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <img src="https://i.imgur.com/gC1Cw5H.png" alt="Logo Spartanos" />
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#mision">Misión</a>
+    <a href="#vision">Visión</a>
+    <a href="#galeria">Galería</a>
+    <a href="#videos">Videos</a>
+    <a href="#simuladores">Simuladores</a>
+    <a href="#contactos">Contactos</a>
+  </nav>
+</header>
+
+<section id="inicio">
+  <h2>Bienvenidos a Spartanos MyR Academy</h2>
+  <p>Centro de preparación policial y militar con entrenamientos tácticos, académicos y disciplinarios.</p>
+</section>
+
+<section id="mision">
+  <h2>MISIÓN</h2>
+  <p>Formar aspirantes altamente preparados mediante entrenamiento integral físico y académico.</p>
+</section>
+
+<section id="vision">
+  <h2>VISIÓN</h2>
+  <p>Ser la academia líder de formación policial y militar en Ecuador con excelencia profesional.</p>
+</section>
+
+<section id="galeria">
+  <h2>GALERÍA</h2>
+  <div class="galeria">
+    <img src="https://i.imgur.com/IqbKJ5v.jpeg" />
+    <img src="https://i.imgur.com/U0rYHxn.jpeg" />
+    <img src="https://i.imgur.com/7HPjs1o.jpeg" />
+    <img src="https://i.imgur.com/A8uFoDW.jpeg" />
+  </div>
+</section>
+
+<section id="videos">
+  <h2>VIDEOS AUTORIZADOS</h2>
+  <div class="videos">
+    <iframe src="https://www.facebook.com/share/v/16Z6kP3rDc/"></iframe>
+    <iframe src="https://www.facebook.com/share/p/1AK5Mv4Qm2/"></iframe>
+  </div>
+</section>
+
+<section id="simuladores">
+  <h2>SIMULADORES ACADÉMICOS</h2>
+
+  <div class="simu-grid">
+
+    <div class="test-card" data-form="FORM_SOCIALES_1" onclick="openForm(this)">
+      <h3>✔ Ciencias Sociales 1</h3>
+    </div>
+    <div class="test-card" data-form="FORM_SOCIALES_2" onclick="openForm(this)">
+      <h3>✔ Ciencias Sociales 2</h3>
+    </div>
+
+    <div class="test-card" data-form="FORM_MATE_1" onclick="openForm(this)">
+      <h3>✔ Matemáticas 1</h3>
+    </div>
+    <div class="test-card" data-form="FORM_MATE_2" onclick="openForm(this)">
+      <h3>✔ Matemáticas 2</h3>
+    </div>
+
+    <div class="test-card" data-form="FORM_FISICA_1" onclick="openForm(this)">
+      <h3>✔ Física 1</h3>
+    </div>
+    <div class="test-card" data-form="FORM_FISICA_2" onclick="openForm(this)">
+      <h3>✔ Física 2</h3>
+    </div>
+
+    <div class="test-card" data-form="
+
+<!-- Floating Buttons: WhatsApp & ChatBot -->
+<style>
+  .floating-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 9999;
+  }
+  .float-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: #25D366;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+    transition: transform .2s;
+  }
+  .float-btn:hover { transform: scale(1.1); }
+  .chatbot-btn { background: #222; }
+</style>
+
+<div class="floating-buttons">
+  <a href="https://wa.me/593000000000" target="_blank" class="float-btn" title="WhatsApp">💬</a>
+  <div class="float-btn chatbot-btn" onclick="toggleChatbot()" title="ChatBot">🤖</div>
+</div>
+
+<!-- ChatBot Window -->
+<style>
+  #chatbotBox {
+    position: fixed;
+    bottom: 100px;
+    right: 20px;
+    width: 340px;
+    height: 430px;
+    background: #ffffff;
+    border-radius: 16px;
+    border: 2px solid #444;
+    display: none;
+    flex-direction: column;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.45);
+    z-index: 9998;
+  }
+  #chatbotFrame {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 16px;
+  }
+</style>
+
+<div id="chatbotBox">
+  <iframe id="chatbotFrame" src="https://www.chatbase.co/chatbot-iframe" title="ChatBot"></iframe>
+</div>
+
+<script>
+  function toggleChatbot(){
+    const box = document.getElementById("chatbotBox");
+    box.style.display = box.style.display === "flex" ? "none" : "flex";
+  }
+</script>
