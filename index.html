@@ -417,7 +417,6 @@ sociedad.</p>
     const formUrls = {
       FORM_SOCIALES_1: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform?embedded=true',
       FORM_SOCIALES_2: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform?embedded=true',
-
       FORM_MATE_1: 'https://forms.gle/3MEoVqysj7vS2oXz9',
       FORM_MATE_2: 'https://forms.gle/ErToU3HhET3L2vTj8',
 
@@ -431,42 +430,8 @@ sociedad.</p>
       FORM_INGLES_2: 'https://forms.gle/hx9t9XuyMXmguiev6',
 
       FORM_PSICO_1: 'https://forms.gle/WWCnhs71amLba9mT8',
-      FORM_PSICO_2: 'https://forms.gle/6rwGaeFWpTzMTuJ8A'
+      FORM_PSICO_2:'https://forms.gle/6rwGaeFWpTzMTuJ8A',
     };
-
-    // ========== INSCRIPCIONES: GOOGLE FORMS ==========
-    // Cómo crear: Google Sheets -> Tools > Script editor -> crear web app que reciba POST y lo guarde -> desplegar como web app (anyone, even anonymous)
-    const GOOGLE_FORMS = 'https://forms.gle/U7KvZ3rwA2bU8R7H9';
-
-    // Elements
-    const visor = document.getElementById('visor');
-    const formFrame = document.getElementById('formFrame');
-
-    // Open form (tries iframe, if blocked opens in new tab)
-    function openForm(btn){
-      const key = btn.getAttribute('data-form') || btn.dataset.form;
-      const url = formUrls[key];
-      if(!url){ alert('Formulario no configurado. Reemplaza formUrls en el script.'); return; }
-
-      // Try embedding in iframe; if X-Frame-Options blocks, user can still open in new tab
-      formFrame.src = url;
-      visor.classList.add('open');
-      visor.setAttribute('aria-hidden', 'false');
-
-      // small timeout: if iframe loads blank due to frame blocking, offer open in new tab
-      setTimeout(()=> {
-        try {
-          const fdoc = document.getElementById('formFrame').contentDocument;
-          // if cross-origin, accessing contentDocument may throw; ignore safely
-        } catch(e){
-          // If blocked, offer user to open in a new tab
-          // (We do not auto-open because browsers may block popups)
-          const openNew = confirm('Si el formulario no se muestra incrustado, ¿abrir en nueva pestaña?');
-          if(openNew) window.open(url,'_blank');
-        }
-      }, 900);
-    }
-
     function closeVisor(){
       formFrame.src = '';
       visor.classList.remove('open');
@@ -496,83 +461,8 @@ sociedad.</p>
     // Accessibility: close with escape
     window.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeVisor(); closeChat(); closeAdmin(); }});
 
-    // ========== MOBILE MENU (simple) ==========
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    mobileBtn.addEventListener('click', ()=>{
-      const nav = document.querySelector('nav.main-nav');
-      if(nav.style.display === 'flex') nav.style.display = 'none';
-      else nav.style.display = 'flex';
     });
-
-    // ========== WHATSAPP FLOAT behavior: always visible ==========
-    // (No extra JS required; link in HTML)
-
-    // ========== THEME / SOUND toggles ==========
-    const themeToggle = document.getElementById('themeToggle');
-    const soundToggle = document.getElementById('soundToggle');
-    let soundEnabled = false;
-    soundToggle.addEventListener('click', ()=> {
-      soundEnabled = !soundEnabled;
-      soundToggle.style.background = soundEnabled ? 'linear-gradient(180deg,#2f6c2a,#1f421c)' : 'transparent';
-      playSound('toggle');
-    });
-    themeToggle.addEventListener('click', ()=> {
-      document.body.classList.toggle('dark-mode');
-      themeToggle.style.background = document.body.classList.contains('dark-mode') ? 'linear-gradient(180deg,#2f6c2a,#1f421c)' : 'transparent';
-    });
-
-    // small sound packs (base64 blink) just for small UX
-    const sounds = {
-      'toggle': 'data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAESsAACJWAAACABAAZGF0YQAAAAA='
-    };
-    function playSound(name){
-      if(!soundEnabled) return;
-      const a = new Audio(sounds[name]);
-      a.play().catch(()=>{ /* ignore autoplay errors */ });
-    }
-
-  const insForm = document.getElementById('inscripcionForm');
-const insClear = document.getElementById('insClear');
-insClear.addEventListener('click', ()=> insForm.reset());
-insForm.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-  const data = {
-    nombre: document.getElementById('ins_nombre').value,
-    telefono: document.getElementById('ins_telefono').value,
-    email: document.getElementById('ins_email').value,
-    programa: document.getElementById('ins_programa').value,
-    fecha: new Date().toISOString()
-  };
-const insForm = document.getElementById('inscripcionForm');
-const insClear = document.getElementById('insClear');
-
-insClear.addEventListener('click', ()=> insForm.reset());
-
-insForm.addEventListener('submit', async (e)=>{
-  e.preventDefault();
-
-  const data = new URLSearchParams();
-  data.append('entry.111111111', document.getElementById('ins_nombre').value);
-  data.append('entry.222222222', document.getElementById('ins_telefono').value);
-  data.append('entry.333333333', document.getElementById('ins_email').value);
-  data.append('entry.444444444', document.getElementById('ins_programa').value);
-
-  const GOOGLE_FORM_URL = 'https://forms.gle/2pbJM3Lky6PY8S6j9';
-
-  try {
-    await fetch(GOOGLE_FORM_URL, {
-      method: 'POST',
-      body: data,
-      mode: 'no-cors'  // importante para evitar errores CORS
-    });
-    alert('Inscripción enviada correctamente al Google Form.');
-    insForm.reset();
-  } catch(err) {
-    console.error(err);
-    alert('Error al enviar inscripción. Revisa la consola.');
-  }
-});
- </script>
+  </script>
 
 </body>
 </html>
