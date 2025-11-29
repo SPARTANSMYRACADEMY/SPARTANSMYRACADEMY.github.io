@@ -1,225 +1,606 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>SPARTANOS MyR Academy</title>
 
-  <!-- ICONOS -->
+  <!-- Iconos -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- ESTILOS GENERALES -->
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      font-family: Arial, sans-serif;
-      background: url('https://i.imgur.com/akg8n2M.jpeg') no-repeat center center fixed;
-      background-size: cover;
+    /* ========== PALETA ========== */
+    :root{
+      --verde-camuflaje: #6b8f45; /* primary */
+      --verde-oscuro:   #3c4a3f;
+      --plomo:          #9aa0a6;
+      --negro:          #0b0b0b;
+      --glass:          rgba(15,15,15,0.55);
+      --card-bg:        rgba(255,255,255,0.95);
+      --accent:         #d9e8cf;
+    }
+
+    /* ========== RESETEO ========== */
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
       color: #fff;
-      backdrop-filter: brightness(0.75);
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background-color: #07100b;
+      /* Marca de agua / fondo */
+      background-image:
+        linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)),
+        url('https://i.imgur.com/akg8n2M.jpeg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      line-height:1.5;
     }
 
-    header {
-      background: rgba(0,0,0,0.7);
-      padding: 20px;
-      text-align: center;
-    }
-    header img { width: 130px; margin-bottom: 10px; }
-    nav a {
-      color: #9fd4a7;
-      margin: 0 15px;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 18px;
+    /* ========== LAYOUT PRINCIPAL ========== */
+    .container{
+      max-width:1150px;
+      margin:0 auto;
+      padding:28px;
     }
 
-    section { padding: 60px 20px; text-align: center; }
-    h2 { font-size: 36px; margin-bottom: 20px; text-transform: uppercase; }
-    p { max-width: 800px; margin: 0 auto 20px auto; font-size: 20px; }
+    header.site-header{
+      position:sticky;
+      top:0;
+      z-index:1200;
+      background: linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.3));
+      padding:14px 0;
+      backdrop-filter: blur(6px);
+    }
+    .header-inner{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      justify-content:space-between;
+      max-width:1150px;
+      margin:0 auto;
+      padding:0 16px;
+    }
+    .brand{
+      display:flex;
+      gap:12px;
+      align-items:center;
+    }
+    .brand img{height:56px;width:auto;border-radius:8px}
+    .brand h1{font-size:20px;margin:0;color:var(--accent);letter-spacing:0.6px}
+    nav.main-nav{display:flex;gap:10px;align-items:center}
+    nav.main-nav a{
+      color:var(--accent); text-decoration:none; font-weight:600; padding:8px 12px; border-radius:8px; font-size:15px;
+    }
+    nav.main-nav a:hover{ background: rgba(255,255,255,0.04); color:var(--verde-camuflaje) }
 
-    /* GALERÍA */
+    /* ========== HERO ========== */
+    .hero{
+      padding:48px 16px;
+      display:flex;
+      justify-content:center;
+    }
+    .hero-card{
+      width:100%;
+      max-width:1100px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(250,250,250,0.92));
+      color:var(--negro);
+      border-radius:12px;
+      padding:28px;
+      display:flex;
+      gap:18px;
+      align-items:center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    .hero-left{flex:1}
+    .hero-left h2{margin:0 0 8px 0; font-size:28px}
+    .hero-left p{margin:0 0 12px 0; color:#333}
+    .chips{display:flex;gap:10px; flex-wrap:wrap}
+    .chip{background:var(--verde-camuflaje); color:white; padding:6px 10px; border-radius:999px; font-weight:700; font-size:13px}
+
+    /* ========== SECCIONES ========== */
+    section.page-section{
+      padding:36px 16px;
+      text-align:center;
+    }
+    .card{
+      background: var(--glass);
+      border-radius:12px;
+      padding:20px;
+      color:var(--accent);
+      border:1px solid rgba(255,255,255,0.03);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.45);
+    }
+
+    /* Titulos seccion */
+    .section-title{
+      font-size:22px;
+      color:var(--accent);
+      margin-bottom:12px;
+      text-transform:uppercase;
+      letter-spacing:1px;
+    }
+    .lead{max-width:900px;margin:0 auto 18px auto;color:rgba(255,255,255,0.92)}
+
+    /* ========== GALERÍA ========== */
     .galeria {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
+      display:grid;
+      gap:14px;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      align-items:start;
     }
-    .galeria img {
-      width: 100%;
-      border-radius: 10px;
-      border: 3px solid #3d4d3d;
+    .galeria img{
+      width:100%;
+      height:160px;
+      object-fit:cover;
+      border-radius:10px;
+      border:4px solid rgba(0,0,0,0.25);
+      transition: transform .18s ease, box-shadow .2s ease;
     }
+    .galeria img:hover{ transform: scale(1.04); box-shadow: 0 10px 30px rgba(0,0,0,0.55) }
 
-    /* VIDEOS */
-    .videos iframe {
-      width: 340px;
-      height: 200px;
-      border-radius: 10px;
-      border: 3px solid #3d4d3d;
-      margin: 10px;
+    /* ========== VIDEOS AUTORIZADOS ========== */
+    .videos-grid{
+      display:grid;
+      gap:12px;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      justify-items:center;
     }
-
-    /* CONTACTOS */
-    .social-buttons {
-      margin-top: 30px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 15px;
-    }
-    .social-buttons a {
-      padding: 12px 20px;
-      border-radius: 50px;
-      background: #1d1f1d;
-      color: white;
-      text-decoration: none;
-      font-size: 18px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      border: 2px solid #567a57;
-      transition: 0.3s;
-    }
-    .social-buttons a:hover {
-      background: #2f4630;
-      transform: scale(1.05);
-    }
-
-    /* SIMULADORES */
-    .simu-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      padding: 20px;
-    }
-    .test-card {
-      padding: 20px;
-      background: #1a1f1a;
-      border: 2px solid #2c3d2c;
-      color: white;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-    .test-card:hover {
-      background: #2b352b;
-      transform: scale(1.03);
-    }
-
-    /* VISOR */
-    .visor {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(5, 10, 5, 0.95);
-      backdrop-filter: blur(4px);
-      padding: 20px;
-      z-index: 9999;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .visor.oculto { display: none; }
-    #iframeSimulador {
-      width: 100%;
-      height: 100%;
-      border-radius: 10px;
-      background: white;
-    }
-    .cerrarVisor {
-      background: #a00;
-      padding: 10px 15px;
+    .videos-grid iframe{
+      width:100%;
+      max-width:560px;
+      height:315px;
+      border-radius:8px;
       border: none;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-      border-radius: 8px;
-      align-self: flex-end;
-      font-size: 16px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.45);
     }
 
-    footer {
-      background: rgba(0,0,0,0.75);
-      padding: 20px;
-      text-align: center;
-      margin-top: 50px;
+    /* ========== CONTACTOS ========== */
+    .social-buttons{
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      justify-content:center;
+      margin-top:14px;
+    }
+    .social-btn{
+      display:inline-flex;
+      gap:10px;
+      align-items:center;
+      padding:10px 16px;
+      border-radius:999px;
+      text-decoration:none;
+      color: white;
+      font-weight:700;
+      background: linear-gradient(180deg,var(--verde-oscuro), #2f3a33);
+      border:2px solid rgba(255,255,255,0.04);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .social-btn i{font-size:18px}
+    .social-btn:hover{ transform: translateY(-4px); box-shadow: 0 12px 34px rgba(0,0,0,0.45) }
+
+    /* ========== SIMULADORES (ACORDEÓN) ========== */
+    .accordion {
+      width:100%;
+      margin:0 auto;
+      border-radius:10px;
+      overflow:hidden;
+    }
+    .subject {
+      background: linear-gradient(180deg, rgba(255,255,255,0.95), rgba(245,245,245,0.95));
+      color:var(--negro);
+      border-radius:10px;
+      margin-bottom:12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+    }
+    .subject .head {
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 16px;
+      cursor:pointer;
+      gap:12px;
+    }
+    .subject .head .info{display:flex;gap:12px;align-items:center}
+    .subject .head .icon{
+      width:48px;height:48px;border-radius:10px; display:grid;place-items:center;background:var(--plomo); color:white; font-size:20px;
+    }
+    .subject .head h3{margin:0;font-size:17px}
+    .subject .head p{margin:0;font-size:13px;color:#566;}
+    .subject .chev{font-size:18px;transition:transform .18s ease}
+    .subject .panel{
+      max-height:0; overflow:hidden; transition:max-height .36s ease, padding .22s ease; padding:0 16px;
+    }
+    .subject .panel.open{ padding:14px 16px 18px 16px; max-height:420px }
+
+    .btn-grid{
+      display:grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap:12px;
+      margin-top:8px;
+    }
+    .sim-btn{
+      display:flex;
+      flex-direction:column;
+      gap:6px;
+      padding:12px;
+      background: var(--verde-oscuro);
+      color: #fff;
+      border-radius:10px;
+      border:none;
+      cursor:pointer;
+      font-weight:700;
+      text-align:center;
+      transition: transform .14s ease, box-shadow .14s ease;
+    }
+    .sim-btn:hover{ transform: translateY(-6px); box-shadow: 0 10px 30px rgba(0,0,0,0.25) }
+
+    /* small helper */
+    .muted{font-size:13px;color:#667}
+
+    /* ========== MODAL / VISOR ========== */
+    .visor {
+      position:fixed; inset:0; display:none; place-items:center; z-index:1500;
+      background: rgba(3,6,3,0.82); padding:22px;
+    }
+    .visor.open{ display:grid }
+    .visor .frame-wrap{ width:100%; max-width:1200px; height:88vh; background:#fff; border-radius:10px; overflow:hidden; box-shadow:0 18px 60px rgba(0,0,0,0.6) }
+    .visor iframe{ width:100%; height:100%; border:0 }
+    .visor .close{
+      position:absolute; right:26px; top:22px; background:var(--verde-camuflaje); border:0; color:#fff; padding:10px 14px; border-radius:8px; cursor:pointer; font-weight:800;
+    }
+
+    /* ========== FOOTER ========== */
+    footer.site-footer{ padding:28px 16px; text-align:center; color:rgba(255,255,255,0.9); background:linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.2)) }
+
+    /* ========== RESPONSIVE ========== */
+    @media(max-width:900px){
+      .hero-card{ flex-direction:column; text-align:left }
+      nav.main-nav{ display:none } /* you can replace with hamburger if want */
+      .header-inner{ padding:0 12px }
+    }
+
+    @media(max-width:480px){
+      .videos-grid iframe{ height:200px }
+      .galeria img{ height:120px }
     }
   </style>
 </head>
 <body>
 
-<header>
-  <img src="https://i.imgur.com/gC1Cw5H.png" alt="Logo Spartanos" />
-  <nav>
-    <a href="#inicio">Inicio</a>
-    <a href="#mision">Misión</a>
-    <a href="#vision">Visión</a>
-    <a href="#galeria">Galería</a>
-    <a href="#videos">Videos</a>
-    <a href="#simuladores">Simuladores</a>
-    <a href="#contactos">Contactos</a>
-  </nav>
-</header>
+  <header class="site-header" role="banner">
+    <div class="header-inner">
+      <div class="brand" aria-hidden="false">
+        <img src="https://i.imgur.com/gC1Cw5H.png" alt="Logo Spartanos MyR">
+        <div>
+          <h1>SPARTANOS MyR ACADEMY</h1>
+          <div class="muted">Excelencia en Preparación Académica</div>
+        </div>
+      </div>
 
-<section id="inicio">
-  <h2>Bienvenidos a Spartanos MyR Academy</h2>
-  <p>Centro de preparación policial y militar con entrenamientos tácticos, académicos y disciplinarios.</p>
-</section>
+      <nav class="main-nav" role="navigation" aria-label="Main navigation">
+        <a href="#inicio">Inicio</a>
+        <a href="#introduccion">Introducción</a>
+        <a href="#mision">Misión</a>
+        <a href="#vision">Visión</a>
+        <a href="#galeria">Galería</a>
+        <a href="#videos">Videos</a>
+        <a href="#simuladores">Simuladores</a>
+        <a href="#contactos">Contactos</a>
+      </nav>
+    </div>
+  </header>
 
-<section id="mision">
-  <h2>MISIÓN</h2>
-  <p>Formar aspirantes altamente preparados mediante entrenamiento integral físico y académico.</p>
-</section>
+  <main class="container" role="main">
 
-<section id="vision">
-  <h2>VISIÓN</h2>
-  <p>Ser la academia líder de formación policial y militar en Ecuador con excelencia profesional.</p>
-</section>
+    <!-- HERO / INICIO -->
+    <section id="inicio" class="hero">
+      <div class="hero-card">
+        <div class="hero-left">
+          <h2>Bienvenidos a Spartanos MyR Academy</h2>
+          <p class="lead">Centro de preparación policial y militar con entrenamientos tácticos, académicos y disciplinarios. Material diseñado por instructores con experiencia.</p>
+          <div class="chips">
+            <span class="chip">Acceso ilimitado</span>
+            <span class="chip">Simuladores reales</span>
+            <span class="chip">Entrenamiento integral</span>
+          </div>
+        </div>
 
-<section id="galeria">
-  <h2>GALERÍA</h2>
-  <div class="galeria">
-    <img src="https://i.imgur.com/IqbKJ5v.jpeg" />
-    <img src="https://i.imgur.com/U0rYHxn.jpeg" />
-    <img src="https://i.imgur.com/7HPjs1o.jpeg" />
-    <img src="https://i.imgur.com/A8uFoDW.jpeg" />
+        <div style="min-width:220px;text-align:right">
+          <a class="sim-btn" href="#simuladores" style="background:var(--verde-camuflaje); color:#07100b">Ver Simuladores</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRODUCCIÓN -->
+    <section id="introduccion" class="page-section">
+      <div class="card">
+        <div class="section-title">Introducción</div>
+        <p class="lead">En Spartanos MyR Academy preparamos candidatos para procesos de ingreso policial y militar, con énfasis en la formación física, psicológica y académica. Nuestro enfoque combina práctica constante con análisis teórico.</p>
+      </div>
+    </section>
+
+    <!-- MISIÓN -->
+    <section id="mision" class="page-section">
+      <div class="card">
+        <div class="section-title">Misión</div>
+        <p class="lead">Formar aspirantes altamente preparados, disciplinados y con valores para servir con excelencia.</p>
+      </div>
+    </section>
+
+    <!-- VISIÓN -->
+    <section id="vision" class="page-section">
+      <div class="card">
+        <div class="section-title">Visión</div>
+        <p class="lead">Ser la academia líder en formación policial y militar en Ecuador, reconocida por su calidad y resultados.</p>
+      </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section id="galeria" class="page-section">
+      <div class="section-title">Galería</div>
+      <div class="galeria" aria-hidden="false">
+        <img src="https://i.imgur.com/IqbKJ5v.jpeg" alt="Academia foto 1">
+        <img src="https://i.imgur.com/U0rYHxn.jpeg" alt="Academia foto 2">
+        <img src="https://i.imgur.com/7HPjs1o.jpeg" alt="Academia foto 3">
+        <img src="https://i.imgur.com/A8uFoDW.jpeg" alt="Academia foto 4">
+      </div>
+    </section>
+
+    <!-- VIDEOS AUTORIZADOS -->
+    <section id="videos" class="page-section">
+      <div class="section-title">Videos Autorizados</div>
+      <p class="lead">Material oficial y autorizado para práctica y referencia.</p>
+      <div class="videos-grid">
+        <!-- Reemplaza las URLs por tus videos autorizados o embeds válidos -->
+        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" title="Video 1" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/7Q1g0GyD6wU" title="Video 2" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <!-- SIMULADORES -->
+    <section id="simuladores" class="page-section">
+      <div class="section-title">Simuladores Académicos</div>
+      <p class="lead">Haz clic en la materia para ver los simuladores disponibles. Los formularios se abren en un visor dentro de la página.</p>
+
+      <div class="accordion" role="tablist" aria-label="Simuladores por materia">
+
+        <!-- Ciencias Sociales -->
+        <div class="subject" data-sub="sociales">
+          <button class="head" aria-expanded="false" onclick="toggleSubject(this)">
+            <div class="info">
+              <div class="icon">🗺️</div>
+              <div>
+                <h3>Ciencias Sociales</h3>
+                <p class="muted">Historia • Geografía • Sociedad</p>
+              </div>
+            </div>
+            <div class="chev">▸</div>
+          </button>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_SOCIALES_1" onclick="openForm(this)">Ciencias Sociales 1</button>
+              <button class="sim-btn" data-form="FORM_SOCIALES_2" onclick="openForm(this)">Ciencias Sociales 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Matemáticas -->
+        <div class="subject" data-sub="mate">
+          <button class="head" aria-expanded="false" onclick="toggleSubject(this)">
+            <div class="info">
+              <div class="icon">➗</div>
+              <div>
+                <h3>Matemáticas</h3>
+                <p class="muted">Razonamiento • Cálculo</p>
+              </div>
+            </div>
+            <div class="chev">▸</div>
+          </button>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_MATE_1" onclick="openForm(this)">Matemáticas 1</button>
+              <button class="sim-btn" data-form="FORM_MATE_2" onclick="openForm(this)">Matemáticas 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Física -->
+        <div class="subject" data-sub="fisica">
+          <button class="head" aria-expanded="false" onclick="toggleSubject(this)">
+            <div class="info">
+              <div class="icon">🔬</div>
+              <div>
+                <h3>Física</h3>
+                <p class="muted">Mecánica • Termodinámica</p>
+              </div>
+            </div>
+            <div class="chev">▸</div>
+          </button>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_FISICA_1" onclick="openForm(this)">Física 1</button>
+              <button class="sim-btn" data-form="FORM_FISICA_2" onclick="openForm(this)">Física 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lengua y Literatura -->
+        <div class="subject" data-sub="lengua">
+          <button class="head" aria-expanded="false" onclick="toggleSubject(this)">
+            <div class="info">
+              <div class="icon">✍️</div>
+              <div>
+                <h3>Lengua y Literatura</h3>
+                <p class="muted">Comprensión • Gramática</p>
+              </div>
+            </div>
+            <div class="chev">▸</div>
+          </button>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_LENGUA_1" onclick="openForm(this)">Lengua 1</button>
+              <button class="sim-btn" data-form="FORM_LENGUA_2" onclick="openForm(this)">Lengua 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inglés -->
+        <div class="subject" data-sub="ingles">
+          <button class="head" aria-expanded="false" onclick="toggleSubject(this)">
+            <div class="info">
+              <div class="icon">🗣️</div>
+              <div>
+                <h3>Inglés</h3>
+                <p class="muted">Comprensión • Vocabulario</p>
+              </div>
+            </div>
+            <div class="chev">▸</div>
+          </button>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_INGLES_1" onclick="openForm(this)">Inglés 1</button>
+              <button class="sim-btn" data-form="FORM_INGLES_2" onclick="openForm(this)">Inglés 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Psicología -->
+        <div class="subject" data-sub="psicologia">
+          <button class="head" aria-expanded="false" onclick="toggleSubject(this)">
+            <div class="info">
+              <div class="icon">🧠</div>
+              <div>
+                <h3>Psicología</h3>
+                <p class="muted">Evaluaciones psicológicas</p>
+              </div>
+            </div>
+            <div class="chev">▸</div>
+          </button>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_PSICO_1" onclick="openForm(this)">Psicología 1</button>
+              <button class="sim-btn" data-form="FORM_PSICO_2" onclick="openForm(this)">Psicología 2</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACTOS -->
+    <section id="contactos" class="page-section">
+      <div class="section-title">Contactos & Ubicación</div>
+      <p class="lead">Contáctanos para inscripciones y consultas. Haz clic en los iconos para ir a nuestras redes o ubicación.</p>
+
+      <div class="social-buttons" role="navigation" aria-label="Redes sociales">
+        <a class="social-btn" href="https://facebook.com/TU_PAGINA" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a class="social-btn" href="https://instagram.com/TU_USUARIO" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i> Instagram</a>
+        <a class="social-btn" href="https://www.tiktok.com/@TU_USUARIO" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a class="social-btn" href="https://wa.me/593985486085?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener noreferrer"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a class="social-btn" href="https://www.google.com/maps/place/TU+UBICACION" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-location-dot"></i> Ubicación</a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- VISOR / MODAL para Google Forms -->
+  <div id="visor" class="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitle">
+    <button class="close" aria-label="Cerrar visor" onclick="closeVisor()">Cerrar ✖</button>
+    <div class="frame-wrap" role="document">
+      <iframe id="iframeForm" title="Simulador - Spartanos" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </div>
   </div>
-</section>
 
-<section id="videos">
-  <h2>VIDEOS AUTORIZADOS</h2>
-  <div class="videos">
-    <iframe src="https://www.facebook.com/share/v/16Z6kP3rDc/"></iframe>
-    <iframe src="https://www.facebook.com/share/p/1AK5Mv4Qm2/"></iframe>
-  </div>
-</section>
-
-<section id="simuladores">
-  <h2>SIMULADORES ACADÉMICOS</h2>
-
-  <div class="simu-grid">
-
-    <div class="test-card" data-form="FORM_SOCIALES_1" onclick="openForm(this)">
-      <h3>✔ Ciencias Sociales 1</h3>
+  <footer class="site-footer">
+    <div style="max-width:1150px;margin:0 auto;padding:4px 16px;">
+      <div style="margin-bottom:8px;">&copy; <span id="year"></span> SPARTANOS MyR ACADEMY — Todos los derechos reservados</div>
+      <small style="opacity:0.9">Juan de Velasco y Simón Bolívar · CC Casa Blanca Oficina 21 · +593 985 486 085 · spartanosmyr@gmail.com</small>
     </div>
-    <div class="test-card" data-form="FORM_SOCIALES_2" onclick="openForm(this)">
-      <h3>✔ Ciencias Sociales 2</h3>
-    </div>
+  </footer>
 
-    <div class="test-card" data-form="FORM_MATE_1" onclick="openForm(this)">
-      <h3>✔ Matemáticas 1</h3>
-    </div>
-    <div class="test-card" data-form="FORM_MATE_2" onclick="openForm(this)">
-      <h3>✔ Matemáticas 2</h3>
-    </div>
+  <!-- ========== SCRIPTS ========== -->
+  <script>
+    // ---------- CONFIG: REEMPLAZA ESTAS URLs CON TUS GOOGLE FORMS (usar URL /viewform o ?embedded=true) ----------
+    const formUrls = {
+      FORM_SOCIALES_1: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform?embedded=true',
+      FORM_SOCIALES_2: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform?embedded=true',
 
-    <div class="test-card" data-form="FORM_FISICA_1" onclick="openForm(this)">
-      <h3>✔ Física 1</h3>
-    </div>
-    <div class="test-card" data-form="FORM_FISICA_2" onclick="openForm(this)">
-      <h3>✔ Física 2</h3>
-    </div>
+      FORM_MATE_1:     'https://docs.google.com/forms/d/e/FORM_ID_MATE_1/viewform?embedded=true',
+      FORM_MATE_2:     'https://docs.google.com/forms/d/e/FORM_ID_MATE_2/viewform?embedded=true',
 
-    <div class="test-card" data-form="
+      FORM_FISICA_1:   'https://docs.google.com/forms/d/e/FORM_ID_FISICA_1/viewform?embedded=true',
+      FORM_FISICA_2:   'https://docs.google.com/forms/d/e/FORM_ID_FISICA_2/viewform?embedded=true',
+
+      FORM_LENGUA_1:   'https://docs.google.com/forms/d/e/FORM_ID_LENGUA_1/viewform?embedded=true',
+      FORM_LENGUA_2:   'https://docs.google.com/forms/d/e/FORM_ID_LENGUA_2/viewform?embedded=true',
+
+      FORM_INGLES_1:   'https://docs.google.com/forms/d/e/FORM_ID_INGLES_1/viewform?embedded=true',
+      FORM_INGLES_2:   'https://docs.google.com/forms/d/e/FORM_ID_INGLES_2/viewform?embedded=true',
+
+      FORM_PSICO_1:    'https://docs.google.com/forms/d/e/FORM_ID_PSICO_1/viewform?embedded=true',
+      FORM_PSICO_2:    'https://docs.google.com/forms/d/e/FORM_ID_PSICO_2/viewform?embedded=true'
+    };
+
+    // Currents
+    const visor = document.getElementById('visor');
+    const iframeForm = document.getElementById('iframeForm');
+
+    // Abrir formulario en visor
+    function openForm(btn){
+      const key = btn.getAttribute('data-form');
+      const url = formUrls[key];
+      if(!url){
+        alert('Formulario no configurado. Reemplaza formUrls en el script con tu Google Form.');
+        return;
+      }
+      iframeForm.src = url;
+      visor.classList.add('open');
+      // set aria attributes
+      visor.setAttribute('aria-hidden', 'false');
+      // scroll to top for better UX
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function closeVisor(){
+      visor.classList.remove('open');
+      visor.setAttribute('aria-hidden','true');
+      // clear iframe to stop any running loads
+      iframeForm.src = '';
+    }
+
+    // Toggle subject panels (accordion)
+    function toggleSubject(btn){
+      const head = btn;
+      const subject = head.closest('.subject');
+      const panel = subject.querySelector('.panel');
+      const chev = head.querySelector('.chev');
+      const expanded = head.getAttribute('aria-expanded') === 'true';
+      // close any other open subject (optional: single-open behavior)
+      document.querySelectorAll('.subject .panel.open').forEach(p=>{
+        if(p !== panel){ p.classList.remove('open'); p.closest('.subject').querySelector('.head').setAttribute('aria-expanded','false'); p.closest('.subject').querySelector('.chev').style.transform='rotate(0deg)'; }
+      });
+      if(!expanded){
+        panel.classList.add('open');
+        head.setAttribute('aria-expanded','true');
+        head.querySelector('.chev').style.transform = 'rotate(90deg)';
+      } else {
+        panel.classList.remove('open');
+        head.setAttribute('aria-expanded','false');
+        head.querySelector('.chev').style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // Close visor on Escape
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Escape') closeVisor();
+    });
+
+    // Set footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
