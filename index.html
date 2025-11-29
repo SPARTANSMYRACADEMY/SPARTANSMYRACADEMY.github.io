@@ -234,57 +234,6 @@
         </div>
     </section>
 
-   <h2>PANEL ADMINISTRADOR</h2>
-
-    <input type="text" id="usuario" placeholder="1004785422">
-    <input type="password" id="password" placeholder="ja55as5">
-
-    <button onclick="login(autorizado)">Ingresar</button>
-
-    <p id="loginMessage"></p>
-</div>
-<!DOCTYPE html>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard | Spartanos MyR</title>
-<link rel="stylesheet" href="css/style.css">
-</head>
-
-<body class="dashboard-bg">
-
-<header class="top-bar">
-    <h1>Spartanos MyR ⚔ PANEL ADMIN</h1>
-    <button onclick="logout(1004785422)">Cerrar Sesión</button>
-</header>
-
-<section class="dashboard">
-    <div class="card" onclick="window.location='simuladores.html'">
-        <h3>📘 Administrar Simuladores</h3>
-        <p>Crear, editar y calificar pruebas</p>
-    </div>
-
-    <div class="card" onclick="loadInscritos()">
-        <h3>📝 Inscripciones</h3>
-        <p>Ver lista de alumnos (Google Sheets)</p>
-    </div>
-
-    <div class="card" onclick="loadNotas()">
-        <h3>📊 Notas Académicas</h3>
-        <p>Historial – Reportes</p>
-    </div>
-</section>
-
-<div id="resultado"></div>
-
-<script src="js/dashboard.js"></script>
-<script src="js/sheets.js"></script>
-
-</body>
-
-<script src="js/auth.js"></script>
-</body>
 
 
     <!-- CONTACTO -->
@@ -295,37 +244,33 @@
             <p>📞 +593985486085_+593986912191_+593967135717</p>
             <p>📧 spartanosmyr@gmail.com</p>
 
-           <section id="redes">
-    <div class="redes-contenedor">
-        <a class="btn-red" href="https://www.facebook.com/profile.php?id=61584114427412" target="_blank">Facebook</a>
-        <a class="btn-red" href="https://www.instagram.com/spartanosmyr?igsh=cGo2NHZrN3AyeTY1&utm_source=ig_contact_invite " target="_blank">Instagram</a>
-        <a class="btn-red" href="https://vm.tiktok.com/ZMAKrwu5r/ " target="_blank">TikTok</a>
-    </div>
-</section>
-            .redes-contenedor {
-    display: flex;
-    gap: 15px;
-    justify-content: center;
-    margin-top: 20px;
-}
+    <section class="accordion" id="contacto" aria-labelledby="contactTitle">
+      <div style="padding:18px">
+        <h2 id="contactTitle">Contacto y Redes</h2>
 
-.btn-red {
-    padding: 12px 25px;
-    background: #4b5f3a; /* Verde militar */
-    color: white;
-    text-decoration: none;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    transition: 0.3s;
-    border: 2px solid #3a4a2c;
-}
+        <div class="contact-grid">
+          <div>
+            <p>¿Dudas? Escríbenos o accede al simulador mediante Google Forms.</p>
 
-.btn-red:hover {
-    background: #5f7550;
-    transform: scale(1.05);
-}
+            <form id="internalForm" action="enviar.php" method="POST" onsubmit="handleInternalForm(event)">
+              <label for="nombre">Nombre</label>
+              <input id="nombre" name="nombre" type="text" required>
 
+              <label for="email">Correo</label>
+              <input id="email" name="email" type="email" required>
+
+              <label for="mensaje">Mensaje</label>
+              <textarea id="mensaje" name="mensaje" rows="4"></textarea>
+
+              <button class="btn-primary" type="submit">Enviar</button>
+            </form>
+
+            <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+              <a class="boton" href="https://www.facebook.com/share/17cTLPot2N/?mibextid=wwXIfr " target="_blank" rel="noopener">Facebook</a>
+              <a class="boton" href="https://www.instagram.com/spartanosmyr?igsh=cGo2NHZrN3AyeTY1&utm_source=ig_contact_invite " target="_blank" rel="noopener">Instagram</a>
+              <a class="boton" href="https://api.whatsapp.com/send/?phone=593985486085&text&type=phone_number&app_absent=0#!" onclick="openWhatsApp(+593985486085)" style="background:var(--cafe);color:white">WhatsApp</a>
+            </div>
+          </div>
 
     <!-- WHATSAPP -->
     <a class="whatsapp" href="https://wa.me/593999999999?text=Hola%20quiero%20información" target="_blank">💬</a>
