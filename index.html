@@ -532,3 +532,114 @@
 
 </body>
 </html>
+<section id="simulador">
+  <div class="contenedor">
+    <h2>Simulador SENESCYT</h2>
+    <div id="quiz"></div>
+
+    <button id="btnFinalizar" onclick="finalizarSimulador()">
+      Finalizar Examen
+    </button>
+
+    <div id="resultado" class="resultado"></div>
+  </div>
+</section>
+#simulador { padding: 40px; text-align:center; }
+#quiz { margin-top: 20px; text-align:left; max-width:700px; margin:auto; }
+.pregunta { background:#1c1c1c; padding:20px; border-radius:10px; margin-bottom:15px; }
+.pregunta h3 { margin:0 0 10px 0; }
+.opcion { margin:5px 0; cursor:pointer; }
+#btnFinalizar {
+  padding:12px 30px; background: #2e7d32; color:white;
+  border:none; border-radius:8px; font-size:18px; margin-top:20px;
+}
+.resultado {
+  margin-top:30px; background:#111; padding:25px; border-radius:10px;
+  font-size:20px; display:none;
+}
+<script>
+// --------------------- BASE DE PREGUNTAS (EDITABLE) ---------------------
+
+const preguntas = [
+  {
+    texto: "1. ¿Cuál es la capital de Ecuador?",
+    opciones: ["Quito", "Guayaquil", "Cuenca", "Ambato"],
+    correcta: 0
+  },
+  {
+    texto: "2. ¿Cuánto es 12 × 8?",
+    opciones: ["84", "96", "102", "108"],
+    correcta: 1
+  },
+  {
+    texto: "3. ¿Cuál es el resultado de 150 ÷ 3?",
+    opciones: ["40", "45", "50", "55"],
+    correcta: 2
+  }
+];
+
+// --------------------- GENERAR EXAMEN EN PANTALLA ---------------------
+
+function cargarSimulador() {
+  const quiz = document.getElementById("quiz");
+  quiz.innerHTML = "";
+
+  preguntas.forEach((p, index) => {
+    let bloque = `
+      <div class="pregunta">
+        <h3>${p.texto}</h3>
+    `;
+
+    p.opciones.forEach((opcion, i) => {
+      bloque += `
+        <label class="opcion">
+          <input type="radio" name="preg${index}" value="${i}"> 
+          ${opcion}
+        </label><br>
+      `;
+    });
+
+    bloque += `</div>`;
+    quiz.innerHTML += bloque;
+  });
+}
+
+cargarSimulador();
+
+// --------------------- SISTEMA DE AUTOCALIFICACIÓN TIPO SENESCYT ---------------------
+
+function finalizarSimulador() {
+  let correctas = 0;
+
+  preguntas.forEach((p, index) => {
+    const seleccionada = document.querySelector(`input[name="preg${index}"]:checked`);
+
+    if (seleccionada && Number(seleccionada.value) === p.correcta) {
+      correctas++;
+    }
+  });
+
+  const total = preguntas.length;
+
+  // Fórmula SENESCYT aproximada → 1000 puntos máximo
+  const puntaje = Math.round((correctas / total) * 1000);
+
+  // Mostrar resultado
+  const resultado = document.getElementById("resultado");
+  resultado.style.display = "block";
+  resultado.innerHTML = `
+    <h2>Resultado Final</h2>
+    <p><b>Correctas:</b> ${correctas} / ${total}</p>
+    <p><b>Puntaje SENESCYT:</b> ${puntaje}</p>
+    <p><b>Interpretación:</b> ${interpretarPuntaje(puntaje)}</p>
+  `;
+}
+
+function interpretarPuntaje(p) {
+  if (p >= 900) return "Excelente — Nivel sobresaliente";
+  if (p >= 750) return "Muy bueno — Nivel alto";
+  if (p >= 600) return "Bueno — Nivel medio";
+  if (p >= 450) return "Bajo — Necesita refuerzo";
+  return "Muy bajo — Requiere preparación urgente";
+}
+</script>
