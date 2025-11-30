@@ -445,7 +445,47 @@ sociedad.</p>
     </section>
 
   </main>
+   
+<script>
+const INSCRIPCIONES_WEBHOOK = "https://docs.google.com/spreadsheets/d/1E1-BrajDVJ4Wc0x5KgeBbGNzz3Bxj6dziICrbLAVjjE/edit?gid=0#gid=0"; // ← pega tu URL aquí
 
+const insForm = document.getElementById('inscripcionForm');
+const insClear = document.getElementById('insClear');
+
+insClear.addEventListener('click', () => insForm.reset());
+
+insForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  const data = {
+    nombre: document.getElementById('ins_nombre').value,
+    telefono: document.getElementById('ins_telefono').value,
+    email: document.getElementById('ins_email').value,
+    programa: document.getElementById('ins_programa').value,
+    fecha: new Date().toISOString()
+  };
+
+  try {
+    let response = await fetch(INSCRIPCIONES_WEBHOOK, {
+      method: "POST",
+      body: JSON.stringify(data)
+    });
+
+    let text = await response.text();
+
+    if (text.includes("OK")) {
+      alert("✔ Inscripción enviada con éxito");
+      insForm.reset();
+    } else {
+      alert("⚠ Error del servidor: " + text);
+    }
+
+  } catch (err) {
+    alert("❌ Error al conectar con el servidor.");
+    console.error(err);
+  }
+});
+  
   <!-- VISOR / MODAL para Google Forms -->
   <div id="visor" class="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitle">
     <button class="close" aria-label="Cerrar visor" onclick="closeVisor()">Cerrar ✖</button>
@@ -489,71 +529,6 @@ sociedad.</p>
       FORM_PSICO_2: 'https://forms.gle/6rwGaeFWpTzMTuJ8A',
     };
 
-    // ========== INSCRIPCIONES: REEMPLAZA por tu URL de Google Apps Script (web app) ==========
-    
-    Nombre | Teléfono | Email | Programa | Fecha
-    function doPost(e) {
-  try {
-    const sheet = SpreadsheetApp.getActive().getSheetByName("Inscripciones");
-    const data = JSON.parse(e.postData.contents);
-
-    sheet.appendRow([
-      data.nombre || "",
-      data.telefono || "",
-      data.email || "",
-      data.programa || "",
-      data.fecha || new Date()
-    ]);
-
-    return ContentService.createTextOutput("OK").setMimeType(ContentService.MimeType.TEXT);
-
-  } catch (err) {
-    return ContentService.createTextOutput("ERROR: " + err).setMimeType(ContentService.MimeType.TEXT);
-  }
-}
-   
-    
-    // Cómo crear: Google Sheets -> Tools > Script editor -> crear web app que reciba POST y lo guarde -> desplegar como web app (anyone, even anonymous)
-    const INSCRIPCIONES_WEBHOOK = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTIHQWti8tJLZbvnO-DhahTYYBPHpASw_ZHW6IVjMGyAyQxIx6cQF9yR1s19NDjhdd6kz3GGr52Rpyd/pubhtml?gid=0&single=true';
-<script>
-const INSCRIPCIONES_WEBHOOK = "https://docs.google.com/spreadsheets/d/1E1-BrajDVJ4Wc0x5KgeBbGNzz3Bxj6dziICrbLAVjjE/edit?gid=0#gid=0"; // ← pega tu URL aquí
-
-const insForm = document.getElementById('inscripcionForm');
-const insClear = document.getElementById('insClear');
-
-insClear.addEventListener('click', () => insForm.reset());
-
-insForm.addEventListener('submit', async (e) => {
-  e.preventDefault();
-
-  const data = {
-    nombre: document.getElementById('ins_nombre').value,
-    telefono: document.getElementById('ins_telefono').value,
-    email: document.getElementById('ins_email').value,
-    programa: document.getElementById('ins_programa').value,
-    fecha: new Date().toISOString()
-  };
-
-  try {
-    let response = await fetch(INSCRIPCIONES_WEBHOOK, {
-      method: "POST",
-      body: JSON.stringify(data)
-    });
-
-    let text = await response.text();
-
-    if (text.includes("OK")) {
-      alert("✔ Inscripción enviada con éxito");
-      insForm.reset();
-    } else {
-      alert("⚠ Error del servidor: " + text);
-    }
-
-  } catch (err) {
-    alert("❌ Error al conectar con el servidor.");
-    console.error(err);
-  }
-});
     // Elements
     const visor = document.getElementById('visor');
     const formFrame = document.getElementById('formFrame');
