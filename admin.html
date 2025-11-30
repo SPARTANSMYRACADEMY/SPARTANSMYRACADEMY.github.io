@@ -1,0 +1,160 @@
+<!-- LOGIN PRO -->
+<div id="loginBox" style="max-width:380px;margin:60px auto;padding:25px;background:#111;border-radius:12px;color:white;">
+  <h2>Acceso Administrador</h2>
+  <input id="user" placeholder="Usuario" style="width:100%;padding:10px;margin-top:10px;border-radius:8px;">
+  <input id="pass" placeholder="Contraseña" type="password" style="width:100%;padding:10px;margin-top:10px;border-radius:8px;">
+  <button onclick="login()" style="margin-top:15px;width:100%;padding:10px;background:var(--verde-camuflaje);border:0;border-radius:8px;font-weight:800;">Ingresar</button>
+  <p id="loginMsg" style="color:red;margin-top:10px;"></p>
+</div>
+
+
+<!-- DASHBOARD -->
+<section id="AKfycbySuFemDQ6b5iga2CC6i_cg_krh4QzLRDjRd14_v300hE4x_hO5PKxl1pCLPErD4h81" style="display:none;padding:20px;color:white;">
+  <h2>Panel Administrador</h2>
+
+  <div style="display:flex;gap:15px;flex-wrap:wrap;margin-top:15px;">
+    <div class="cardDash">Inscritos totales: <span id="count"></span></div>
+    <div class="cardDash">Policial: <span id="policial"></span></div>
+    <div class="cardDash">Militar: <span id="militar"></span></div>
+    <div class="cardDash">Simuladores: <span id="sim"></span></div>
+  </div>
+
+  <input id="buscar" placeholder="Buscar..." style="width:100%;padding:10px;margin-top:20px;border-radius:8px;">
+
+  <button onclick="exportExcel()" style="margin-top:10px;padding:8px 14px;border-radius:8px;">Exportar EXCEL</button>
+  <button onclick="descargarPDF()" style="margin-top:10px;padding:8px 14px;border-radius:8px;">Descargar PDF</button>
+
+  <table id="tabla" style="margin-top:20px;width:100%;border-collapse:collapse;background:white;color:black;">
+    <thead>
+      <tr style="background:#1d2b20;color:white;">
+        <th>Fecha</th><th>Nombre</th><th>Teléfono</th><th>Correo</th><th>Programa</th>
+      </tr>
+    </thead>
+    <tbody id="bodyTabla"></tbody>
+  </table>
+
+  <canvas id="graf1" style="width:100%;max-width:400px;margin-top:40px;"></canvas>
+  <canvas id="graf2" style="width:100%;max-width:400px;margin-top:20px;"></canvas>
+</section>
+
+
+
+<script src="https://script.google.com/macros/s/AKfycbySuFemDQ6b5iga2CC6i_cg_krh4QzLRDjRd14_v300hE4x_hO5PKxl1pCLPErD4h81/exec"></script>
+
+<script>
+
+  const API = "AQUI_TU_ENDPOINT";
+  const TOKEN = "SPARTA-2025-ADMIN";
+<style>
+  .cardDash {
+  background:#1d2b20;
+  padding:15px;
+  border-radius:12px;
+  font-weight:700;
+  min-width:140px;
+}
+
+  // LOGIN
+  function login() {
+    if (user.value === "1004785422" && pass.value === "1004785422") {
+      loginBox.style.display = "none";
+      panel.style.display = "block";
+      cargarDatos();
+    } else {
+      loginMsg.textContent = "Credenciales incorrectas";
+    }
+  }
+
+  // CARGA DE DATOS
+  async function cargarDatos() {
+    const res = await fetch(`${API}?token=${TOKEN}`);
+    const data = await res.json();
+
+    mostrarTabla(data);
+    estadisticas(data);
+    generarGraficos(data);
+
+    buscar.oninput = () => {
+      const f = data.filter(x =>
+        (x.nombre + x.email + x.telefono + x.programa).toLowerCase().includes(buscar.value.toLowerCase())
+      );
+      mostrarTabla(f);
+    };
+  }
+
+  // TABLA
+  function mostrarTabla(lista) {
+    bodyTabla.innerHTML = "";
+    lista.forEach(r => {
+      bodyTabla.innerHTML += `
+        <tr>
+          <td>${r.fecha}</td>
+          <td>${r.nombre}</td>
+          <td>${r.telefono}</td>
+          <td>${r.email}</td>
+          <td>${r.programa}</td>
+        </tr>
+      `;
+    });
+  }
+
+  // ESTADISTICAS
+  function estadisticas(d) {
+    count.textContent = d.length;
+    policial.textContent = d.filter(x => x.programa === "Preparación Policial").length;
+    militar.textContent = d.filter(x => x.programa === "Preparación Militar").length;
+    sim.textContent = d.filter(x => x.programa === "Simuladores Académicos").length;
+  }
+
+  // GRAFICOS PRO
+  function generarGraficos(d) {
+    const p1 = d.filter(x => x.programa === "Preparación Policial").length;
+    const m1 = d.filter(x => x.programa === "Preparación Militar").length;
+    const s1 = d.filter(x => x.programa === "Simuladores Académicos").length;
+
+    new Chart(graf1, {
+      type: "bar",
+      data: {
+        labels: ["Policial", "Militar", "Simuladores"],
+        datasets: [{
+          label: "Inscritos",
+          data: [p1, m1, s1]
+        }]
+      }
+    });
+
+    new Chart(graf2, {
+      type: "pie",
+      data: {
+        labels: ["Policial", "Militar", "Simuladores"],
+        datasets: [{
+          data: [p1, m1, s1]
+        }]
+      }
+    });
+  }
+
+  // EXPORTAR EXCEL
+  function exportExcel() {
+    const tabla = document.getElementById("tabla").outerHTML;
+    const blob = new Blob([tabla], {type:'application/vnd.ms-excel'});
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "inscripciones.xls";
+    a.click();
+  }
+
+  // DESCARGAR PDF
+  function descargarPDF() {
+    window.print();
+  }
+
+</script>
+.cardDash {
+  background:#1d2b20;
+  padding:15px;
+  border-radius:12px;
+  font-weight:700;
+  min-width:140px;
+}
