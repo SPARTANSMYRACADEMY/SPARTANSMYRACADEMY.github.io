@@ -421,38 +421,150 @@ sociedad.</p>
         <a class="social-btn" href="https://wa.me/593986912191?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         <a class="social-btn" href="https://maps.app.goo.gl/qXHnbpxcqG8XPnpW7" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Ubicación</a>
       </div>
-<!-- FORMULARIO INSCRIPCIÓN -->
-<section id="inscripciones" style="padding:20px">
+<!-- ============================== -->
+<!-- FORMULARIO DE INSCRIPCIÓN PRO -->
+<!-- ============================== -->
+<section id="inscripciones" class="ins-container">
 
-  <h2>Formulario de Inscripción</h2>
+  <h2 class="ins-title">Formulario de Inscripción</h2>
 
-  <form id="formInscripcion">
-    <input name="nombre" id="ins_nombre" placeholder="Nombre completo" required>
-    <input name="telefono" id="ins_telefono" placeholder="Teléfono">
-    <input name="email" id="ins_email" type="email" placeholder="Correo">
+  <div class="ins-card">
+    <form id="formInscripcion" class="ins-form">
 
-    <select id="ins_programa" name="programa" required>
-      <option value="">Selecciona programa</option>
-      <option>Preparación Policial</option>
-      <option>Preparación Militar</option>
-      <option>Simuladores Académicos</option>
-    </select>
+      <input name="nombre" id="ins_nombre" class="ins-input"
+             placeholder="Nombre completo" required>
 
-    <button type="submit">Inscribirme</button>
-  </form>
+      <input name="telefono" id="ins_telefono" class="ins-input"
+             placeholder="Teléfono">
 
-  <p id="msg" style="margin-top:10px;color:green"></p>
+      <input name="email" id="ins_email" class="ins-input"
+             type="email" placeholder="Correo electrónico">
 
-  <!-- BOTÓN PANEL ADMIN -->
-  <a href="TU_WEB_APP_URL" target="_blank"
-     style="display:block;margin-top:25px;font-weight:bold;color:#00f">
-     Acceder al Panel Administrador
+      <select id="ins_programa" name="programa" class="ins-select" required>
+        <option value="">Selecciona un programa</option>
+        <option>Preparación Policial</option>
+        <option>Preparación Militar</option>
+        <option>Simuladores Académicos</option>
+      </select>
+
+      <button type="submit" class="btn-inscribir">Inscribirme</button>
+    </form>
+
+    <p id="msg" class="msg"></p>
+  </div>
+
+  <!-- Botón del Panel Admin -->
+  <a href="TU_WEB_APP_URL" target="_blank" class="admin-link">
+    🔐 Acceder al Panel Administrador
   </a>
 
 </section>
 
 
-<!-- SCRIPT PARA ENVIAR A GOOGLE SHEETS -->
+
+<!-- ========================= -->
+<!--    ESTILOS PROFESIONALES -->
+<!-- ========================= -->
+<style>
+  .ins-container {
+    padding: 30px;
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .ins-title {
+    font-size: 28px;
+    margin-bottom: 18px;
+    font-weight: 900;
+    color: var(--verde-camuflaje, #4CAF50);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .ins-card {
+    background: rgba(255,255,255,0.07);
+    padding: 25px;
+    border-radius: 16px;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.15);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  }
+
+  .ins-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .ins-input, .ins-select {
+    padding: 12px;
+    border-radius: 10px;
+    border: 2px solid rgba(255,255,255,0.2);
+    background: rgba(0,0,0,0.2);
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+    transition: 0.25s;
+  }
+
+  .ins-input:focus, .ins-select:focus {
+    border-color: var(--verde-camuflaje, #00ff85);
+    background: rgba(0,0,0,0.35);
+  }
+
+  .btn-inscribir {
+    padding: 14px;
+    background: var(--verde-camuflaje, #71f497);
+    color: #0d1e12;
+    border: none;
+    border-radius: 10px;
+    font-weight: 900;
+    cursor: pointer;
+    font-size: 16px;
+    transition: 0.25s;
+  }
+
+  .btn-inscribir:hover {
+    transform: scale(1.03);
+    background: var(--verde-camuflaje, #4bd66d);
+  }
+
+  .msg {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #63ff94;
+    font-size: 15px;
+  }
+
+  .admin-link {
+    display: inline-block;
+    margin-top: 20px;
+    font-weight: bold;
+    color: #71f497;
+    text-decoration: none;
+  }
+
+  .admin-link:hover {
+    color: #3aff83;
+    text-decoration: underline;
+  }
+
+  /* Móvil */
+  @media(max-width: 480px) {
+    .ins-card {
+      padding: 18px;
+    }
+    .ins-title {
+      font-size: 24px;
+    }
+  }
+</style>
+
+
+<!-- ========================= -->
+<!--      ENVÍO A GOOGLE      -->
+<!-- ========================= -->
 <script>
 document.getElementById("formInscripcion").addEventListener("submit", async function(e) {
   e.preventDefault();
@@ -464,25 +576,23 @@ document.getElementById("formInscripcion").addEventListener("submit", async func
     programa: document.getElementById("ins_programa").value
   };
 
-  const r = await fetch("TU_WEB_APP_URL", {
+  await fetch("https://script.google.com/macros/s/AKfycbya2fZnQ1XqSWj1v4Bk6ME4i9m_Ktf0m3awu1-oZrfnDv_-M0qXYBvK2UfjdVqZWzoR/exec", {
     method: "POST",
     mode: "no-cors",
-    headers: { "https://script.google.com/macros/s/AKfycbwjYOmy04PKi3dVbX0EhSuDyuZIMBLt-kWsJ1IQICpjOsHDpD7KwU6xBFBi1lP6wHDO/exec": "application/json" },
     body: JSON.stringify(data)
   });
 
-  document.getElementById("msg").textContent = "✓ Inscripción enviada correctamente";
+  const msg = document.getElementById("msg");
+  msg.textContent = "✓ Inscripción enviada correctamente";
+
+  msg.style.opacity = "1";
+  msg.style.transition = "0.4s";
+
   document.getElementById("formInscripcion").reset();
+
+  setTimeout(() => { msg.style.opacity = "0"; }, 3000);
 });
 </script>
-
-  <!-- VISOR / MODAL para Google Forms -->
-  <div id="visor" class="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitle">
-    <button class="close" aria-label="Cerrar visor" onclick="closeVisor()">Cerrar ✖</button>
-    <div class="frame-wrap" role="document">
-      <iframe id="formFrame" title="Simulador - Spartanos" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-    </div>
-  </div>
 
   <!-- BOTÓN FLOTANTE WHATSAPP -->
 <a href="https://wa.me/593967135717?text=Hola%20quiero%20más%20información" 
