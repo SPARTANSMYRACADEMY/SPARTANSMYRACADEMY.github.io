@@ -1,746 +1,234 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>SPARTANOS MyR ACADEMY — Versión Élite</title>
+  <title>Spartanos MyR Academy | Simuladores Académicos</title>
 
-  <!-- ICONOS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <!-- Fuentes -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e860f6d4.js" crossorigin="anonymous"></script>
 
-  <!-- GOOGLE FONTS -->
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" 
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root{
       --verde-camuflaje:#6b8f45;
-      --verde-oscuro:#3c4a3f;
-      --plomo:#9aa0a6;
+      --verde-oscuro:#2f3a33;
       --negro:#0b0b0b;
-      --glass: rgba(12,12,12,0.55);
-      --accent:#d9e8cf;
-      --ui-bg: rgba(255,255,255,0.96);
-      --transition: 200ms ease;
-    }
-    /* Botón flotante WhatsApp */
-.btn-whatsapp {
-  position: fixed;
-  bottom: 25px;
-  right: 25px;
-  width: 60px;
-  height: 60px;
-  background: #25d366;
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 32px;
-  text-decoration: none;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-  z-index: 99999;
-  transition: 0.3s;
-}
-
-/* Animación hover */
-.btn-whatsapp:hover {
-  transform: scale(1.1);
-  background: #20bd5a;
-}
-  /* ===== MARCA DE AGUA ===== */
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 600;
-    width: 450%;
-    height: 300%;
-    background: url('logo.png') repeat center center; /* Logo repetido */
-    background-size: 1090px; /* Ajusta el tamaño según tu logo */
-    opacity: 30%;          /* Transparencia */
-    pointer-events: none;    /* Permite interactuar con la página */
-    z-index: 9999;
-  }
-    /* ===== reset ===== */
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0}
-    body{
-      font-family:Inter, 'Oswald', system-ui, -apple-system, "Segoe UI", Roboto, Arial;
-      color: #fff;
-      background-image:
-        linear-gradient(rgba(2,4,2,0.6), rgba(2,4,2,0.6)),
-     <img src= "3.jpg" alt= "fondo marca de agua">
-      background-size:cover;background-position:center;background-attachment:fixed;
-      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
-      scroll-behavior:smooth;
+      --claro:#f4f4f4;
+      --blanco:#ffffff;
+      --texto:#e8e8e8;
+      --accent:#c4ff8d;
     }
 
-    /* ===== header ===== */
-    header.site-header{
-      position:fixed;top:0;left:0;right:0;z-index:1200;
-      background:linear-gradient(180deg, rgba(0,0,0,0.7), rgba(0,0,0,0.35));
-      border-bottom:2px solid rgba(255,255,255,0.03);
-      backdrop-filter: blur(4px);
+    /* Fondo general */
+    body {
+      margin:0;
+      background: linear-gradient(rgba(0,0,0,0.65),rgba(0,0,0,0.65)), url("3.jpg");
+      background-size:cover;
+      background-attachment:fixed;
+      font-family: "Inter", sans-serif;
+      color: var(--texto);
     }
-    .header-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:12px 18px;gap:12px}
-    .brand{display:flex;align-items:center;gap:30px}
-    .brand img{height:50px;border-radius:100px}
-    .brand h1{font-size:12px;margin:0;color:var(--accent);letter-spacing:0.6px}
-    nav.main-nav{display:flex;gap:10px;align-items:center}
-    nav.main-nav a{color:var(--accent);text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600;transition:var(--transition)}
-    nav.main-nav a:hover{background:rgba(255,255,255,0.03);color:var(--verde-camuflaje)}
-    .hamburger{display:none;background:transparent;border:0;color:var(--accent);font-size:22px;cursor:pointer}
 
-    /* ===== container / hero ===== */
-    .container{max-width:1150px;margin:0 auto;padding:110px 18px 40px}
-    .hero{display:flex;align-items:center;gap:18px;justify-content:space-between;flex-wrap:wrap}
-    .hero-card{flex:1;min-width:260px;background:var(--ui-bg);color:var(--negro);border-radius:12px;padding:24px;box-shadow:0 12px 40px rgba(0,0,0,0.45)}
-    .hero-card h2{margin:0 0 8px 0;font-family:Oswald}
-    .hero-card p{margin:0 0 12px 0;color:#333}
-    .chips{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{background:var(--verde-camuflaje);color:white;padding:6px 10px;border-radius:999px;font-weight:700;font-size:13px}
-
-    /* ===== sections ===== */
-    section.page{margin-top:28px}
-    .card{background:var(--glass);padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.04);box-shadow:0 8px 30px rgba(0,0,0,0.5)}
-    .section-title{font-size:20px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px}
-    .lead{color:rgba(255,255,255,0.92);max-width:900px;margin:0 auto 8px auto}
-
-    /* ===== gallery ===== */
-    .galeria{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-    .galeria img{width:100%;height:160px;object-fit:cover;border-radius:10px;border:3px solid rgba(0,0,0,0.35);transition:transform 0.18s,box-shadow 0.18s}
-    .galeria img:hover{transform:scale(1.04);box-shadow:0 12px 36px rgba(0,0,0,0.6);border-color:var(--verde-camuflaje)}
-
-    /* ===== videos ===== */
-    .videos-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px}
-    .videos-grid iframe{width:100%;height:320px;border-radius:8px;border:0;box-shadow:0 8px 30px rgba(0,0,0,0.5)}
-
-    /* ===== social buttons (contact) ===== */
-    .social-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:12px}
-    .social-btn{display:inline-flex;gap:8px;align-items:center;padding:10px 14px;border-radius:999px;background:linear-gradient(180deg,var(--verde-oscuro), #2f3a33);color:white;text-decoration:none;border:2px solid rgba(255,255,255,0.03);font-weight:700}
-    .social-btn i{font-size:18px}
-    .social-btn:hover{transform:translateY(-4px);box-shadow:0 12px 34px rgba(0,0,0,0.45)}
-
-    /* ===== acordion simuladores ===== */
-    .accordion{display:grid;gap:10px}
-    .subject{background:var(--ui-bg);color:var(--negro);padding:10px;border-radius:10px;box-shadow:0 8px 24px rgba(0,0,0,0.35)}
-    .subject .head{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;padding:8px}
-    .subject .info{display:flex;gap:12px;align-items:center}
-    .subject .icon{width:44px;height:44px;border-radius:8px;background:var(--plomo);display:grid;place-items:center;color:white;font-size:20px}
-    .chev{transition:transform .18s}
-    .panel{max-height:0;overflow:hidden;transition:max-height .36s,padding .36s}
-    .panel.open{padding:12px 6px 18px 6px;max-height:420px}
-    .btn-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px}
-    .sim-btn{background:var(--verde-oscuro);color:white;padding:10px;border-radius:10px;border:0;font-weight:800;cursor:pointer}
-    .sim-btn:hover{background:#0b0b0b;}
-
-    /* ===== visor modal ===== */
-    .visor{position:fixed;inset:0;display:none;place-items:center;padding:18px;z-index:2000;background:rgba(2,4,2,0.86)}
-    .visor.open{display:grid}
-    .frame-wrap{width:100%;max-width:1200px;height:86vh;background:white;border-radius:10px;overflow:hidden;box-shadow:0 20px 70px rgba(0,0,0,0.7)}
-    iframe#formFrame{width:100%;height:100%;border:0}
-    .visor .close{position:absolute;right:26px;top:22px;background:var(--verde-camuflaje);border:0;color:#07100b;padding:10px 14px;border-radius:8px;font-weight:800;cursor:pointer}
-
-    /* ===== floating whatsapp ===== */
-    #whatsappFloat{position:fixed;bottom:22px;right:22px;width:68px;height:68px;background:#25D366;border-radius:50%;display:grid;place-items:center;font-size:36px;color:white;box-shadow:0 8px 30px rgba(0,0,0,0.6);z-index:9999}
-    #whatsappFloat:hover{transform:scale(1.08)}
-
-    /* ===== theme toggle (night mode) ===== */
-    .top-controls{display:flex;gap:8px;align-items:center}
-    .toggle{background:transparent;border:1px solid rgba(255,255,255,0.08);padding:6px 10px;border-radius:8px;color:var(--accent);cursor:pointer}
-
-    /* ===== responsive ===== */
-    @media(max-width:900px){
-      nav.main-nav{display:none}
-      .hamburger{display:inline-block}
-      .container{padding:120px 16px 28px}
+    /* Navegación */
+    nav{
+      position:fixed;
+      top:0;
+      width:100%;
+      padding:15px;
+      background:rgba(0,0,0,0.55);
+      backdrop-filter: blur(6px);
+      display:flex;
+      justify-content:center;
+      gap:25px;
+      z-index:10;
     }
-    /* ===== MARCA DE AGUA ===== */
-body::before {
-    content:"";
-    position: fixed;
-    top: 0;
-    left: 600;
-    width:450%;
-    height:300%;
-    background: url('3.jpg') repeat center center; /* Logo repetido */
-    background-size: 1090px; /* Ajusta el tamaño según tu logo */
-    opacity:30%;    /* Transparencia */
-    pointer-events: 110%;    /* Permite interactuar con la página */
-    z-index: 9999;
+    nav a{
+      color:var(--accent);
+      font-weight:700;
+      text-decoration:none;
+      font-size:18px;
+    }
+
+    /* Páginas */
+    .page{
+      padding:90px 20px 40px;
+      max-width:900px;
+      margin:auto;
+    }
+
+    h1,h2,h3,h4{
+      font-family:"Oswald";
+      color:var(--accent);
+      text-shadow:0 0 6px black;
+      letter-spacing:1px;
+    }
+
+    .card{
+      background:rgba(20,20,20,0.65);
+      padding:20px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,0.08);
+      box-shadow:0 4px 20px rgba(0,0,0,0.6);
+      margin-bottom:20px;
+    }
+
+    /* Botón simuladores */
+    .sim-btn{
+      background:var(--verde-camuflaje);
+      color:#0c120b;
+      font-weight:800;
+      padding:12px;
+      border-radius:12px;
+      display:block;
+      text-align:center;
+      margin:10px 0;
+      text-decoration:none;
+    }
+
+    /* Galería */
+    .galeria{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+      gap:15px;
+    }
+    .galeria img{
+      width:100%;
+      border-radius:12px;
+      border:3px solid rgba(0,0,0,0.4);
+      transition:0.25s;
+    }
+    .galeria img:hover{
+      transform:scale(1.05);
+      border-color:var(--verde-camuflaje);
+    }
+
+    /* Botón de inscripción */
+    #btnInscripcion{
+      display:block;
+      margin:18px auto;
+      padding:14px 24px;
+      background:var(--accent);
+      color:#1a1a1a;
+      font-weight:900;
+      font-size:18px;
+      border-radius:14px;
+      text-align:center;
+      text-decoration:none;
+      width:320px;
+      box-shadow:0 4px 14px rgba(0,0,0,0.4);
+      transition:0.25s;
+    }
+    #btnInscripcion:hover{
+      transform:scale(1.06);
+      background:#e6ffcc;
+    }
+
+    /* WhatsApp */
+    .btn-whatsapp{
+      position:fixed;
+      bottom:25px;
+      right:25px;
+      width:62px;
+      height:62px;
+      background:#25d366;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      border-radius:50%;
+      color:white;
+      font-size:33px;
+      text-decoration:none;
+      box-shadow:0 4px 10px rgba(0,0,0,.4);
+      transition:0.25s;
+      z-index:9999;
+    }
+    .btn-whatsapp:hover{
+      transform:scale(1.12);
+    }
   </style>
 </head>
+
 <body>
 
-  <!-- HEADER -->
-  <header class="site-header" role="banner">
-    <div class="header-inner">
-      <div class="brand">
-        <img src="Mesa de trabajo 2.png" alt="Logo Spartanos">
-        <div>
-          <h1>SPARTANOS MyR ACADEMY</h1>
-          <div style="font-size:12px;color:rgba(255,255,255,0.85)">Excelencia en Preparación Académica</div>
-        </div>
-      </div>
+  <!-- MENÚ -->
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#mision">Misión</a>
+    <a href="#vision">Visión</a>
+    <a href="#simuladores">Simuladores</a>
+    <a href="#inscripciones">Inscripción</a>
+    <a href="#contactos">Contactos</a>
+  </nav>
 
-      <div style="display:flex;align-items:center;gap:12px">
-        <nav class="main-nav" role="navigation" aria-label="Main">
-          <a href="#inicio">Inicio</a>
-          <a href="#introduccion">Introducción</a>
-          <a href="#mision">Misión</a>
-          <a href="#vision">Visión</a>
-          <a href="#galeria">Galería</a>
-          <a href="#videos">Videos</a>
-          <a href="#simuladores">Simuladores</a>
-          <a href="#contactos">Contactos</a>
-        </nav>
-
-        <div class="top-controls" style="margin-left:12px">
-          <button class="toggle" id="soundToggle" title="Sonidos">🔊</button>
-          <button class="toggle" id="themeToggle" title="Modo noche/diurno">🌙</button>
-          <button class="toggle" id="adminOpen" title="Panel Admin">Admin</button>
-          <button class="hamburger" id="mobileMenuBtn" aria-label="Abrir menú">☰</button>
-        </div>
-      </div>
+  <!-- INICIO -->
+  <section id="inicio" class="page">
+    <div class="card">
+      <h1>SPARTANOS MYR ACADEMY</h1>
+      <p>Formación de Alto Nivel para Fuerzas Armadas, Policía Nacional y Aspirantes.</p>
     </div>
-  </header>
 
-  <!-- CONTAINER -->
-  <main class="container" role="main">
+    <div class="galeria">
+      <img src="s1.jpg">
+      <img src="s2.jpg">
+      <img src="s3.jpg">
+    </div>
+  </section>
 
-    <!-- HERO -->
-    <section id="inicio" class="hero">
-      <div class="hero-card">
-        <h2>Simuladores de Pruebas Académicas — Spartanos MyR Academy</h2>
-        <p class="lead">Preparación orientada a ingreso policial, militar y académico. Simuladores diseñados por instructores y con auto-evaluación.</p>
-        <div class="chips">
-          <span class="chip">Acceso ilimitado</span>
-          <span class="chip">Resultados instantaneos</span>
-          <span class="chip">Totalmente Gratis</span>
-        </div>
-      </div>
+  <!-- MISIÓN -->
+  <section id="mision" class="page">
+    <div class="card">
+      <h2>MISIÓN</h2>
+      <p>Formar aspirantes con disciplina, fortaleza mental y competencias técnicas para servir con honor.</p>
+    </div>
+  </section>
 
-      <div style="min-width:220px;text-align:right">
-        <a class="sim-btn" href="#simuladores" style="background:var(--verde-camuflaje);color:#07100b;padding:12px 16px;border-radius:10px;text-decoration:none;display:inline-block">Ver Simuladores</a>
-      </div>
-    </section>
+  <!-- VISIÓN -->
+  <section id="vision" class="page">
+    <div class="card">
+      <h2>VISIÓN</h2>
+      <p>Ser la academia líder en preparación militar y policial a nivel nacional e internacional.</p>
+    </div>
+  </section>
 
-    <!-- INTRO -->
-    <section id="introduccion" class="page">
-      <div class="card">
-        <div class="section-title">Introducción</div>
-        <p class="lead">Es una institución de formación física y
-académica especializada en la preparación
-para el ingreso a las Fuerzas Armadas y a la
-Policía Nacional del Ecuador. Desde abril de
-2023, hemos construido un espacio donde la
-disciplina, el entrenamiento riguroso y la
-excelencia se convierten en herramientas
-fundamentales para transformar a jóvenes
-aspirantes en candidatos preparados y seguros de sus capacidades.</p>
-      </div>
-    </section>
+  <!-- SIMULADORES -->
+  <section id="simuladores" class="page">
+    <div class="card">
+      <h2>SIMULADORES ACADÉMICOS</h2>
+      <a class="sim-btn" href="#">Ciencias Sociales</a>
+      <a class="sim-btn" href="#">Matemáticas</a>
+      <a class="sim-btn" href="#">Lengua</a>
+      <a class="sim-btn" href="#">Razonamiento Verbal</a>
+      <a class="sim-btn" href="#">Razonamiento Numérico</a>
+    </div>
+  </section>
 
-    <!-- MISION -->
-    <section id="mision" class="page">
-      <div class="card">
-        <div class="section-title">Misión</div>
-        <p class="lead">Formar aspirantes altamente preparados
-física, académica y mentalmente, brindando 
-una capacitación de excelencia que les
-permita afrontar exitosamente los procesos 
-de ingreso a las Fuerzas Armadas y a la
-Policía Nacional, promoviendo valores de
-disciplina, liderazgo y vocación de servicio.</p>
-      </div>
-    </section>
+  <!-- INSCRIPCIONES -->
+  <section id="inscripciones" class="page">
+    <div class="card">
+      <h2 style="text-align:center;">INSCRIPCIONES OFICIALES</h2>
+      <p style="text-align:center;">Regístrate oficialmente en Spartanos MyR Academy.</p>
 
-    <!-- VISION -->
-    <section id="vision" class="page">
-      <div class="card">
-        <div class="section-title">Visión</div>
-        <p class="lead">Ser la academia de preparación policial y
-militar líder en el norte del país, reconocida
-por su rigor formativo, la calidad de su
-entrenamiento, la solidez de sus resultados
-y el impacto positivo en la vida de cada
-estudiante, formando generaciones capa-
-ces de servir con honor y compromiso a la
-sociedad.</p>
-      </div>
-    </section>
+      <a id="btnInscripcion" href="https://script.google.com/macros/s/AKfycbya2fZnQ1XqSWj1v4Bk6ME4i9m_Ktf0m3awu1-oZrfnDv_-M0qXYBvK2UfjdVqZWzoR/exec" target="_blank">
+        👉 REALIZAR INSCRIPCIÓN
+      </a>
+    </div>
+  </section>
 
-    <!-- GALERIA -->
-    <section id="galeria" class="page">
-      <div class="section-title">Galería</div>
-      <div class="galeria card" aria-hidden="false">
-        <!-- reemplaza estas imágenes si quieres -->
-        <img src="3.jpg" alt="Foto 1">
-        <img src="4.jpg" alt="Foto 2">
-        <img src="2.jpg" alt="Foto 3">
-        <img src="1.jpg" alt="Foto 4">
-      </div>
-    </section>
+  <!-- CONTACTOS -->
+  <section id="contactos" class="page">
+    <div class="card">
+      <h2>CONTACTOS</h2>
+      <p><b>WhatsApp:</b> 099 000 0000</p>
+      <p><b>Instagram:</b> @spartanosmyr</p>
+      <p><b>Dirección:</b> Quito - Ecuador</p>
+    </div>
+  </section>
 
-    <!-- VIDEOS -->
-    <section id="videos" class="page">
-      <div class="section-title">Videos</div>
-      <p class="lead">Material oficial para apoyo de instrucción.</p>
-      <div class="videos-grid card">
-        <!-- Reemplaza por tus embeds autorizados -->
-        <iframe src="Video de WhatsApp 2025-11-30 a las 08.49.08_5e629399.mp4"></iframe>
-        <iframe src="https://drive.google.com/file/d/15Je8Kf0KHeZKIVuaotsIkz9xsH-Qn9W9/view?usp=drivesdk" title="Video 2" allowfullscreen></iframe>
-      </div>
-    </section>
-
-    <!-- SIMULADORES -->
-    <section id="simuladores" class="page">
-      <div class="section-title">Simuladores Académicos (haz clic en la materia)</div>
-      <p class="lead">Los simuladores se abren en un visor dentro de la página (iframe). Si tu Google Form NO permite embedding, lo abriremos en nueva pestaña.</p>
-
-      <div class="accordion card" role="tablist" aria-label="Simuladores">
-        <!-- Ciencias Sociales -->
-        <div class="subject" data-sub="sociales">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">🗺️</div>
-              <div>
-                <strong>Ciencias Sociales</strong><div class="muted">Historia • Geografía • Sociedad</div>
-              </div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_SOCIALES_1" onclick="openForm(this)">Ciencias Sociales 1</button>
-              <button class="sim-btn" data-form="FORM_SOCIALES_2" onclick="openForm(this)">Ciencias Sociales 2</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Matemáticas -->
-        <div class="subject" data-sub="mate">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">➗</div>
-              <div><strong>Matemáticas</strong><div class="muted">Razonamiento • Cálculo</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_MATE_1" onclick="openForm(this)">Matemáticas 1</button>
-              <button class="sim-btn" data-form="FORM_MATE_2" onclick="openForm(this)">Matemáticas 2</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Física -->
-        <div class="subject" data-sub="fisica">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">🔬</div>
-              <div><strong>Física</strong><div class="muted">Mecánica • Termodinámica</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_FISICA_1" onclick="openForm(this)">Física 1</button>
-              <button class="sim-btn" data-form="FORM_FISICA_2" onclick="openForm(this)">Física 2</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Lengua y Literatura -->
-        <div class="subject" data-sub="lengua">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">✍️</div>
-              <div><strong>Lengua y Literatura</strong><div class="muted">Comprensión • Gramática</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_LENGUA_1" onclick="openForm(this)">Lengua 1</button>
-              <button class="sim-btn" data-form="FORM_LENGUA_2" onclick="openForm(this)">Lengua 2</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Inglés -->
-        <div class="subject" data-sub="ingles">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">🗣️</div>
-              <div><strong>Inglés</strong><div class="muted">Comprensión • Vocabulario</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_INGLES_1" onclick="openForm(this)">Inglés 1</button>
-              <button class="sim-btn" data-form="FORM_INGLES_2" onclick="openForm(this)">Inglés 2</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Psicología -->
-        <div class="subject" data-sub="psico">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">🧠</div>
-              <div><strong>Psicología</strong><div class="muted">Evaluaciones psicológicas</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_PSICO_1" onclick="openForm(this)">Psicología 1</button>
-              <button class="sim-btn" data-form="FORM_PSICO_2" onclick="openForm(this)">Psicología 2</button>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- CONTACTOS -->
-    <section id="contactos" class="page">
-      <div class="section-title">Contactos & Ubicación</div>
-      <p class="lead">Contáctanos para inscripciones, consultas o entrenamientos personalizados. Haz clic en los iconos para ir a nuestras redes.</p>
-
-      <div class="social-row">
-        <!-- replace href with your links -->
-        <a class="social-btn" href="https://www.facebook.com/profile.php?id=61584114427412" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
-        <a class="social-btn" href="https://www.instagram.com/spartanosmyr" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
-        <a class="social-btn" href="https://www.tiktok.com/@spartanosmyr" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok</a>
-        <a class="social-btn" href="https://wa.me/593986912191?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a class="social-btn" href="https://maps.app.goo.gl/qXHnbpxcqG8XPnpW7" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Ubicación</a>
-      </div>
-<!-- ============================== -->
-<!-- FORMULARIO DE INSCRIPCIÓN PRO -->
-<!-- ============================== -->
-<section id="inscripciones" class="ins-container">
-
-  <h2 class="ins-title">Formulario de Inscripción</h2>
-
-  <div class="ins-card">
-    <form id="formInscripcion" class="ins-form">
-
-      <input name="nombre" id="ins_nombre" class="ins-input"
-             placeholder="Nombre completo" required>
-
-      <input name="telefono" id="ins_telefono" class="ins-input"
-             placeholder="Teléfono">
-
-      <input name="email" id="ins_email" class="ins-input"
-             type="email" placeholder="Correo electrónico">
-
-      <select id="ins_programa" name="programa" class="ins-select" required>
-        <option value="">Selecciona un programa</option>
-        <option>Preparación Policial</option>
-        <option>Preparación Militar</option>
-        <option>Simuladores Académicos</option>
-      </select>
-
-      <button type="submit" class="btn-inscribir">Inscribirme</button>
-    </form>
-
-    <p id="msg" class="msg"></p>
-  </div>
-
-  <!-- Botón del Panel Admin -->
-  <a href="TU_WEB_APP_URL" target="_blank" class="admin-link">
-    🔐 Acceder al Panel Administrador
+  <!-- BOTÓN WHATSAPP -->
+  <a class="btn-whatsapp" href="https://wa.me/593000000000?text=Hola,%20quiero%20más%20información%20sobre%20Spartanos%20MyR%20Academy" target="_blank">
+    <i class="fa-brands fa-whatsapp"></i>
   </a>
-
-</section>
-
-
-
-<!-- ========================= -->
-<!--    ESTILOS PROFESIONALES -->
-<!-- ========================= -->
-<style>
-  .ins-container {
-    padding: 30px;
-    max-width: 600px;
-    margin: auto;
-    text-align: center;
-  }
-
-  .ins-title {
-    font-size: 28px;
-    margin-bottom: 18px;
-    font-weight: 900;
-    color: var(--verde-camuflaje, #4CAF50);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .ins-card {
-    background: rgba(255,255,255,0.07);
-    padding: 25px;
-    border-radius: 16px;
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  }
-
-  .ins-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .ins-input, .ins-select {
-    padding: 12px;
-    border-radius: 10px;
-    border: 2px solid rgba(255,255,255,0.2);
-    background: rgba(0,0,0,0.2);
-    color: #fff;
-    font-size: 15px;
-    outline: none;
-    transition: 0.25s;
-  }
-
-  .ins-input:focus, .ins-select:focus {
-    border-color: var(--verde-camuflaje, #00ff85);
-    background: rgba(0,0,0,0.35);
-  }
-
-  .btn-inscribir {
-    padding: 14px;
-    background: var(--verde-camuflaje, #71f497);
-    color: #0d1e12;
-    border: none;
-    border-radius: 10px;
-    font-weight: 900;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.25s;
-  }
-
-  .btn-inscribir:hover {
-    transform: scale(1.03);
-    background: var(--verde-camuflaje, #4bd66d);
-  }
-
-  .msg {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #63ff94;
-    font-size: 15px;
-  }
-
-  .admin-link {
-    display: inline-block;
-    margin-top: 20px;
-    font-weight: bold;
-    color: #71f497;
-    text-decoration: none;
-  }
-
-  .admin-link:hover {
-    color: #3aff83;
-    text-decoration: underline;
-  }
-
-  /* Móvil */
-  @media(max-width: 480px) {
-    .ins-card {
-      padding: 18px;
-    }
-    .ins-title {
-      font-size: 24px;
-    }
-  }
-</style>
-
-
-<!-- ========================= -->
-<!--      ENVÍO A GOOGLE      -->
-<!-- ========================= -->
-<script>
-document.getElementById("formInscripcion").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const data = {
-    nombre: document.getElementById("ins_nombre").value,
-    telefono: document.getElementById("ins_telefono").value,
-    email: document.getElementById("ins_email").value,
-    programa: document.getElementById("ins_programa").value
-  };
-
-  await fetch("https://script.google.com/macros/s/AKfycbya2fZnQ1XqSWj1v4Bk6ME4i9m_Ktf0m3awu1-oZrfnDv_-M0qXYBvK2UfjdVqZWzoR/exec", {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(data)
-  });
-
-  const msg = document.getElementById("msg");
-  msg.textContent = "✓ Inscripción enviada correctamente";
-
-  msg.style.opacity = "1";
-  msg.style.transition = "0.4s";
-
-  document.getElementById("formInscripcion").reset();
-
-  setTimeout(() => { msg.style.opacity = "0"; }, 3000);
-});
-</script>
-      <!-- =========================================
-     PANEL ADMINISTRADOR (BOTÓN AL FINAL)
-========================================= -->
-<section id="panel-admin" style="margin-top:50px; padding:30px; text-align:center">
-
-  <h2 style="font-size:24px; margin-bottom:15px;">Panel Administrador</h2>
-
-  <a href="https://script.google.com/macros/s/AKfycbya2fZnQ1XqSWj1v4Bk6ME4i9m_Ktf0m3awu1-oZrfnDv_-M0qXYBvK2UfjdVqZWzoR/exec"
-     target="_blank"
-     style="
-       display:inline-block;
-       background:#1f3b2d;
-       padding:15px 25px;
-       color:white;
-       font-size:18px;
-       font-weight:bold;
-       text-decoration:none;
-       border-radius:8px;
-       box-shadow:0 4px 10px rgba(0,0,0,0.3);
-       transition:0.3s;
-     "
-     onmouseover="this.style.background='#274b39'"
-     onmouseout="this.style.background='#1f3b2d'">
-    🔐 Acceder al Panel Administrador
-  </a>
-
-  <p style="color:#444; margin-top:10px; font-size:14px">
-    Solo personal autorizado.
-  </p>
-
-</section>
-
-  <!-- BOTÓN FLOTANTE WHATSAPP -->
-<a href="https://wa.me/593967135717?text=Hola%20quiero%20más%20información" 
-   class="btn-whatsapp" target="_blank" aria-label="WhatsApp">
-  <i class="fab fa-whatsapp"></i>
-</a>
-
-  <!-- FOOTER -->
-  <footer style="padding:24px;text-align:center;background:linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.3));margin-top:40px">
-    <div style="max-width:1200px;margin:auto;color:rgba(255,255,255,0.9)">&copy; <span id="year"></span> Spartanos MyR ACADEMY — Todos los derechos reservados</div>
-    <small style="opacity:0.85">Juan de Velasco y Simón Bolívar · CC Casa Blanca Oficina 21 · +593967135717 · spartanosmyr@gmail.com</small>
-  </footer>
-
-  <!-- SCRIPTS -->
-  <script>
-    // ========== CONFIG: REEMPLAZA ESTAS URLs CON TUS GOOGLE FORMS (usar ?embedded=true si es posible) ==========
-    const formUrls = {
-      FORM_SOCIALES_1: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform?embedded=true',
-      FORM_SOCIALES_2: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform?embedded=true',
-
-      FORM_MATE_1: 'https://forms.gle/3MEoVqysj7vS2oXz9',
-      FORM_MATE_2: 'https://forms.gle/ErToU3HhET3L2vTj8',
-
-      FORM_FISICA_1: 'https://forms.gle/FbRnNvNWoJEYpFbq9',
-      FORM_FISICA_2: 'https://forms.gle/D14m8aHj9Z9HRj1W7',
-
-      FORM_LENGUA_1: 'https://forms.gle/HLk9xtMNPVCtPNZk9',
-      FORM_LENGUA_2: 'https://forms.gle/rWAFfwdYVzDdVebo7',
-
-      FORM_INGLES_1: 'https://forms.gle/YqVwhn37aML63UJs9',
-      FORM_INGLES_2: 'https://forms.gle/hx9t9XuyMXmguiev6',
-
-      FORM_PSICO_1: 'https://forms.gle/WWCnhs71amLba9mT8',
-      FORM_PSICO_2: 'https://forms.gle/6rwGaeFWpTzMTuJ8A',
-    };
-
-    // Elements
-    const visor = document.getElementById('visor');
-    const formFrame = document.getElementById('formFrame');
-
-    // Open form (tries iframe, if blocked opens in new tab)
-    function openForm(btn){
-      const key = btn.getAttribute('data-form') || btn.dataset.form;
-      const url = formUrls[key];
-      if(!url){ alert('Formulario no configurado. Reemplaza formUrls en el script.'); return; }
-
-      // Try embedding in iframe; if X-Frame-Options blocks, user can still open in new tab
-      formFrame.src = url;
-      visor.classList.add('open');
-      visor.setAttribute('aria-hidden', 'false');
-
-      // small timeout: if iframe loads blank due to frame blocking, offer open in new tab
-      setTimeout(()=> {
-        try {
-          const fdoc = document.getElementById('formFrame').contentDocument;
-          // if cross-origin, accessing contentDocument may throw; ignore safely
-        } catch(e){
-          // If blocked, offer user to open in a new tab
-          // (We do not auto-open because browsers may block popups)
-          const openNew = confirm('Si el formulario no se muestra incrustado, ¿abrir en nueva pestaña?');
-          if(openNew) window.open(url,'_blank');
-        }
-      }, 900);
-    }
-
-    function closeVisor(){
-      formFrame.src = '';
-      visor.classList.remove('open');
-      visor.setAttribute('aria-hidden','true');
-    }
-
-    // Toggle subject panels
-    function toggleSubject(head){
-      const subject = head.closest('.subject');
-      const panel = subject.querySelector('.panel');
-      const expanded = head.getAttribute('aria-expanded') === 'true';
-      // close others
-      document.querySelectorAll('.subject .panel.open').forEach(p=>{
-        if(p !== panel){ p.classList.remove('open'); p.closest('.subject').querySelector('.head').setAttribute('aria-expanded','false'); p.closest('.subject').querySelector('.chev').style.transform='rotate(0deg)'; }
-      });
-      if(!expanded){
-        panel.classList.add('open');
-        head.setAttribute('aria-expanded','true');
-        head.querySelector('.chev').style.transform = 'rotate(90deg)';
-      } else {
-        panel.classList.remove('open');
-        head.setAttribute('aria-expanded','false');
-        head.querySelector('.chev').style.transform = 'rotate(0deg)';
-      }
-    }
-
-    // Accessibility: close with escape
-    window.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeVisor(); closeChat(); closeAdmin(); }})
-
- 
-    // ========== MOBILE MENU (simple) ==========
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    mobileBtn.addEventListener('click', ()=>{
-      const nav = document.querySelector('nav.main-nav');
-      if(nav.style.display === 'flex') nav.style.display = 'none';
-      else nav.style.display = 'flex';
-    });
-
-
-    // ========== UTILS: set footer year ==========
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ========== helper close chat/admin on outside click ==========
-    window.addEventListener('click', (e)=>{
-      if(e.target.classList && e.target.classList.contains('visor')) closeVisor();
-    });
-
-    // ========== small accessibility: focus outlines on keyboard nav ==========
-    window.addEventListener('keydown', (e)=>{
-      if(e.key === 'Tab') document.body.classList.add('kbd-nav');
-    });
-  </script>
 
 </body>
 </html>
