@@ -386,7 +386,6 @@ sociedad.</p>
             </div>
           </div>
         </div>
-
         <!-- Matemáticas -->
         <div class="subject" data-sub="mate">
           <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
@@ -403,7 +402,6 @@ sociedad.</p>
             </div>
           </div>
         </div>
-
         <!-- Física -->
         <div class="subject" data-sub="fisica">
           <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
@@ -420,7 +418,6 @@ sociedad.</p>
             </div>
           </div>
         </div>
-
         <!-- Lengua y Literatura -->
         <div class="subject" data-sub="lengua">
           <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
@@ -437,7 +434,6 @@ sociedad.</p>
             </div>
           </div>
         </div>
-
         <!-- Inglés -->
         <div class="subject" data-sub="ingles">
           <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
@@ -454,7 +450,6 @@ sociedad.</p>
             </div>
           </div>
         </div>
-
         <!-- Psicología -->
         <div class="subject" data-sub="psico">
           <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
@@ -471,36 +466,9 @@ sociedad.</p>
             </div>
           </div>
         </div>
-
       </div>
     </section>
-
-  <!-- INSCRIPCIONES -->
-  <section id="inscripciones" class="ins-container" aria-labelledby="insTitle" style="margin-top:18px">
-    <h2 id="insTitle" class="section-title" style="margin-bottom:12px">Formulario de Inscripción</h2>
-
-    <div class="ins-card">
-      <form id="formInscripcion" class="ins-form" aria-label="Formulario de inscripción">
-        <input name="nombre" id="ins_nombre" class="ins-input" placeholder="Nombre completo" required>
-        <input name="telefono" id="ins_telefono" class="ins-input" placeholder="Teléfono">
-        <input name="email" id="ins_email" class="ins-input" type="email" placeholder="Correo electrónico">
-        <select id="ins_programa" name="programa" class="ins-select" required>
-          <option value="">Selecciona un programa</option>
-          <option>Preparación Policial</option>
-          <option>Preparación Militar</option>
-          <option>Simuladores Académicos</option>
-        </select>
-
-        <div style="display:flex;gap:10px;align-items:center">
-          <button type="submit" class="btn-inscribir">Inscribirme</button>
-          <button type="button" id="insClear" class="admin-link" style="background:transparent;border:1px solid rgba(255,255,255,0.06)">Limpiar</button>
-        </div>
-
-        <p id="msg" style="margin-top:10px;color:var(--holo);font-weight:800"></p>
-      </form>
-    </div>
-  </section>
-<!-- SCRIPTS -->
+   <!-- SCRIPTS -->
   <script>
     // ========== CONFIG: REEMPLAZA ESTAS URLs CON TUS GOOGLE FORMS (usar ?embedded=true si es posible) ==========
     const formUrls = {
@@ -605,8 +573,31 @@ sociedad.</p>
     });
   </script>
 
-</body>
-</html>
+  <!-- INSCRIPCIONES -->
+  <section id="inscripciones" class="ins-container" aria-labelledby="insTitle" style="margin-top:18px">
+    <h2 id="insTitle" class="section-title" style="margin-bottom:12px">Formulario de Inscripción</h2>
+
+    <div class="ins-card">
+      <form id="formInscripcion" class="ins-form" aria-label="Formulario de inscripción">
+        <input name="nombre" id="ins_nombre" class="ins-input" placeholder="Nombre completo" required>
+        <input name="telefono" id="ins_telefono" class="ins-input" placeholder="Teléfono">
+        <input name="email" id="ins_email" class="ins-input" type="email" placeholder="Correo electrónico">
+        <select id="ins_programa" name="programa" class="ins-select" required>
+          <option value="">Selecciona un programa</option>
+          <option>Preparación Policial</option>
+          <option>Preparación Militar</option>
+          <option>Simuladores Académicos</option>
+        </select>
+
+        <div style="display:flex;gap:10px;align-items:center">
+          <button type="submit" class="btn-inscribir">Inscribirme</button>
+          <button type="button" id="insClear" class="admin-link" style="background:transparent;border:1px solid rgba(255,255,255,0.06)">Limpiar</button>
+        </div>
+
+        <p id="msg" style="margin-top:10px;color:var(--holo);font-weight:800"></p>
+      </form>
+    </div>
+  </section>
   <!-- CONTACTOS -->
   <section id="contactos" class="card" style="margin-top:18px">
     <div class="section-title">Contactos & Ubicación</div>
