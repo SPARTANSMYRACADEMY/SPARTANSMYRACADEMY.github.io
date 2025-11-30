@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Panel Admin</title>
+</head>
+<body style="font-family:Arial;padding:20px">
+
+  <h2>Inscripciones Registradas</h2>
+  <table border="1" cellpadding="8" style="border-collapse:collapse;width:100%">
+    <thead id="tablaHead"></thead>
+    <tbody id="tablaBody"></tbody>
+  </table>
+
+  <script>
+    google.script.run.withSuccessHandler(registros => {
+      if (registros.length === 0) return;
+
+      const head = Object.keys(registros[0]);
+      document.getElementById("tablaHead").innerHTML =
+        "<tr>" + head.map(h => `<th>${h}</th>`).join("") + "</tr>";
+
+      document.getElementById("tablaBody").innerHTML =
+        registros.map(r =>
+          "<tr>" + head.map(h => `<td>${r[h]}</td>`).join("") + "</tr>"
+        ).join("");
+    }).getInscripciones();
+  </script>
+
+</body>
+</html>
