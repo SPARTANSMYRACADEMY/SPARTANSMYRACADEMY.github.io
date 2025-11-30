@@ -4,74 +4,85 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
-<title>SPARTANOS MyR ACADEMY — Profesional</title>
+<title>SPARTANOS MyR ACADEMY — Tactical Elite</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
 
-/* ============================
-   PALETA MILITAR PROFESIONAL
-   ============================ */
+/* ==========================================
+   PALETA MILITAR PREMIUM
+========================================== */
 :root{
   --black:#0A0A0A;
   --white:#F2F2F2;
 
-  --military-green:#4B5320;        /* Verde militar */
-  --military-green-dark:#2F3513;   /* Verde militar oscuro */
+  --military:#4B5320;          /* Verde militar */
+  --military-dark:#2E3314;     /* Verde oscuro táctico */
+  --gray:#2C2C2C;              /* Plomo */
+  --gray-light:#999;
 
-  --gray:#2E2E2E;                  /* Plomo oscuro */
-  --gray-soft:#555;                /* Plomo claro */
-
-  --gold:#D4AF37;                  /* Detalles premium */
-
+  --gold:#c9aa3f;              /* Dorado militar */
+  --blur:blur(12px);
   --glass:rgba(255,255,255,0.06);
-  --blur:blur(10px);
-  --radius:14px;
+  --radius:16px;
 
-  --transition:.28s ease;
+  --transition:.30s ease;
 }
 
-/* ============================
+/* ==========================================
    GLOBAL
-   ============================ */
+========================================== */
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
   font-family:'Montserrat',sans-serif;
-  background:
-    linear-gradient(rgba(15,15,15,0.90), rgba(10,10,10,0.95)),
-    url('3.jpg') center/cover no-repeat fixed;
+  background:#0a0a0a;
   color:var(--white);
   overflow-x:hidden;
 }
 
-/* Marca de agua */
+/* FONDO DINÁMICO + VIGNETTE */
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:url("logo.png") center/600px repeat;
-  opacity:0.025;
-  pointer-events:none;
-  z-index:0;
+  background:
+    radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 70%),
+    url("3.jpg") center/cover no-repeat fixed;
+  opacity:0.50;
+  z-index:-2;
+  filter:brightness(0.4);
 }
 
-/* ============================
-   HEADER
-   ============================ */
+/* POLVO DE PARTÍCULAS */
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url("https://i.imgur.com/9QZ5nPe.png");
+  opacity:0.18;
+  mix-blend-mode:screen;
+  pointer-events:none;
+  z-index:-1;
+}
+
+/* ==========================================
+   HEADER TÁCTICO
+========================================== */
 header{
   position:fixed;
   top:0;left:0;right:0;
-  padding:12px 0;
-  background:rgba(34,34,34,0.65);
+  padding:14px 0;
+  background:rgba(10,10,10,0.75);
   backdrop-filter:var(--blur);
+  box-shadow:0 0 25px rgba(0,0,0,0.8);
+  border-bottom:1px solid rgba(255,255,255,0.05);
   z-index:999;
-  border-bottom:1px solid rgba(255,255,255,0.06);
 }
 
 .nav-wrap{
-  max-width:1250px;
+  max-width:1300px;
   margin:auto;
   padding:0 20px;
   display:flex;
@@ -82,175 +93,156 @@ header{
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:15px;
 }
 .brand img{
-  height:58px;
+  height:64px;
   border-radius:50%;
+  border:2px solid var(--military);
+  box-shadow:0 0 20px rgba(75,83,32,0.6);
 }
 .brand h1{
-  font-size:17px;
-  font-weight:700;
-  color:var(--military-green);
+  font-size:21px;
+  font-weight:900;
+  color:var(--gold);
+  text-shadow:0 0 12px rgba(201,170,63,0.65);
 }
 
 nav a{
   color:var(--white);
-  opacity:.75;
   text-decoration:none;
-  margin-left:22px;
-  font-weight:600;
+  margin-left:24px;
+  font-weight:700;
+  letter-spacing:1px;
+  opacity:.75;
   transition:var(--transition);
 }
 nav a:hover{
-  color:var(--military-green);
+  color:var(--military);
   opacity:1;
+  text-shadow:0 0 12px rgba(75,83,32,0.8);
 }
 
-/* ============================
+/* ==========================================
    MAIN
-   ============================ */
+========================================== */
 main{
-  max-width:1250px;
+  max-width:1200px;
   margin:auto;
-  padding:130px 20px 60px;
-  position:relative;
-  z-index:5;
+  padding:150px 20px 60px;
 }
 
-/* ============================
-   HERO
-   ============================ */
+/* ==========================================
+   HERO ULTRA TÁCTICO
+========================================== */
 .hero{
-  background:var(--glass);
-  padding:40px;
+  position:relative;
+  padding:70px 40px;
   border-radius:var(--radius);
-  backdrop-filter:var(--blur);
-  border:1px solid rgba(255,255,255,0.05);
-  display:flex;
-  flex-direction:column;
-  gap:22px;
-  text-align:center;
-  box-shadow:0 10px 45px rgba(0,0,0,0.6);
+  background:linear-gradient(135deg, rgba(30,30,30,0.75), rgba(20,20,20,0.6));
+  border:1px solid rgba(255,255,255,0.06);
+  box-shadow:0 0 40px rgba(0,0,0,0.85);
+
+  overflow:hidden;
+}
+
+/* Iluminación lateral */
+.hero::before{
+  content:"";
+  position:absolute;
+  top:-20%;
+  left:-20%;
+  width:70%;
+  height:200%;
+  background:linear-gradient(90deg, rgba(75,83,32,0.28), transparent);
+  transform:rotate(-18deg);
+  filter:blur(30px);
+}
+
+/* Línea táctica decorativa */
+.hero::after{
+  content:"";
+  position:absolute;
+  bottom:0;
+  left:0;
+  width:100%;
+  height:6px;
+  background:var(--military);
 }
 
 .hero h2{
-  font-size:32px;
+  font-size:38px;
   font-weight:900;
-  color:var(--military-green);
+  color:var(--gold);
+  text-align:center;
+  text-shadow:0 0 20px rgba(201,170,63,0.55);
 }
 
 .hero p{
-  font-size:17px;
-  color:var(--white);
+  text-align:center;
+  margin-top:10px;
+  font-size:19px;
   opacity:.85;
 }
 
-/* Chips */
+/* Chips tácticos */
 .chips{
   display:flex;
   justify-content:center;
-  flex-wrap:wrap;
   gap:12px;
+  flex-wrap:wrap;
+  margin-top:25px;
 }
 .chip{
   background:var(--gray);
-  padding:8px 17px;
+  padding:8px 18px;
   border-radius:50px;
+  border:1px solid rgba(255,255,255,0.14);
+  color:var(--gold);
   font-weight:700;
-  color:var(--military-green);
-  border:1px solid rgba(255,255,255,0.09);
+  letter-spacing:0.5px;
 }
 
-/* Botón principal */
+/* BOTÓN BRILLANTE */
 .btn-main{
   display:inline-block;
-  background:var(--military-green);
-  color:#fff;
-  padding:14px 22px;
-  font-size:18px;
-  font-weight:800;
+  margin:35px auto 0;
+  background:linear-gradient(135deg, var(--military), var(--military-dark));
+  color:white;
+  padding:16px 26px;
+  font-size:20px;
+  font-weight:900;
   text-decoration:none;
-  border-radius:var(--radius);
+  border-radius:14px;
+  box-shadow:0 0 20px rgba(75,83,32,0.6);
   transition:var(--transition);
 }
 .btn-main:hover{
-  background:var(--military-green-dark);
-  transform:translateY(-4px);
+  transform:translateY(-5px) scale(1.03);
+  box-shadow:0 0 25px rgba(201,170,63,0.75);
 }
 
-/* ============================
-   CARDS
-   ============================ */
-.card{
-  margin-top:40px;
-  background:var(--glass);
-  padding:30px;
-  border-radius:var(--radius);
-  backdrop-filter:var(--blur);
-  border:1px solid rgba(255,255,255,0.06);
-  box-shadow:0 8px 35px rgba(0,0,0,0.5);
-}
-
-.section-title{
-  font-size:26px;
-  font-weight:800;
-  color:var(--military-green);
-  border-left:5px solid var(--military-green);
-  padding-left:12px;
-  margin-bottom:18px;
-}
-
-.lead{
-  font-size:17px;
-  color:var(--white);
-  opacity:.75;
-  line-height:1.65;
-}
-
-/* ============================
-   GALERÍA
-   ============================ */
-.galeria{
-  display:grid;
-  grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
-  gap:16px;
-}
-
-.galeria img{
-  width:100%;
-  height:180px;
-  object-fit:cover;
-  border-radius:var(--radius);
-  filter:brightness(0.8);
-  transition:var(--transition);
-}
-.galeria img:hover{
-  filter:brightness(1);
-  transform:scale(1.05);
-}
-
-/* ============================
+/* ==========================================
    WHATSAPP FLOTANTE
-   ============================ */
+========================================== */
 #whatsappFloat{
   position:fixed;
   bottom:22px;
   right:22px;
-  width:70px;
-  height:70px;
+  width:75px;
+  height:75px;
   display:grid;
   place-items:center;
   background:#25D366;
   border-radius:50%;
+  font-size:42px;
   color:white;
-  font-size:38px;
-  box-shadow:0 10px 30px rgba(0,0,0,0.45);
-  transition:.25s;
+  box-shadow:0 0 25px rgba(0,0,0,0.6);
+  transition:0.3s;
   z-index:999;
 }
 #whatsappFloat:hover{
-  transform:scale(1.1);
+  transform:scale(1.15);
 }
 
 </style>
@@ -266,45 +258,44 @@ main{
     </div>
 
     <nav>
-        <nav class="main-nav" role="navigation" aria-label="Main">
-          <a href="#inicio">Inicio</a>
-          <a href="#introduccion">Introducción</a>
-          <a href="#mision">Misión</a>
-          <a href="#vision">Visión</a>
-          <a href="#galeria">Galería</a>
-          <a href="#videos">Videos</a>
-          <a href="#simuladores">Simuladores</a>
-          <a href="#contactos">Contactos</a>
-        </nav>
+      <a href="#inicio">Inicio</a>
+      <a href="#mision">Misión</a>
+      <a href="#vision">Visión</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#galeria">Galería</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
   </div>
 </header>
 
 <main>
 
+<!-- ==============================
+       HERO TÁCTICO
+================================== -->
 <section id="inicio" class="hero">
-  <h2>Formación Policial & Militar Profesional</h2>
-  <p>Simuladores – Entrenamiento – Preparación Física y Académica</p>
+  <h2>Formación Policial & Militar Elite</h2>
+  <p>Entrenamiento — Evaluación — Preparación Física — Simuladores Avanzados</p>
 
   <div class="chips">
-    <div class="chip">Simuladores Avanzados</div>
-    <div class="chip">Preparación Física</div>
-    <div class="chip">Evaluación Real</div>
-    <div class="chip">Entrenos Elite</div>
+    <div class="chip">Simuladores</div>
+    <div class="chip">Pruebas Reales</div>
+    <div class="chip">Entreno Táctico</div>
+    <div class="chip">Alto Rendimiento</div>
   </div>
 
-  <a class="btn-main" href="#inscripciones">INSCRIBIRME</a>
+  <a class="btn-main" href="#inscripciones">INSCRIBIRME AHORA</a>
 </section>
 
 </main>
 
-<!-- WHATSAPP FLOAT -->
+<!-- WHATSAPP -->
 <a id="whatsappFloat" href="https://wa.me/593000000000" target="_blank">
   <i class="fa-brands fa-whatsapp"></i>
 </a>
 
 </body>
 </html>
-
     <!-- INTRO -->
     <section id="introduccion" class="page">
       <div class="card">
