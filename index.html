@@ -1,815 +1,580 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>SPARTANOS MyR ACADEMY — Tactical Elite (Animated)</title>
 
-<title>SPARTANOS MyR ACADEMY — Tactical Elite</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<!-- Fuentes + Iconos -->
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800;900&family=Oswald:wght@400;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
 <style>
-
-/* ==========================================
-   PALETA MILITAR PREMIUM
-========================================== */
+/* =========================
+   PALETA (verde militar, plomo, blanco, negro)
+   ========================= */
 :root{
-  --black:#0A0A0A;
-  --white:#F2F2F2;
-
-  --military:#4B5320;          /* Verde militar */
-  --military-dark:#2E3314;     /* Verde oscuro táctico */
-  --gray:#2C2C2C;              /* Plomo */
-  --gray-light:#999;
-
-  --gold:#c9aa3f;              /* Dorado militar */
-  --blur:blur(12px);
-  --glass:rgba(255,255,255,0.06);
-  --radius:16px;
-
-  --transition:.30s ease;
+  --black:#050507;
+  --white:#f6f6f6;
+  --military:#4a5b24;
+  --military-2:#36501a;
+  --plomo:#2e3336;
+  --muted:#9ea3a6;
+  --holo:#7fff7f;
+  --glass: rgba(255,255,255,0.04);
+  --radius:14px;
+  --accent:#c9aa3f;
+  --transition:.28s cubic-bezier(.2,.9,.2,1);
+  --hud-size:14px;
 }
 
-/* ==========================================
-   GLOBAL
-========================================== */
-*{margin:0;padding:0;box-sizing:border-box;}
+/* ===== reset ===== */
+*{box-sizing:border-box}
+html,body{height:100%;margin:0}
 body{
-  font-family:'Montserrat',sans-serif;
-  background:#0a0a0a;
+  font-family: Montserrat, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
   color:var(--white);
+  background: #060607;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
   overflow-x:hidden;
 }
 
-/* FONDO DINÁMICO + VIGNETTE */
-body::before{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:
-    radial-gradient(circle at center, rgba(255,255,255,0.03) 0%, transparent 70%),
-    url("3.jpg") center/cover no-repeat fixed;
-  opacity:0.50;
-  z-index:-2;
-  filter:brightness(0.4);
+/* ============ background canvas holder & vignette ============ */
+#bg {
+  position:fixed; inset:0; z-index:-10;
+  background: linear-gradient(180deg, rgba(2,4,2,0.7), rgba(2,4,2,0.9));
 }
 
-/* POLVO DE PARTÍCULAS */
-body::after{
-  content:"";
-  position:fixed;
-  inset:0;
-  background:url("https://i.imgur.com/9QZ5nPe.png");
-  opacity:0.18;
-  mix-blend-mode:screen;
-  pointer-events:none;
-  z-index:-1;
+/* faint image behind (your 3.jpg) */
+.bg-image {
+  position:fixed; inset:0; z-index:-9; opacity:0.35;
+  background-image: url("3.jpg");
+  background-size: cover; background-position:center; filter:brightness(0.45) saturate(.9);
 }
 
-/* ==========================================
-   HEADER TÁCTICO
-========================================== */
+/* subtle grain overlay (SVG data) */
+.grain {
+  position:fixed; inset:0; z-index:-8; pointer-events:none;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256"><filter id="n"><feTurbulence baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix type="saturate" values="0"/></filter><rect width="100%" height="100%" filter="url(%23n)" opacity="0.06" fill="white"/></svg>');
+  mix-blend-mode:overlay;
+}
+
+/* ======================================
+   HEADER
+   ====================================== */
 header{
-  position:fixed;
-  top:0;left:0;right:0;
-  padding:14px 0;
-  background:rgba(10,10,10,0.75);
-  backdrop-filter:var(--blur);
-  box-shadow:0 0 25px rgba(0,0,0,0.8);
-  border-bottom:1px solid rgba(255,255,255,0.05);
-  z-index:999;
+  position:fixed; top:0; left:0; right:0; z-index:1200;
+  padding:12px 18px;
+  display:flex; align-items:center; justify-content:center;
+  background: linear-gradient(180deg, rgba(0,0,0,0.55), rgba(0,0,0,0.25));
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+  backdrop-filter: blur(6px);
+}
+.header-inner{
+  width:100%; max-width:1200px; display:flex; align-items:center; justify-content:space-between; gap:12px;
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:56px; width:56px; border-radius:12px; object-fit:cover; border:2px solid rgba(74,91,36,0.8)}
+.brand h1{margin:0;font-family:Oswald, Montserrat; font-weight:700; letter-spacing:1px; color:var(--holo); text-shadow: 0 0 12px rgba(127,255,127,0.08)}
+nav.main-nav{display:flex;gap:10px;align-items:center}
+nav.main-nav a{
+  color:var(--white); text-decoration:none; padding:8px 12px; border-radius:8px;
+  font-weight:700; font-size:14px; opacity:.9; transition:var(--transition);
+}
+nav.main-nav a:hover{ background: rgba(255,255,255,0.03); color:var(--military); transform:translateY(-2px)}
+
+/* hamburger mobile */
+.hamburger{display:none;background:transparent;border:0;color:var(--white);font-size:20px;cursor:pointer}
+
+/* ======================================
+   MAIN LAYOUT
+   ====================================== */
+.main { max-width:1200px; margin:0 auto; padding:110px 20px 60px; }
+
+/* HERO with holographic green */
+.hero {
+  display:flex; gap:20px; align-items:center; justify-content:space-between; flex-wrap:wrap;
+  background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+  border-radius:14px; padding:28px; border:1px solid rgba(127,255,127,0.06);
+  box-shadow: 0 14px 60px rgba(0,0,0,0.65);
+  position:relative; overflow:hidden;
 }
 
-.nav-wrap{
-  max-width:1300px;
-  margin:auto;
-  padding:0 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:15px;
-}
-.brand img{
-  height:64px;
-  border-radius:50%;
-  border:2px solid var(--military);
-  box-shadow:0 0 20px rgba(75,83,32,0.6);
-}
-.brand h1{
-  font-size:21px;
-  font-weight:900;
-  color:var(--gold);
-  text-shadow:0 0 12px rgba(201,170,63,0.65);
-}
-
-nav a{
-  color:var(--white);
-  text-decoration:none;
-  margin-left:24px;
-  font-weight:700;
-  letter-spacing:1px;
-  opacity:.75;
-  transition:var(--transition);
-}
-nav a:hover{
-  color:var(--military);
-  opacity:1;
-  text-shadow:0 0 12px rgba(75,83,32,0.8);
-}
-
-/* ==========================================
-   MAIN
-========================================== */
-main{
-  max-width:1200px;
-  margin:auto;
-  padding:150px 20px 60px;
-}
-
-/* ==========================================
-   HERO ULTRA TÁCTICO
-========================================== */
-.hero{
-  position:relative;
-  padding:70px 40px;
-  border-radius:var(--radius);
-  background:linear-gradient(135deg, rgba(30,30,30,0.75), rgba(20,20,20,0.6));
-  border:1px solid rgba(255,255,255,0.06);
-  box-shadow:0 0 40px rgba(0,0,0,0.85);
-
-  overflow:hidden;
-}
-
-/* Iluminación lateral */
+/* holographic left bar */
 .hero::before{
-  content:"";
-  position:absolute;
-  top:-20%;
-  left:-20%;
-  width:70%;
-  height:200%;
-  background:linear-gradient(90deg, rgba(75,83,32,0.28), transparent);
-  transform:rotate(-18deg);
-  filter:blur(30px);
+  content:""; position:absolute; left:-18%; top:-20%; width:40%; height:140%;
+  background: linear-gradient(90deg, rgba(127,255,127,0.06), rgba(74,91,36,0.06) 40%, transparent 60%);
+  transform:rotate(-18deg); filter:blur(16px); pointer-events:none;
 }
 
-/* Línea táctica decorativa */
-.hero::after{
-  content:"";
-  position:absolute;
-  bottom:0;
-  left:0;
-  width:100%;
-  height:6px;
-  background:var(--military);
+/* holographic shimmer text */
+.holo-title{
+  font-family: Oswald, Montserrat; font-size:30px; margin:0 0 6px; color:var(--white);
+  display:inline-block; position:relative;
+}
+.holo-title::after{
+  content:""; position:absolute; left:0; right:0; bottom:-6px; height:6px;
+  background: linear-gradient(90deg, transparent, rgba(127,255,127,0.18), transparent);
+  filter: blur(6px); transform: skewX(-18deg);
 }
 
-.hero h2{
-  font-size:38px;
-  font-weight:900;
-  color:var(--gold);
-  text-align:center;
-  text-shadow:0 0 20px rgba(201,170,63,0.55);
+/* spotlight effect */
+.spot {
+  width:100%; max-width:720px;
+}
+.hero-left{flex:1; min-width:260px}
+.hero-right{width:320px; display:flex; justify-content:flex-end; align-items:center}
+
+/* hero card */
+.hero-card {
+  background: linear-gradient(180deg, rgba(10,10,10,0.85), rgba(18,18,18,0.65));
+  padding:22px; border-radius:12px; color:var(--white);
+  border:1px solid rgba(255,255,255,0.03);
 }
 
-.hero p{
-  text-align:center;
-  margin-top:10px;
-  font-size:19px;
-  opacity:.85;
+/* chips */
+.chips{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px}
+.chip {
+  background: linear-gradient(180deg, rgba(52,61,32,0.9), rgba(35,43,25,0.95));
+  color:var(--holo); padding:8px 12px; border-radius:999px; font-weight:800;
+  border:1px solid rgba(127,255,127,0.06); font-size:13px; letter-spacing:.6px;
 }
 
-/* Chips tácticos */
-.chips{
-  display:flex;
-  justify-content:center;
-  gap:12px;
-  flex-wrap:wrap;
-  margin-top:25px;
+/* CTA tactical button with noise */
+.btn-main {
+  display:inline-grid; place-items:center;
+  background: linear-gradient(135deg, var(--military), var(--military-2));
+  color: #07100b; font-weight:900; padding:14px 18px; border-radius:12px; text-decoration:none;
+  box-shadow: 0 6px 26px rgba(52,61,32,0.48), inset 0 -2px 8px rgba(0,0,0,0.25);
+  position:relative; overflow:hidden; transition: transform .22s ease;
 }
-.chip{
-  background:var(--gray);
-  padding:8px 18px;
-  border-radius:50px;
-  border:1px solid rgba(255,255,255,0.14);
-  color:var(--gold);
-  font-weight:700;
-  letter-spacing:0.5px;
-}
+.btn-main:hover{ transform:translateY(-6px) scale(1.01); box-shadow:0 12px 40px rgba(52,61,32,0.6) }
 
-/* BOTÓN BRILLANTE */
-.btn-main{
-  display:inline-block;
-  margin:35px auto 0;
-  background:linear-gradient(135deg, var(--military), var(--military-dark));
-  color:white;
-  padding:16px 26px;
-  font-size:20px;
-  font-weight:900;
-  text-decoration:none;
-  border-radius:14px;
-  box-shadow:0 0 20px rgba(75,83,32,0.6);
-  transition:var(--transition);
-}
-.btn-main:hover{
-  transform:translateY(-5px) scale(1.03);
-  box-shadow:0 0 25px rgba(201,170,63,0.75);
-}
+/* noise (SVG) layered inside button */
+.btn-main svg.noise { position:absolute; inset:0; width:100%; height:100%; opacity:0.08; mix-blend-mode:overlay; pointer-events:none; }
 
-/* ==========================================
-   WHATSAPP FLOTANTE
-========================================== */
-#whatsappFloat{
-  position:fixed;
-  bottom:22px;
-  right:22px;
-  width:75px;
-  height:75px;
-  display:grid;
-  place-items:center;
-  background:#25D366;
-  border-radius:50%;
-  font-size:42px;
-  color:white;
-  box-shadow:0 0 25px rgba(0,0,0,0.6);
-  transition:0.3s;
-  z-index:999;
+/* pulsing holo border */
+.btn-main::after{
+  content:""; position:absolute; inset:-2px; border-radius:14px; pointer-events:none;
+  background: linear-gradient(90deg, rgba(127,255,127,0.06), rgba(201,170,63,0.02));
+  filter: blur(10px); opacity:0; transition:opacity .28s;
 }
-#whatsappFloat:hover{
-  transform:scale(1.15);
+.btn-main:hover::after{ opacity:1; animation: holo-pulse 1.6s infinite; }
+@keyframes holo-pulse { 0%{transform:scale(.98);opacity:.6}50%{transform:scale(1.02);opacity:.95}100%{transform:scale(.98);opacity:.6} }
+
+/* =========================
+   GRID / CARDS
+   ========================= */
+.card{ background:var(--glass); padding:18px; border-radius:12px; border:1px solid rgba(255,255,255,0.03); box-shadow:0 8px 30px rgba(0,0,0,0.6); margin-top:18px; color:var(--white) }
+.section-title { font-family:Oswald; color:var(--holo); font-size:20px; margin-bottom:10px; font-weight:700; letter-spacing:1px; }
+.lead { color:var(--muted); line-height:1.6; }
+
+/* gallery */
+.galeria{ display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:12px; }
+.galeria img{ width:100%; height:150px; object-fit:cover; border-radius:10px; border:3px solid rgba(0,0,0,0.45); transition: transform .26s, box-shadow .26s; }
+.galeria img:hover{ transform:scale(1.04); box-shadow:0 18px 60px rgba(0,0,0,0.6); border-color:var(--military); }
+
+/* videos */
+.videos-grid iframe{ width:100%; height:300px; border-radius:10px; border:0; box-shadow:0 10px 40px rgba(0,0,0,0.6); }
+
+/* accordion simuladores */
+.accordion .subject{ background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.08)); padding:14px; border-radius:10px; cursor:pointer; display:block; border:1px solid rgba(255,255,255,0.03); }
+.btn-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:10px; margin-top:10px; }
+.sim-btn{ background: linear-gradient(180deg, var(--military), var(--military-2)); color:#06100a; font-weight:900; padding:10px; border-radius:10px; border:0; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,0.5); transition: transform .22s; }
+.sim-btn:hover{ transform:translateY(-4px); box-shadow:0 10px 34px rgba(0,0,0,0.6); }
+
+/* form inscripcion (keep your structure) */
+.ins-container{ padding:30px; max-width:680px; margin: 18px auto; }
+.ins-card{ background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(20,20,20,0.45)); padding:20px; border-radius:12px; border:1px solid rgba(255,255,255,0.05); box-shadow:0 14px 40px rgba(0,0,0,0.6); }
+.ins-form{ display:flex; flex-direction:column; gap:12px; }
+.ins-input, .ins-select{ padding:12px; border-radius:10px; border:2px solid rgba(255,255,255,0.06); background: rgba(0,0,0,0.28); color:var(--white); outline:none; font-size:15px; transition:box-shadow .18s; }
+.ins-input:focus, .ins-select:focus{ box-shadow:0 6px 20px rgba(52,61,32,0.22); border-color: rgba(127,255,127,0.16) }
+.btn-inscribir{ padding:14px; border-radius:10px; border:0; font-weight:900; background:linear-gradient(135deg,var(--military),var(--military-2)); color:#07100b; cursor:pointer; box-shadow:0 10px 30px rgba(52,61,32,0.4); transition: transform .22s; }
+.btn-inscribir:hover{ transform:translateY(-5px); box-shadow:0 18px 46px rgba(52,61,32,0.6) }
+
+/* admin button */
+.admin-link{ display:inline-block; margin-top:14px; padding:12px 18px; border-radius:8px; background: linear-gradient(135deg,#1b3521,#123017); color:var(--white); text-decoration:none; font-weight:800; }
+
+/* whatsapp floating */
+#whatsappFloat{ position:fixed; bottom:20px; right:20px; width:72px; height:72px; border-radius:50%; background:#25D366; display:grid; place-items:center; color:#fff; font-size:34px; box-shadow:0 10px 36px rgba(0,0,0,0.5); z-index:1500; transition: transform .16s; }
+#whatsappFloat:hover{ transform:scale(1.08) }
+
+/* footer */
+footer{ padding:26px 12px; text-align:center; color:var(--muted); margin-top:36px }
+
+/* responsive */
+@media(max-width:900px){
+  .hero{ padding:20px; }
+  .hero-right{ width:100%; display:block; text-align:center; margin-top:10px }
+  nav.main-nav{ display:none; }
+  .hamburger{ display:inline-block }
 }
 
 </style>
 </head>
-
 <body>
 
-<header>
-  <div class="nav-wrap">
-    <div class="brand">
-      <img src="logo.png">
-      <h1>SPARTANOS MyR ACADEMY</h1>
+<!-- BACKGROUNDS & CANVAS -->
+<div id="bg"></div>
+<div class="bg-image" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+
+<!-- HEADER -->
+<header role="banner">
+  <div class="header-inner">
+    <div class="brand" style="gap:14px">
+      <img src="Mesa de trabajo 2.png" alt="Logo Spartanos">
+      <div>
+        <h1 style="margin:0;font-size:18px">SPARTANOS MyR ACADEMY</h1>
+        <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:2px">Excelencia en Preparación Académica</div>
+      </div>
     </div>
 
-    <nav>
+    <nav class="main-nav" role="navigation" aria-label="Main">
       <a href="#inicio">Inicio</a>
+      <a href="#introduccion">Introducción</a>
       <a href="#mision">Misión</a>
       <a href="#vision">Visión</a>
-      <a href="#simuladores">Simuladores</a>
       <a href="#galeria">Galería</a>
-      <a href="#contacto">Contacto</a>
+      <a href="#simuladores">Simuladores</a>
+      <a href="#contactos">Contactos</a>
     </nav>
+
+    <button class="hamburger" id="mobileMenuBtn" aria-label="Abrir menú">☰</button>
   </div>
 </header>
 
-<main>
+<!-- MAIN -->
+<main class="main" role="main">
 
-<!-- ==============================
-       HERO TÁCTICO
-================================== -->
-<section id="inicio" class="hero">
-  <h2>Formación Policial & Militar Elite</h2>
-  <p>Entrenamiento — Evaluación — Preparación Física — Simuladores Avanzados</p>
+  <!-- HERO -->
+  <section id="inicio" class="hero" aria-labelledby="heroTitle">
+    <div class="hero-left">
+      <div class="hero-card">
+        <h2 id="heroTitle" class="holo-title">Simuladores de Pruebas Académicas — Spartanos MyR Academy</h2>
+        <p class="lead">Preparación orientada a ingreso policial, militar y académico. Simuladores diseñados por instructores y con auto-evaluación.</p>
+        <div class="chips" aria-hidden="false">
+          <span class="chip">Acceso ilimitado</span>
+          <span class="chip">Resultados instantáneos</span>
+          <span class="chip">Diseñado por instructores</span>
+        </div>
 
-  <div class="chips">
-    <div class="chip">Simuladores</div>
-    <div class="chip">Pruebas Reales</div>
-    <div class="chip">Entreno Táctico</div>
-    <div class="chip">Alto Rendimiento</div>
-  </div>
-
-  <a class="btn-main" href="#inscripciones">INSCRIBIRME AHORA</a>
-</section>
-
-</main>
-
-<!-- WHATSAPP -->
-<a id="whatsappFloat" href="https://wa.me/593000000000" target="_blank">
-  <i class="fa-brands fa-whatsapp"></i>
-</a>
-
-</body>
-</html>
-    <!-- INTRO -->
-    <section id="introduccion" class="page">
-      <div class="card">
-        <div class="section-title">Introducción</div>
-        <p class="lead">Es una institución de formación física y
-académica especializada en la preparación
-para el ingreso a las Fuerzas Armadas y a la
-Policía Nacional del Ecuador. Desde abril de
-2023, hemos construido un espacio donde la
-disciplina, el entrenamiento riguroso y la
-excelencia se convierten en herramientas
-fundamentales para transformar a jóvenes
-aspirantes en candidatos preparados y seguros de sus capacidades.</p>
+        <div style="margin-top:18px">
+          <a class="btn-main" href="#inscripciones" id="ctaInscribir" role="button" aria-label="Inscribirme">
+            INSCRIBIRME AHORA
+            <!-- inline SVG noise texture (subtle) -->
+            <svg class="noise" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" viewBox="0 0 600 60">
+              <filter id="n"><feTurbulence baseFrequency="0.9" numOctaves="2" stitchTiles="stitch"/></filter>
+              <rect width="100%" height="100%" filter="url(#n)" opacity="0.08" fill="#fff"/>
+            </svg>
+          </a>
+        </div>
       </div>
-    </section>
+    </div>
 
-    <!-- MISION -->
-    <section id="mision" class="page">
-      <div class="card">
-        <div class="section-title">Misión</div>
-        <p class="lead">Formar aspirantes altamente preparados
-física, académica y mentalmente, brindando 
-una capacitación de excelencia que les
-permita afrontar exitosamente los procesos 
-de ingreso a las Fuerzas Armadas y a la
-Policía Nacional, promoviendo valores de
-disciplina, liderazgo y vocación de servicio.</p>
-      </div>
-    </section>
-
-    <!-- VISION -->
-    <section id="vision" class="page">
-      <div class="card">
-        <div class="section-title">Visión</div>
-        <p class="lead">Ser la academia de preparación policial y
-militar líder en el norte del país, reconocida
-por su rigor formativo, la calidad de su
-entrenamiento, la solidez de sus resultados
-y el impacto positivo en la vida de cada
-estudiante, formando generaciones capa-
-ces de servir con honor y compromiso a la
-sociedad.</p>
-      </div>
-    </section>
-
-    <!-- GALERIA -->
-    <section id="galeria" class="page">
-      <div class="section-title">Galería</div>
-      <div class="galeria card" aria-hidden="false">
-        <!-- reemplaza estas imágenes si quieres -->
-        <img src="3.jpg" alt="Foto 1">
-        <img src="4.jpg" alt="Foto 2">
-        <img src="2.jpg" alt="Foto 3">
-        <img src="1.jpg" alt="Foto 4">
-      </div>
-    </section>
-
-    <!-- VIDEOS -->
-    <section id="videos" class="page">
-      <div class="section-title">Videos</div>
-      <p class="lead">Material oficial para apoyo de instrucción.</p>
-      <div class="videos-grid card">
-        <!-- Reemplaza por tus embeds autorizados -->
-        <iframe src="Video de WhatsApp 2025-11-30 a las 08.49.08_5e629399.mp4"></iframe>
-        <iframe src="https://drive.google.com/file/d/15Je8Kf0KHeZKIVuaotsIkz9xsH-Qn9W9/view?usp=drivesdk" title="Video 2" allowfullscreen></iframe>
-      </div>
-    </section>
-
-    <!-- SIMULADORES -->
-    <section id="simuladores" class="page">
-      <div class="section-title">Simuladores Académicos (haz clic en la materia)</div>
-      <p class="lead">Los simuladores se abren en un visor dentro de la página (iframe). Si tu Google Form NO permite embedding, lo abriremos en nueva pestaña.</p>
-
-      <div class="accordion card" role="tablist" aria-label="Simuladores">
-        <!-- Ciencias Sociales -->
-        <div class="subject" data-sub="sociales">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">🗺️</div>
-              <div>
-                <strong>Ciencias Sociales</strong><div class="muted">Historia • Geografía • Sociedad</div>
-              </div>
-            </div>
-            <div class="chev">▸</div>
+    <div class="hero-right">
+      <!-- Tactical card (small) -->
+      <div class="card" style="width:320px; text-align:left">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div>
+            <div style="font-size:12px;color:var(--muted)">Progreso</div>
+            <div style="font-weight:900;font-size:18px;color:var(--holo)">Inscripciones abiertas</div>
           </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_SOCIALES_1" onclick="openForm(this)">Ciencias Sociales 1</button>
-              <button class="sim-btn" data-form="FORM_SOCIALES_2" onclick="openForm(this)">Ciencias Sociales 2</button>
-            </div>
+          <div style="text-align:right">
+            <div style="font-size:12px;color:var(--muted)">Plazas</div>
+            <div style="font-weight:900;font-size:18px;color:var(--military)">Limitadas</div>
           </div>
         </div>
 
-        <!-- Matemáticas -->
-        <div class="subject" data-sub="mate">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">➗</div>
-              <div><strong>Matemáticas</strong><div class="muted">Razonamiento • Cálculo</div></div>
+        <hr style="margin:12px 0 14px;border:none;border-top:1px solid rgba(255,255,255,0.04)">
+
+        <div style="display:flex;gap:8px;align-items:center">
+          <div style="flex:1">
+            <div style="font-size:12px;color:var(--muted)">Nivel de ocupación</div>
+            <div style="height:10px;background:rgba(255,255,255,0.04);border-radius:8px;margin-top:6px;overflow:hidden">
+              <div style="width:62%; height:100%; background:linear-gradient(90deg,var(--military),var(--military-2)); box-shadow:0 6px 18px rgba(52,61,32,0.45)"></div>
             </div>
-            <div class="chev">▸</div>
           </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_MATE_1" onclick="openForm(this)">Matemáticas 1</button>
-              <button class="sim-btn" data-form="FORM_MATE_2" onclick="openForm(this)">Matemáticas 2</button>
-            </div>
+          <div style="width:56px;text-align:center">
+            <button class="admin-link" onclick="window.open('https://script.google.com/macros/s/AKfycbya2fZnQ1XqSWj1v4Bk6ME4i9m_Ktf0m3awu1-oZrfnDv_-M0qXYBvK2UfjdVqZWzoR/exec','_blank')">ADMIN</button>
           </div>
         </div>
-
-        <!-- Física -->
-        <div class="subject" data-sub="fisica">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">🔬</div>
-              <div><strong>Física</strong><div class="muted">Mecánica • Termodinámica</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_FISICA_1" onclick="openForm(this)">Física 1</button>
-              <button class="sim-btn" data-form="FORM_FISICA_2" onclick="openForm(this)">Física 2</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Lengua y Literatura -->
-        <div class="subject" data-sub="lengua">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">✍️</div>
-              <div><strong>Lengua y Literatura</strong><div class="muted">Comprensión • Gramática</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_LENGUA_1" onclick="openForm(this)">Lengua 1</button>
-              <button class="sim-btn" data-form="FORM_LENGUA_2" onclick="openForm(this)">Lengua 2</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Inglés -->
-        <div class="subject" data-sub="ingles">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">🗣️</div>
-              <div><strong>Inglés</strong><div class="muted">Comprensión • Vocabulario</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_INGLES_1" onclick="openForm(this)">Inglés 1</button>
-              <button class="sim-btn" data-form="FORM_INGLES_2" onclick="openForm(this)">Inglés 2</button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Psicología -->
-        <div class="subject" data-sub="psico">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">🧠</div>
-              <div><strong>Psicología</strong><div class="muted">Evaluaciones psicológicas</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_PSICO_1" onclick="openForm(this)">Psicología 1</button>
-              <button class="sim-btn" data-form="FORM_PSICO_2" onclick="openForm(this)">Psicología 2</button>
-            </div>
-          </div>
-        </div>
-
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CONTACTOS -->
-    <section id="contactos" class="page">
-      <div class="section-title">Contactos & Ubicación</div>
-      <p class="lead">Contáctanos para inscripciones, consultas o entrenamientos personalizados. Haz clic en los iconos para ir a nuestras redes.</p>
+  <!-- INTRO -->
+  <section id="introduccion" class="card" aria-labelledby="introTitle" style="margin-top:18px">
+    <div class="section-title" id="introTitle">Introducción</div>
+    <p class="lead">Es una institución de formación física y académica especializada en la preparación para el ingreso a las Fuerzas Armadas y a la Policía Nacional del Ecuador. Desde abril de 2023, hemos construido un espacio donde la disciplina, el entrenamiento riguroso y la excelencia se convierten en herramientas fundamentales para transformar a jóvenes aspirantes en candidatos preparados y seguros de sus capacidades.</p>
+  </section>
 
-      <div class="social-row">
-        <!-- replace href with your links -->
-        <a class="social-btn" href="https://www.facebook.com/profile.php?id=61584114427412" target="_blank" rel="noopener"><i class="fab fa-facebook-f"></i> Facebook</a>
-        <a class="social-btn" href="https://www.instagram.com/spartanosmyr" target="_blank" rel="noopener"><i class="fab fa-instagram"></i> Instagram</a>
-        <a class="social-btn" href="https://www.tiktok.com/@spartanosmyr" target="_blank" rel="noopener"><i class="fab fa-tiktok"></i> TikTok</a>
-        <a class="social-btn" href="https://wa.me/593986912191?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-        <a class="social-btn" href="https://maps.app.goo.gl/qXHnbpxcqG8XPnpW7" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Ubicación</a>
+  <!-- MISION -->
+  <section id="mision" class="card" style="margin-top:18px">
+    <div class="section-title">Misión</div>
+    <p class="lead">Formar aspirantes altamente preparados física, académica y mentalmente, brindando una capacitación de excelencia que les permita afrontar exitosamente los procesos de ingreso a las Fuerzas Armadas y a la Policía Nacional, promoviendo valores de disciplina, liderazgo y vocación de servicio.</p>
+  </section>
+
+  <!-- VISION -->
+  <section id="vision" class="card" style="margin-top:18px">
+    <div class="section-title">Visión</div>
+    <p class="lead">Ser la academia de preparación policial y militar líder en el norte del país, reconocida por su rigor formativo, la calidad de su entrenamiento, la solidez de sus resultados y el impacto positivo en la vida de cada estudiante, formando generaciones capaces de servir con honor y compromiso a la sociedad.</p>
+  </section>
+
+  <!-- GALERIA -->
+  <section id="galeria" class="card" style="margin-top:18px">
+    <div class="section-title">Galería</div>
+    <div class="galeria" aria-hidden="false">
+      <img src="3.jpg" alt="Foto 1">
+      <img src="4.jpg" alt="Foto 2">
+      <img src="2.jpg" alt="Foto 3">
+      <img src="1.jpg" alt="Foto 4">
+    </div>
+  </section>
+
+  <!-- VIDEOS -->
+  <section id="videos" class="card" style="margin-top:18px">
+    <div class="section-title">Videos</div>
+    <p class="lead">Material oficial para apoyo de instrucción.</p>
+    <div class="videos-grid">
+      <iframe src="https://drive.google.com/file/d/15Je8Kf0KHeZKIVuaotsIkz9xsH-Qn9W9/preview" title="Video 1" allowfullscreen></iframe>
+    </div>
+  </section>
+
+  <!-- SIMULADORES -->
+  <section id="simuladores" class="card" style="margin-top:18px">
+    <div class="section-title">Simuladores Académicos</div>
+    <p class="lead">Los simuladores se abren en un visor dentro de la página (iframe). Si el Google Form no permite embedding, se abrirá en nueva pestaña.</p>
+
+    <div class="accordion" role="tablist" aria-label="Simuladores">
+      <div class="subject" onclick="togglePanel(this)">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><strong>Ciencias Sociales</strong> <small style="color:var(--muted);margin-left:8px">Historia · Geografía</small></div>
+          <div class="chev">▸</div>
+        </div>
+        <div class="panel" aria-hidden="true" style="padding-top:10px">
+          <div class="btn-grid">
+            <button class="sim-btn" data-form="FORM_SOCIALES_1" onclick="openFormUrl('https://forms.gle/EXAMPLE1')">Ciencias Sociales 1</button>
+            <button class="sim-btn" data-form="FORM_SOCIALES_2" onclick="openFormUrl('https://forms.gle/EXAMPLE2')">Ciencias Sociales 2</button>
+          </div>
+        </div>
       </div>
-<!-- ============================== -->
-<!-- FORMULARIO DE INSCRIPCIÓN PRO -->
-<!-- ============================== -->
-<section id="inscripciones" class="ins-container">
 
-  <h2 class="ins-title">Formulario de Inscripción</h2>
+      <div class="subject" onclick="togglePanel(this)" style="margin-top:10px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div><strong>Matemáticas</strong> <small style="color:var(--muted);margin-left:8px">Razonamiento · Cálculo</small></div>
+          <div class="chev">▸</div>
+        </div>
+        <div class="panel" aria-hidden="true" style="padding-top:10px">
+          <div class="btn-grid">
+            <button class="sim-btn" onclick="openFormUrl('https://forms.gle/EXAMPLE3')">Matemáticas 1</button>
+            <button class="sim-btn" onclick="openFormUrl('https://forms.gle/EXAMPLE4')">Matemáticas 2</button>
+          </div>
+        </div>
+      </div>
 
-  <div class="ins-card">
-    <form id="formInscripcion" class="ins-form">
+      <!-- Agrega más materias según necesites -->
+    </div>
+  </section>
 
-      <input name="nombre" id="ins_nombre" class="ins-input"
-             placeholder="Nombre completo" required>
+  <!-- INSCRIPCIONES -->
+  <section id="inscripciones" class="ins-container" aria-labelledby="insTitle" style="margin-top:18px">
+    <h2 id="insTitle" class="section-title" style="margin-bottom:12px">Formulario de Inscripción</h2>
 
-      <input name="telefono" id="ins_telefono" class="ins-input"
-             placeholder="Teléfono">
+    <div class="ins-card">
+      <form id="formInscripcion" class="ins-form" aria-label="Formulario de inscripción">
+        <input name="nombre" id="ins_nombre" class="ins-input" placeholder="Nombre completo" required>
+        <input name="telefono" id="ins_telefono" class="ins-input" placeholder="Teléfono">
+        <input name="email" id="ins_email" class="ins-input" type="email" placeholder="Correo electrónico">
+        <select id="ins_programa" name="programa" class="ins-select" required>
+          <option value="">Selecciona un programa</option>
+          <option>Preparación Policial</option>
+          <option>Preparación Militar</option>
+          <option>Simuladores Académicos</option>
+        </select>
 
-      <input name="email" id="ins_email" class="ins-input"
-             type="email" placeholder="Correo electrónico">
+        <div style="display:flex;gap:10px;align-items:center">
+          <button type="submit" class="btn-inscribir">Inscribirme</button>
+          <button type="button" id="insClear" class="admin-link" style="background:transparent;border:1px solid rgba(255,255,255,0.06)">Limpiar</button>
+        </div>
 
-      <select id="ins_programa" name="programa" class="ins-select" required>
-        <option value="">Selecciona un programa</option>
-        <option>Preparación Policial</option>
-        <option>Preparación Militar</option>
-        <option>Simuladores Académicos</option>
-      </select>
+        <p id="msg" style="margin-top:10px;color:var(--holo);font-weight:800"></p>
+      </form>
+    </div>
+  </section>
 
-      <button type="submit" class="btn-inscribir">Inscribirme</button>
-    </form>
+  <!-- CONTACTOS -->
+  <section id="contactos" class="card" style="margin-top:18px">
+    <div class="section-title">Contactos & Ubicación</div>
+    <p class="lead">Contáctanos para inscripciones, consultas o entrenamientos personalizados. Haz clic en los iconos para ir a nuestras redes.</p>
 
-    <p id="msg" class="msg"></p>
-  </div>
+    <div class="social-row" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <a class="admin-link" href="https://www.facebook.com/profile.php?id=61584114427412" target="_blank"><i class="fab fa-facebook-f" style="margin-right:8px"></i>Facebook</a>
+      <a class="admin-link" href="https://www.instagram.com/spartanosmyr" target="_blank"><i class="fab fa-instagram" style="margin-right:8px"></i>Instagram</a>
+      <a class="admin-link" href="https://www.tiktok.com/@spartanosmyr" target="_blank"><i class="fab fa-tiktok" style="margin-right:8px"></i>TikTok</a>
+      <a class="admin-link" href="https://wa.me/593986912191?text=Hola%20quiero%20informaci%C3%B3n" target="_blank"><i class="fab fa-whatsapp" style="margin-right:8px"></i>WhatsApp</a>
+      <a class="admin-link" href="https://maps.app.goo.gl/qXHnbpxcqG8XPnpW7" target="_blank"><i class="fa-solid fa-location-dot" style="margin-right:8px"></i>Ubicación</a>
+    </div>
+  </section>
 
-
-<!-- ========================= -->
-<!--    ESTILOS PROFESIONALES -->
-<!-- ========================= -->
-<style>
-  .ins-container {
-    padding: 30px;
-    max-width: 600px;
-    margin: auto;
-    text-align: center;
-  }
-
-  .ins-title {
-    font-size: 28px;
-    margin-bottom: 18px;
-    font-weight: 900;
-    color: var(--verde-camuflaje, #4CAF50);
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-
-  .ins-card {
-    background: rgba(255,255,255,0.07);
-    padding: 25px;
-    border-radius: 16px;
-    backdrop-filter: blur(6px);
-    border: 1px solid rgba(255,255,255,0.15);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-  }
-
-  .ins-form {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
-
-  .ins-input, .ins-select {
-    padding: 12px;
-    border-radius: 10px;
-    border: 2px solid rgba(255,255,255,0.2);
-    background: rgba(0,0,0,0.2);
-    color: #fff;
-    font-size: 15px;
-    outline: none;
-    transition: 0.25s;
-  }
-
-  .ins-input:focus, .ins-select:focus {
-    border-color: var(--verde-camuflaje, #00ff85);
-    background: rgba(0,0,0,0.35);
-  }
-
-  .btn-inscribir {
-    padding: 14px;
-    background: var(--verde-camuflaje, #71f497);
-    color: #0d1e12;
-    border: none;
-    border-radius: 10px;
-    font-weight: 900;
-    cursor: pointer;
-    font-size: 16px;
-    transition: 0.25s;
-  }
-
-  .btn-inscribir:hover {
-    transform: scale(1.03);
-    background: var(--verde-camuflaje, #4bd66d);
-  }
-
-  .msg {
-    margin-top: 10px;
-    font-weight: bold;
-    color: #63ff94;
-    font-size: 15px;
-  }
-
-  .admin-link {
-    display: inline-block;
-    margin-top: 20px;
-    font-weight: bold;
-    color: #71f497;
-    text-decoration: none;
-  }
-
-  .admin-link:hover {
-    color: #3aff83;
-    text-decoration: underline;
-  }
-
-  /* Móvil */
-  @media(max-width: 480px) {
-    .ins-card {
-      padding: 18px;
-    }
-    .ins-title {
-      font-size: 24px;
-    }
-  }
-</style>
-
-
-<!-- ========================= -->
-<!--      ENVÍO A GOOGLE      -->
-<!-- ========================= -->
-<script>
-document.getElementById("formInscripcion").addEventListener("submit", async function(e) {
-  e.preventDefault();
-
-  const data = {
-    nombre: document.getElementById("ins_nombre").value,
-    telefono: document.getElementById("ins_telefono").value,
-    email: document.getElementById("ins_email").value,
-    programa: document.getElementById("ins_programa").value
-  };
-
-  await fetch("https://script.google.com/macros/s/AKfycbya2fZnQ1XqSWj1v4Bk6ME4i9m_Ktf0m3awu1-oZrfnDv_-M0qXYBvK2UfjdVqZWzoR/exec", {
-    method: "POST",
-    mode: "no-cors",
-    body: JSON.stringify(data)
-  });
-
-  const msg = document.getElementById("msg");
-  msg.textContent = "✓ Inscripción enviada correctamente";
-
-  msg.style.opacity = "1";
-  msg.style.transition = "0.4s";
-
-  document.getElementById("formInscripcion").reset();
-
-  setTimeout(() => { msg.style.opacity = "0"; }, 3000);
-});
-</script>
-      <!-- =========================================
-     PANEL ADMINISTRADOR (BOTÓN AL FINAL)
-========================================= -->
-<section id="panel-admin" style="margin-top:50px; padding:30px; text-align:center">
-
-  <h2 style="font-size:24px; margin-bottom:15px;">Panel Administrador</h2>
-
-  <a href="https://script.google.com/macros/s/AKfycbya2fZnQ1XqSWj1v4Bk6ME4i9m_Ktf0m3awu1-oZrfnDv_-M0qXYBvK2UfjdVqZWzoR/exec"
-     target="_blank"
-     style="
-       display:inline-block;
-       background:#1f3b2d;
-       padding:15px 25px;
-       color:white;
-       font-size:18px;
-       font-weight:bold;
-       text-decoration:none;
-       border-radius:8px;
-       box-shadow:0 4px 10px rgba(0,0,0,0.3);
-       transition:0.3s;
-     "
-     onmouseover="this.style.background='#274b39'"
-     onmouseout="this.style.background='#1f3b2d'">
-    🔐 Acceder al Panel Administrador
-  </a>
-
-  <p style="color:#444; margin-top:10px; font-size:14px">
-    Solo personal autorizado.
-  </p>
-
-</section>
-
- ...
+  <!-- FOOTER -->
+  <footer>
+    <div style="max-width:1200px;margin:auto;color:var(--muted)">&copy; <span id="year"></span> Spartanos MyR ACADEMY — Todos los derechos reservados</div>
+    <small style="opacity:0.85">Juan de Velasco y Simón Bolívar · CC Casa Blanca Oficina 21 · +593967135717 · spartanosmyr@gmail.com</small>
+  </footer>
 </main>
 
 <!-- WHATSAPP FLOTANTE -->
-<a href="https://wa.me/593000000?text=Hola%20Spartanos%20MyR%20Academy,%20necesito%20más%20información"
-   class="whatsapp-float"
-   target="_blank" aria-label="Contactar por WhatsApp">
-   <i class="fa-brands fa-whatsapp"></i>
+<a id="whatsappFloat" href="https://wa.me/593967135717?text=Hola%20quiero%20más%20información" target="_blank" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
 </a>
 
-</body>
-</html>
+<!-- HUD overlay (decorative) -->
+<svg id="hud-overlay" width="100%" height="100%" style="position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:0.06">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#7fff7f"/><stop offset="1" stop-color="#4a5b24"/></linearGradient>
+  </defs>
+  <!-- simple reticle top-left -->
+  <g transform="translate(40,40)" stroke="url(#g1)" stroke-width="1" fill="none">
+    <circle r="26" cx="0" cy="0"></circle>
+    <path d="M-34 0 H-18 M18 0 H34 M0 -34 V-18 M0 18 V34" stroke-width="1" />
+  </g>
+  <!-- corner lines -->
+  <g stroke="url(#g1)" stroke-width="1">
+    <path d="M20 100 H120" />
+    <path d="M100 20 V120" />
+  </g>
+</svg>
 
+<!-- ========== SCRIPTS ========== -->
+<script>
+/* ===== small utilities ===== */
+document.getElementById('year').textContent = new Date().getFullYear();
 
-  <!-- FOOTER -->
-  <footer style="padding:24px;text-align:center;background:linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.3));margin-top:40px">
-    <div style="max-width:1200px;margin:auto;color:rgba(255,255,255,0.9)">&copy; <span id="year"></span> Spartanos MyR ACADEMY — Todos los derechos reservados</div>
-    <small style="opacity:0.85">Juan de Velasco y Simón Bolívar · CC Casa Blanca Oficina 21 · +593967135717 · spartanosmyr@gmail.com</small>
-  </footer>
+/* ===== mobile menu toggle ===== */
+const mobileBtn = document.getElementById('mobileMenuBtn');
+mobileBtn.addEventListener('click', ()=> {
+  const nav = document.querySelector('nav.main-nav');
+  nav.style.display = (nav.style.display === 'flex') ? 'none' : 'flex';
+});
 
-  <!-- SCRIPTS -->
-  <script>
-    // ========== CONFIG: REEMPLAZA ESTAS URLs CON TUS GOOGLE FORMS (usar ?embedded=true si es posible) ==========
-    const formUrls = {
-      FORM_SOCIALES_1: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform?embedded=true',
-      FORM_SOCIALES_2: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform?embedded=true',
+/* ===== accordion panels ===== */
+function togglePanel(el){
+  const panel = el.querySelector('.panel');
+  const open = panel.style.maxHeight && panel.style.maxHeight !== '0px';
+  // close all
+  document.querySelectorAll('.accordion .panel').forEach(p => { p.style.maxHeight = null; p.parentElement.querySelector('.chev').style.transform = 'rotate(0deg)'; });
+  if(!open){
+    panel.style.maxHeight = panel.scrollHeight + 'px';
+    el.querySelector('.chev').style.transform = 'rotate(90deg)';
+  } else {
+    panel.style.maxHeight = null;
+    el.querySelector('.chev').style.transform = 'rotate(0deg)';
+  }
+}
 
-      FORM_MATE_1: 'https://forms.gle/3MEoVqysj7vS2oXz9',
-      FORM_MATE_2: 'https://forms.gle/ErToU3HhET3L2vTj8',
+/* ===== open form helper (tries iframe, else new tab) ===== */
+function openFormUrl(url){
+  // try open in new tab (embedding handled elsewhere)
+  window.open(url, '_blank');
+}
 
-      FORM_FISICA_1: 'https://forms.gle/FbRnNvNWoJEYpFbq9',
-      FORM_FISICA_2: 'https://forms.gle/D14m8aHj9Z9HRj1W7',
+/* ===== form submission to GAS (no-cors) ===== */
+const form = document.getElementById('formInscripcion');
+const MSG = document.getElementById('msg');
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const data = {
+    nombre: document.getElementById('ins_nombre').value,
+    telefono: document.getElementById('ins_telefono').value,
+    email: document.getElementById('ins_email').value,
+    programa: document.getElementById('ins_programa').value
+  };
 
-      FORM_LENGUA_1: 'https://forms.gle/HLk9xtMNPVCtPNZk9',
-      FORM_LENGUA_2: 'https://forms.gle/rWAFfwdYVzDdVebo7',
+  try {
+    // no-cors mode; response opaque — still works for form POST to GAS web app
+    await fetch("https://script.google.com/macros/s/AKfycbya2fZnQ1XqSWj1v4Bk6ME4i9m_Ktf0m3awu1-oZrfnDv_-M0qXYBvK2UfjdVqZWzoR/exec", {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data)
+    });
 
-      FORM_INGLES_1: 'https://forms.gle/YqVwhn37aML63UJs9',
-      FORM_INGLES_2: 'https://forms.gle/hx9t9XuyMXmguiev6',
+    MSG.textContent = "✓ Inscripción enviada correctamente";
+    MSG.style.opacity = 1;
+    form.reset();
+    setTimeout(()=> MSG.style.opacity = 0, 3200);
+  } catch(err){
+    console.error(err);
+    MSG.textContent = "¡Error enviando! Revisa conexión.";
+    MSG.style.color = "tomato";
+    setTimeout(()=> MSG.style.opacity = 0, 3200);
+  }
+});
 
-      FORM_PSICO_1: 'https://forms.gle/WWCnhs71amLba9mT8',
-      FORM_PSICO_2: 'https://forms.gle/6rwGaeFWpTzMTuJ8A',
-    };
+/* clear button */
+document.getElementById('insClear').addEventListener('click', ()=> { form.reset(); MSG.textContent = ''; });
 
-    // Elements
-    const visor = document.getElementById('visor');
-    const formFrame = document.getElementById('formFrame');
+/* ===== lightweight particle background (canvas) - subtle dust */
+(function(){
+  const canvas = document.createElement('canvas');
+  canvas.id = 'particles';
+  canvas.style.position='fixed'; canvas.style.left=0; canvas.style.top=0;
+  canvas.style.width='100%'; canvas.style.height='100%'; canvas.style.zIndex='-11'; canvas.style.pointerEvents='none';
+  document.body.appendChild(canvas);
+  const ctx = canvas.getContext('2d');
+  let W, H, particles = [], count = 64;
 
-    // Open form (tries iframe, if blocked opens in new tab)
-    function openForm(btn){
-      const key = btn.getAttribute('data-form') || btn.dataset.form;
-      const url = formUrls[key];
-      if(!url){ alert('Formulario no configurado. Reemplaza formUrls en el script.'); return; }
+  function resize(){ W = canvas.width = innerWidth; H = canvas.height = innerHeight; }
+  window.addEventListener('resize', resize);
+  resize();
 
-      // Try embedding in iframe; if X-Frame-Options blocks, user can still open in new tab
-      formFrame.src = url;
-      visor.classList.add('open');
-      visor.setAttribute('aria-hidden', 'false');
+  function rand(min,max){ return Math.random()*(max-min)+min; }
 
-      // small timeout: if iframe loads blank due to frame blocking, offer open in new tab
-      setTimeout(()=> {
-        try {
-          const fdoc = document.getElementById('formFrame').contentDocument;
-          // if cross-origin, accessing contentDocument may throw; ignore safely
-        } catch(e){
-          // If blocked, offer user to open in a new tab
-          // (We do not auto-open because browsers may block popups)
-          const openNew = confirm('Si el formulario no se muestra incrustado, ¿abrir en nueva pestaña?');
-          if(openNew) window.open(url,'_blank');
-        }
-      }, 900);
-    }
-
-    function closeVisor(){
-      formFrame.src = '';
-      visor.classList.remove('open');
-      visor.setAttribute('aria-hidden','true');
-    }
-
-    // Toggle subject panels
-    function toggleSubject(head){
-      const subject = head.closest('.subject');
-      const panel = subject.querySelector('.panel');
-      const expanded = head.getAttribute('aria-expanded') === 'true';
-      // close others
-      document.querySelectorAll('.subject .panel.open').forEach(p=>{
-        if(p !== panel){ p.classList.remove('open'); p.closest('.subject').querySelector('.head').setAttribute('aria-expanded','false'); p.closest('.subject').querySelector('.chev').style.transform='rotate(0deg)'; }
+  function create(){
+    for(let i=0;i<count;i++){
+      particles.push({
+        x: Math.random()*W,
+        y: Math.random()*H,
+        r: rand(0.6,2.6),
+        vx: rand(-0.1,0.1),
+        vy: rand(-0.15,0.15),
+        alpha: rand(0.05,0.22)
       });
-      if(!expanded){
-        panel.classList.add('open');
-        head.setAttribute('aria-expanded','true');
-        head.querySelector('.chev').style.transform = 'rotate(90deg)';
-      } else {
-        panel.classList.remove('open');
-        head.setAttribute('aria-expanded','false');
-        head.querySelector('.chev').style.transform = 'rotate(0deg)';
-      }
     }
+  }
+  create();
 
-    // Accessibility: close with escape
-    window.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeVisor(); closeChat(); closeAdmin(); }})
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    for(const p of particles){
+      p.x += p.vx; p.y += p.vy;
+      if(p.x < -10) p.x = W+10; if(p.x>W+10) p.x=-10;
+      if(p.y < -10) p.y = H+10; if(p.y>H+10) p.y=-10;
 
- 
-    // ========== MOBILE MENU (simple) ==========
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    mobileBtn.addEventListener('click', ()=>{
-      const nav = document.querySelector('nav.main-nav');
-      if(nav.style.display === 'flex') nav.style.display = 'none';
-      else nav.style.display = 'flex';
-    });
+      ctx.beginPath();
+      ctx.fillStyle = 'rgba(255,255,255,'+p.alpha+')';
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
 
+/* ===== subtle interactive HUD elements (blink) ===== */
+(function(){
+  const heroTitle = document.querySelector('.holo-title');
+  let t = 0;
+  setInterval(()=> {
+    t = (t+1)%360;
+    const glow = 0.06 + Math.abs(Math.sin(t*0.02))*0.14;
+    heroTitle.style.textShadow = `0 0 ${8+Math.sin(t*0.04)*6}px rgba(127,255,127,${glow})`;
+  },40);
+})();
 
-    // ========== UTILS: set footer year ==========
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // ========== helper close chat/admin on outside click ==========
-    window.addEventListener('click', (e)=>{
-      if(e.target.classList && e.target.classList.contains('visor')) closeVisor();
-    });
-
-    // ========== small accessibility: focus outlines on keyboard nav ==========
-    window.addEventListener('keydown', (e)=>{
-      if(e.key === 'Tab') document.body.classList.add('kbd-nav');
-    });
-  </script>
+</script>
 
 </body>
 </html>
