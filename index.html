@@ -362,112 +362,213 @@ sociedad.</p>
       <iframe src="Video de WhatsApp 2025-11-30 a las 08.49.08_5e629399.mp4" title="Video 1" allowfullscreen></iframe>
     </div>
   </section>
-  <!-- SIMULADORES -->
-    <section id="simuladores" class="page">
-      <div class="section-title">Simuladores Académicos (haz clic en la materia)</div>
-      <p class="lead">Los simuladores se abren en un visor dentro de la página (iframe). Si tu Google Form NO permite embedding, lo abriremos en nueva pestaña.</p>
+  <!-- ======== ACORDEÓN DE SIMULADORES ======== -->
+<section>
+  <div class="accordion card" role="tablist" aria-label="Simuladores">
 
-      <div class="accordion card" role="tablist" aria-label="Simuladores">
-        <!-- Ciencias Sociales -->
-        <div class="subject" data-sub="sociales">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">🗺️</div>
-              <div>
-                <strong>Ciencias Sociales</strong><div class="muted">Historia • Geografía • Sociedad</div>
-              </div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_SOCIALES_1" onclick="openForm(this)">Ciencias Sociales 1</button>
-              <button class="sim-btn" data-form="FORM_SOCIALES_2" onclick="openForm(this)">Ciencias Sociales 2</button>
-            </div>
+    <!-- Ciencias Sociales -->
+    <div class="subject">
+      <div class="head" onclick="toggleSubject(this)">
+        <div class="info">
+          <div class="icon">🗺️</div>
+          <div>
+            <strong>Ciencias Sociales</strong>
+            <div class="muted">Historia • Geografía • Sociedad</div>
           </div>
         </div>
-        <!-- Matemáticas -->
-        <div class="subject" data-sub="mate">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">➗</div>
-              <div><strong>Matemáticas</strong><div class="muted">Razonamiento • Cálculo</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_MATE_1" onclick="openForm(https://forms.gle/3MEoVqysj7vS2oXz9)">Matemáticas 1</button>
-              <button class="sim-btn" data-form="FORM_MATE_2" onclick="openForm(FORM_MATE_2: 'https://forms.gle/ErToU3HhET3L2vTj8')">Matemáticas 2</button>
-            </div>
-          </div>
-        </div>
-        <!-- Física -->
-        <div class="subject" data-sub="fisica">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">🔬</div>
-              <div><strong>Física</strong><div class="muted">Mecánica • Termodinámica</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_FISICA_1" onclick="openForm(FORM_FISICA_1: 'https://forms.gle/FbRnNvNWoJEYpFbq9')">Física 1</button>
-              <button class="sim-btn" data-form="FORM_FISICA_2" onclick="openForm(FORM_FISICA_2: 'https://forms.gle/D14m8aHj9Z9HRj1W7')">Física 2</button>
-            </div>
-          </div>
-        </div>
-        <!-- Lengua y Literatura -->
-        <div class="subject" data-sub="lengua">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">✍️</div>
-              <div><strong>Lengua y Literatura</strong><div class="muted">Comprensión • Gramática</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_LENGUA_1" onclick="openForm(FORM_LENGUA_1: 'https://forms.gle/HLk9xtMNPVCtPNZk9')">Lengua 1</button>
-              <button class="sim-btn" data-form="FORM_LENGUA_2" onclick="openForm(FORM_LENGUA_2: 'https://forms.gle/rWAFfwdYVzDdVebo7')">Lengua 2</button>
-            </div>
-          </div>
-        </div>
-        <!-- Inglés -->
-        <div class="subject" data-sub="ingles">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">🗣️</div>
-              <div><strong>Inglés</strong><div class="muted">Comprensión • Vocabulario</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_INGLES_1" onclick="openForm(FORM_INGLES_1: 'https://forms.gle/YqVwhn37aML63UJs9')">Inglés 1</button>
-              <button class="sim-btn" data-form="FORM_INGLES_2" onclick="openForm(FORM_INGLES_2: 'https://forms.gle/hx9t9XuyMXmguiev6',)">Inglés 2</button>
-            </div>
-          </div>
-        </div>
-        <!-- Psicología -->
-        <div class="subject" data-sub="psico">
-          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
-            <div class="info">
-              <div class="icon">🧠</div>
-              <div><strong>Psicología</strong><div class="muted">Evaluaciones psicológicas</div></div>
-            </div>
-            <div class="chev">▸</div>
-          </div>
-          <div class="panel" aria-hidden="true">
-            <div class="btn-grid">
-              <button class="sim-btn" data-form="FORM_PSICO_1" onclick="openForm( FORM_PSICO_1: 'https://forms.gle/WWCnhs71amLba9mT8)">Psicología 1</button>
-              <button class="sim-btn" data-form="FORM_PSICO_2" onclick="openForm(FORM_PSICO_2: 'https://forms.gle/6rwGaeFWpTzMTuJ8A')">Psicología 2</button>
-            </div>
-          </div>
+        <div class="chev">▸</div>
+      </div>
+
+      <div class="panel">
+        <div class="btn-grid">
+          <button class="sim-btn" data-form="FORM_SOCIALES_1" onclick="openForm(this)">Ciencias Sociales 1</button>
+          <button class="sim-btn" data-form="FORM_SOCIALES_2" onclick="openForm(this)">Ciencias Sociales 2</button>
         </div>
       </div>
-    </section>
+    </div>
+
+    <!-- Matemáticas -->
+    <div class="subject">
+      <div class="head" onclick="toggleSubject(this)">
+        <div class="info">
+          <div class="icon">➗</div>
+          <div>
+            <strong>Matemáticas</strong>
+            <div class="muted">Razonamiento • Cálculo</div>
+          </div>
+        </div>
+        <div class="chev">▸</div>
+      </div>
+
+      <div class="panel">
+        <div class="btn-grid">
+          <button class="sim-btn" data-form="FORM_MATE_1" onclick="openForm(this)">Matemáticas 1</button>
+          <button class="sim-btn" data-form="FORM_MATE_2" onclick="openForm(this)">Matemáticas 2</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Física -->
+    <div class="subject">
+      <div class="head" onclick="toggleSubject(this)">
+        <div class="info">
+          <div class="icon">🔬</div>
+          <div>
+            <strong>Física</strong>
+            <div class="muted">Mecánica • Termodinámica</div>
+          </div>
+        </div>
+        <div class="chev">▸</div>
+      </div>
+
+      <div class="panel">
+        <div class="btn-grid">
+          <button class="sim-btn" data-form="FORM_FISICA_1" onclick="openForm(this)">Física 1</button>
+          <button class="sim-btn" data-form="FORM_FISICA_2" onclick="openForm(this)">Física 2</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Lengua -->
+    <div class="subject">
+      <div class="head" onclick="toggleSubject(this)">
+        <div class="info">
+          <div class="icon">✍️</div>
+          <div>
+            <strong>Lengua y Literatura</strong>
+            <div class="muted">Comprensión • Gramática</div>
+          </div>
+        </div>
+        <div class="chev">▸</div>
+      </div>
+
+      <div class="panel">
+        <div class="btn-grid">
+          <button class="sim-btn" data-form="FORM_LENGUA_1" onclick="openForm(this)">Lengua 1</button>
+          <button class="sim-btn" data-form="FORM_LENGUA_2" onclick="openForm(this)">Lengua 2</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inglés -->
+    <div class="subject">
+      <div class="head" onclick="toggleSubject(this)">
+        <div class="info">
+          <div class="icon">🗣️</div>
+          <div>
+            <strong>Inglés</strong>
+            <div class="muted">Comprensión • Vocabulario</div>
+          </div>
+        </div>
+        <div class="chev">▸</div>
+      </div>
+
+      <div class="panel">
+        <div class="btn-grid">
+          <button class="sim-btn" data-form="FORM_INGLES_1" onclick="openForm(this)">Inglés 1</button>
+          <button class="sim-btn" data-form="FORM_INGLES_2" onclick="openForm(this)">Inglés 2</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Psicología -->
+    <div class="subject">
+      <div class="head" onclick="toggleSubject(this)">
+        <div class="info">
+          <div class="icon">🧠</div>
+          <div>
+            <strong>Psicología</strong>
+            <div class="muted">Evaluaciones psicológicas</div>
+          </div>
+        </div>
+        <div class="chev">▸</div>
+      </div>
+
+      <div class="panel">
+        <div class="btn-grid">
+          <button class="sim-btn" data-form="FORM_PSICO_1" onclick="openForm(this)">Psicología 1</button>
+          <button class="sim-btn" data-form="FORM_PSICO_2" onclick="openForm(this)">Psicología 2</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ======== SCRIPTS ======== -->
+<script>
+const FORM_LINKS = {
+  FORM_SOCIALES_1: "https://docs.google.com/forms/d/e/TU_LINK_1/viewform",
+  FORM_SOCIALES_2: "https://docs.google.com/forms/d/e/TU_LINK_2/viewform",
+
+  FORM_MATE_1: "https://docs.google.com/forms/d/e/TU_LINK_M1/viewform",
+  FORM_MATE_2: "https://docs.google.com/forms/d/e/TU_LINK_M2/viewform",
+
+  FORM_FISICA_1: "https://docs.google.com/forms/d/e/TU_LINK_F1/viewform",
+  FORM_FISICA_2: "https://docs.google.com/forms/d/e/TU_LINK_F2/viewform",
+
+  FORM_LENGUA_1: "https://docs.google.com/forms/d/e/TU_LINK_L1/viewform",
+  FORM_LENGUA_2: "https://docs.google.com/forms/d/e/TU_LINK_L2/viewform",
+
+  FORM_INGLES_1: "https://docs.google.com/forms/d/e/TU_LINK_I1/viewform",
+  FORM_INGLES_2: "https://docs.google.com/forms/d/e/TU_LINK_I2/viewform",
+
+  FORM_PSICO_1: "https://docs.google.com/forms/d/e/TU_LINK_P1/viewform",
+  FORM_PSICO_2: "https://docs.google.com/forms/d/e/TU_LINK_P2/viewform"
+};
+
+// Mostrar/Ocultar acordeón
+function toggleSubject(el) {
+  const parent = el.parentElement;
+  parent.classList.toggle("open");
+}
+
+// Abrir formularios
+function openForm(button) {
+  const formId = button.getAttribute("data-form");
+  const url = FORM_LINKS[formId];
+
+  if (!url) {
+    alert("⚠️ El enlace no está configurado aún.");
+    return;
+  }
+
+  window.open(url, "_blank");
+}
+</script>
+
+<style>
+/* Estilos básicos para funcionamiento */
+.subject .panel {
+  display: none;
+  padding: 10px;
+}
+.subject.open .panel {
+  display: block;
+}
+.head {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  padding: 12px;
+  background: #222;
+  color: white;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+.btn-grid {
+  display: grid;
+  gap: 10px;
+}
+.sim-btn {
+  padding: 10px;
+  border: none;
+  background: #4a7a3c;
+  color: white;
+  border-radius: 6px;
+}
+</style>
+
    <!-- SCRIPTS -->
   <script>
     // Elements
