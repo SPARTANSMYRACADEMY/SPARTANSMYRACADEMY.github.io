@@ -421,32 +421,69 @@ sociedad.</p>
         <a class="social-btn" href="https://wa.me/593986912191?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         <a class="social-btn" href="https://maps.app.goo.gl/qXHnbpxcqG8XPnpW7" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Ubicación</a>
       </div>
+<!-- Inscripciones -->
+<div style="max-width:720px;margin:18px auto 0 auto;" class="card">
+  <div style="font-weight:800;margin-bottom:8px">Formulario de Inscripción</div>
 
-      <!-- Inscripciones (envío a Google Apps Script webhook -> Google Sheets) --> "https://docs.google.com/spreadsheets/d/1E1-BrajDVJ4Wc0x5KgeBbGNzz3Bxj6dziICrbLAVjjE/edit?usp=sharing"
-      <div style="max-width:720px;margin:18px auto 0 auto;" class="card">
-        <div style="font-weight:800;margin-bottom:8px">Formulario de Inscripción</div>
-        <form id="https://docs.google.com/spreadsheets/d/1E1-BrajDVJ4Wc0x5KgeBbGNzz3Bxj6dziICrbLAVjjE/edit?usp=sharing">
-          <input name="nombre" id="ins_nombre" placeholder="Nombre completo" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
-          <input name="telefono" id="ins_telefono" placeholder="Teléfono" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
-          <input name="email" id="ins_email" type="email" placeholder="Correo" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
-          <select id="ins_programa" name="programa" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
-            <option value="">Selecciona programa</option>
-            <option>Preparación Policial</option>
-            <option>Preparación Militar</option>
-            <option>Simuladores Académicos</option>
-          </select>
-          <div style="display:flex;gap:8px">
-            <button type="submit" style="flex:1;padding:10px;border-radius:8px;border:0;background:var(--verde-camuflaje);color:#07100b;font-weight:800">Inscribirme</button>
-            <button type="button" id="insClear" style="flex:0 0 120px;padding:10px;border-radius:8px;border:0;background:#444;color:white">Limpiar</button>
-          </div>
-          <small style="display:block;margin-top:8px;color:rgba(255,255,255,0.75)">La inscripción se enviará a la hoja de cálculo conectada.</small>
-        </form>
-      </div>
-    </section>
+  <form id="AKfycbzDkIgea5k94er2LcQhkr0bd4_3gZ6xTfjfc3vGoGYdBw3AfRbe4ZMC0CDatw1AiRzs">
+    <input name="nombre" id="ins_nombre" placeholder="Nombre completo" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
+    <input name="telefono" id="ins_telefono" placeholder="Teléfono" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
+    <input name="email" id="ins_email" type="email" placeholder="Correo" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
 
-  </main>
-   
-  
+    <select id="ins_programa" name="programa" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
+      <option value="">Selecciona programa</option>
+      <option>Preparación Policial</option>
+      <option>Preparación Militar</option>
+      <option>Simuladores Académicos</option>
+    </select>
+
+    <div style="display:flex;gap:8px">
+      <button type="submit" style="flex:1;padding:10px;border-radius:8px;border:0;background:var(--verde-camuflaje);color:#07100b;font-weight:800">Inscribirme</button>
+      <button type="button" id="insClear" style="flex:0 0 120px;padding:10px;border-radius:8px;border:0;background:#444;color:white">Limpiar</button>
+    </div>
+
+    <small id="msgIns" style="display:block;margin-top:8px;color:white"></small>
+  </form>
+</div>
+
+<script>
+  const WEBHOOK = "https://script.google.com/macros/s/AKfycbzDkIgea5k94er2LcQhkr0bd4_3gZ6xTfjfc3vGoGYdBw3AfRbe4ZMC0CDatw1AiRzs/exec";
+
+  document.getElementById("formInscripcion").addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const datos = {
+      nombre: document.getElementById("ins_nombre").value,
+      telefono: document.getElementById("ins_telefono").value,
+      email: document.getElementById("ins_email").value,
+      programa: document.getElementById("ins_programa").value
+    };
+
+    const msg = document.getElementById("msgIns");
+    msg.textContent = "Enviando...";
+    
+    try {
+      const r = await fetch(WEBHOOK, {
+        method: "POST",
+        body: JSON.stringify(datos),
+        headers: { "Content-Type": "application/json" }
+      });
+
+      msg.textContent = "¡Inscripción enviada correctamente!";
+      msg.style.color = "#7CFC00";
+
+      document.getElementById("formInscripcion").reset();
+    } catch (error) {
+      msg.textContent = "Error al enviar.";
+      msg.style.color = "red";
+    }
+  });
+
+  document.getElementById("insClear").onclick = () => {
+    document.getElementById("formInscripcion").reset();
+  };
+</script>
+
   <!-- VISOR / MODAL para Google Forms -->
   <div id="visor" class="visor" role="dialog" aria-modal="true" aria-labelledby="visorTitle">
     <button class="close" aria-label="Cerrar visor" onclick="closeVisor()">Cerrar ✖</button>
