@@ -46,10 +46,10 @@ body{
   background: linear-gradient(180deg, rgba(2,4,2,0.7), rgba(2,4,2,0.9));
 }
 
-/* faint image behind (your 3.jpg) */
+/* faint image behind (Mesa de trabajo 2.jpg) */
 .bg-image {
   position:fixed; inset:0; z-index:-9; opacity:0.35;
-  background-image: url("3.jpg");
+  background-image: url("Mesa de trabajo 2");
   background-size: cover; background-position:center; filter:brightness(0.45) saturate(.9);
 }
 
@@ -307,19 +307,40 @@ footer{ padding:26px 12px; text-align:center; color:var(--muted); margin-top:36p
   <!-- INTRO -->
   <section id="introduccion" class="card" aria-labelledby="introTitle" style="margin-top:18px">
     <div class="section-title" id="introTitle">Introducción</div>
-    <p class="lead">Es una institución de formación física y académica especializada en la preparación para el ingreso a las Fuerzas Armadas y a la Policía Nacional del Ecuador. Desde abril de 2023, hemos construido un espacio donde la disciplina, el entrenamiento riguroso y la excelencia se convierten en herramientas fundamentales para transformar a jóvenes aspirantes en candidatos preparados y seguros de sus capacidades.</p>
+    <p class="lead">Es una institución de formación física y
+académica especializada en la preparación
+para el ingreso a las Fuerzas Armadas y a la
+Policía Nacional del Ecuador. Desde abril de
+2023, hemos construido un espacio donde la
+disciplina, el entrenamiento riguroso y la
+excelencia se convierten en herramientas
+fundamentales para transformar a jóvenes
+aspirantes en candidatos preparados y seguros de sus capacidades.</p>
   </section>
 
   <!-- MISION -->
   <section id="mision" class="card" style="margin-top:18px">
     <div class="section-title">Misión</div>
-    <p class="lead">Formar aspirantes altamente preparados física, académica y mentalmente, brindando una capacitación de excelencia que les permita afrontar exitosamente los procesos de ingreso a las Fuerzas Armadas y a la Policía Nacional, promoviendo valores de disciplina, liderazgo y vocación de servicio.</p>
+    <p class="Formar aspirantes altamente preparados
+física, académica y mentalmente, brindando 
+una capacitación de excelencia que les
+permita afrontar exitosamente los procesos 
+de ingreso a las Fuerzas Armadas y a la
+Policía Nacional, promoviendo valores de
+disciplina, liderazgo y vocación de servicio</p>
   </section>
 
   <!-- VISION -->
   <section id="vision" class="card" style="margin-top:18px">
     <div class="section-title">Visión</div>
-    <p class="lead">Ser la academia de preparación policial y militar líder en el norte del país, reconocida por su rigor formativo, la calidad de su entrenamiento, la solidez de sus resultados y el impacto positivo en la vida de cada estudiante, formando generaciones capaces de servir con honor y compromiso a la sociedad.</p>
+    <p class="lead">Ser la academia de preparación policial y
+militar líder en el norte del país, reconocida
+por su rigor formativo, la calidad de su
+entrenamiento, la solidez de sus resultados
+y el impacto positivo en la vida de cada
+estudiante, formando generaciones capa-
+ces de servir con honor y compromiso a la
+sociedad.</p>
   </section>
 
   <!-- GALERIA -->
@@ -338,45 +359,122 @@ footer{ padding:26px 12px; text-align:center; color:var(--muted); margin-top:36p
     <div class="section-title">Videos</div>
     <p class="lead">Material oficial para apoyo de instrucción.</p>
     <div class="videos-grid">
-      <iframe src="https://drive.google.com/file/d/15Je8Kf0KHeZKIVuaotsIkz9xsH-Qn9W9/preview" title="Video 1" allowfullscreen></iframe>
+      <iframe src="Video de WhatsApp 2025-11-30 a las 08.49.08_5e629399.mp4" title="Video 1" allowfullscreen></iframe>
     </div>
   </section>
 
   <!-- SIMULADORES -->
-  <section id="simuladores" class="card" style="margin-top:18px">
-    <div class="section-title">Simuladores Académicos</div>
-    <p class="lead">Los simuladores se abren en un visor dentro de la página (iframe). Si el Google Form no permite embedding, se abrirá en nueva pestaña.</p>
-
-    <div class="accordion" role="tablist" aria-label="Simuladores">
-      <div class="subject" onclick="togglePanel(this)">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div><strong>Ciencias Sociales</strong> <small style="color:var(--muted);margin-left:8px">Historia · Geografía</small></div>
-          <div class="chev">▸</div>
-        </div>
-        <div class="panel" aria-hidden="true" style="padding-top:10px">
-          <div class="btn-grid">
-            <button class="sim-btn" data-form="FORM_SOCIALES_1" onclick="openFormUrl('https://forms.gle/EXAMPLE1')">Ciencias Sociales 1</button>
-            <button class="sim-btn" data-form="FORM_SOCIALES_2" onclick="openFormUrl('https://forms.gle/EXAMPLE2')">Ciencias Sociales 2</button>
+    <section id="simuladores" class="page">
+      <div class="section-title">Simuladores Académicos (haz clic en la materia)</div>
+      <div class="accordion card" role="tablist" aria-label="Simuladores">
+        <!-- Ciencias Sociales -->
+        <div class="subject" data-sub="sociales">
+          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
+            <div class="info">
+              <div class="icon">🗺️</div>
+              <div>
+                <strong>Ciencias Sociales</strong><div class="muted">Historia • Geografía • Sociedad</div>
+              </div>
+            </div>
+            <div class="chev">▸</div>
+          </div>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_SOCIALES_1" onclick="openForm(this)">Ciencias Sociales 1</button>
+              <button class="sim-btn" data-form="FORM_SOCIALES_2" onclick="openForm(this)">Ciencias Sociales 2</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <div class="subject" onclick="togglePanel(this)" style="margin-top:10px">
-        <div style="display:flex;justify-content:space-between;align-items:center">
-          <div><strong>Matemáticas</strong> <small style="color:var(--muted);margin-left:8px">Razonamiento · Cálculo</small></div>
-          <div class="chev">▸</div>
-        </div>
-        <div class="panel" aria-hidden="true" style="padding-top:10px">
-          <div class="btn-grid">
-            <button class="sim-btn" onclick="openFormUrl('https://forms.gle/EXAMPLE3')">Matemáticas 1</button>
-            <button class="sim-btn" onclick="openFormUrl('https://forms.gle/EXAMPLE4')">Matemáticas 2</button>
+        <!-- Matemáticas -->
+        <div class="subject" data-sub="mate">
+          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
+            <div class="info">
+              <div class="icon">➗</div>
+              <div><strong>Matemáticas</strong><div class="muted">Razonamiento • Cálculo</div></div>
+            </div>
+            <div class="chev">▸</div>
+          </div>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_MATE_1" onclick="openForm(this)">Matemáticas 1</button>
+              <button class="sim-btn" data-form="FORM_MATE_2" onclick="openForm(this)">Matemáticas 2</button>
+            </div>
           </div>
         </div>
-      </div>
 
-      <!-- Agrega más materias según necesites -->
-    </div>
-  </section>
+        <!-- Física -->
+        <div class="subject" data-sub="fisica">
+          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
+            <div class="info">
+              <div class="icon">🔬</div>
+              <div><strong>Física</strong><div class="muted">Mecánica • Termodinámica</div></div>
+            </div>
+            <div class="chev">▸</div>
+          </div>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_FISICA_1" onclick="openForm(this)">Física 1</button>
+              <button class="sim-btn" data-form="FORM_FISICA_2" onclick="openForm(this)">Física 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lengua y Literatura -->
+        <div class="subject" data-sub="lengua">
+          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
+            <div class="info">
+              <div class="icon">✍️</div>
+              <div><strong>Lengua y Literatura</strong><div class="muted">Comprensión • Gramática</div></div>
+            </div>
+            <div class="chev">▸</div>
+          </div>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_LENGUA_1" onclick="openForm(this)">Lengua 1</button>
+              <button class="sim-btn" data-form="FORM_LENGUA_2" onclick="openForm(this)">Lengua 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inglés -->
+        <div class="subject" data-sub="ingles">
+          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
+            <div class="info">
+              <div class="icon">🗣️</div>
+              <div><strong>Inglés</strong><div class="muted">Comprensión • Vocabulario</div></div>
+            </div>
+            <div class="chev">▸</div>
+          </div>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_INGLES_1" onclick="openForm(this)">Inglés 1</button>
+              <button class="sim-btn" data-form="FORM_INGLES_2" onclick="openForm(this)">Inglés 2</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Psicología -->
+        <div class="subject" data-sub="psico">
+          <div class="head" onclick="toggleSubject(this)" role="button" aria-expanded="false">
+            <div class="info">
+              <div class="icon">🧠</div>
+              <div><strong>Psicología</strong><div class="muted">Evaluaciones psicológicas</div></div>
+            </div>
+            <div class="chev">▸</div>
+          </div>
+          <div class="panel" aria-hidden="true">
+            <div class="btn-grid">
+              <button class="sim-btn" data-form="FORM_PSICO_1" onclick="openForm(this)">Psicología 1</button>
+              <button class="sim-btn" data-form="FORM_PSICO_2" onclick="openForm(this)">Psicología 2</button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
 
   <!-- INSCRIPCIONES -->
   <section id="inscripciones" class="ins-container" aria-labelledby="insTitle" style="margin-top:18px">
