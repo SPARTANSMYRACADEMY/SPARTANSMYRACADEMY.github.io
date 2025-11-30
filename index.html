@@ -11,7 +11,8 @@
 
   <!-- GOOGLE FONTS -->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-
+<link rel="stylesheet" 
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     :root{
       --verde-camuflaje:#6b8f45;
@@ -23,6 +24,31 @@
       --ui-bg: rgba(255,255,255,0.96);
       --transition: 200ms ease;
     }
+    /* Botón flotante WhatsApp */
+.btn-whatsapp {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  width: 60px;
+  height: 60px;
+  background: #25d366;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  z-index: 99999;
+  transition: 0.3s;
+}
+
+/* Animación hover */
+.btn-whatsapp:hover {
+  transform: scale(1.1);
+  background: #20bd5a;
+}
   /* ===== MARCA DE AGUA ===== */
   body::before {
     content: "";
@@ -429,8 +455,11 @@ sociedad.</p>
     </div>
   </div>
 
-  <!-- BOTÓN WHATSAPP FLOTANTE -->
-  <a id="whatsappFloat" href="https://wa.me/593999999999?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" aria-label="WhatsApp">💬</a>
+  <!-- BOTÓN FLOTANTE WHATSAPP -->
+<a href="https://wa.me/5930967135717?text=Hola%20quiero%20más%20información" 
+   class="btn-whatsapp" target="_blank" aria-label="WhatsApp">
+  <i class="fab fa-whatsapp"></i>
+</a>
 
   <!-- FOOTER -->
   <footer style="padding:24px;text-align:center;background:linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.3));margin-top:40px">
