@@ -448,6 +448,72 @@ sociedad.</p>
     </div>
   </section>
 <script>
+   // Elements
+    const visor = document.getElementById('visor');
+    const formFrame = document.getElementById('formFrame');
+
+    // Open form (tries iframe, if blocked opens in new tab)
+    function openForm(btn){
+      const key = btn.getAttribute('data-form') || btn.dataset.form;
+      const url = formUrls[key];
+      if(!url){ alert('Formulario no configurado. Reemplaza formUrls en el script.'); return; }
+
+      // Try embedding in iframe; if X-Frame-Options blocks, user can still open in new tab
+      formFrame.src = url;
+      visor.classList.add('open');
+      visor.setAttribute('aria-hidden', 'false');
+
+      // small timeout: if iframe loads blank due to frame blocking, offer open in new tab
+      setTimeout(()=> {
+        try {
+          const fdoc = document.getElementById('formFrame').contentDocument;
+          // if cross-origin, accessing contentDocument may throw; ignore safely
+        } catch(e){
+          // If blocked, offer user to open in a new tab
+          // (We do not auto-open because browsers may block popups)
+          const openNew = confirm('Si el formulario no se muestra incrustado, ¿abrir en nueva pestaña?');
+          if(openNew) window.open(url,'_blank');
+        }
+      }, 900);
+    }
+
+    function closeVisor(){
+      formFrame.src = '';
+      visor.classList.remove('open');
+      visor.setAttribute('aria-hidden','true');
+    }
+
+    // Toggle subject panels
+    function toggleSubject(head){
+      const subject = head.closest('.subject');
+      const panel = subject.querySelector('.panel');
+      const expanded = head.getAttribute('aria-expanded') === 'true';
+      // close others
+      document.querySelectorAll('.subject .panel.open').forEach(p=>{
+        if(p !== panel){ p.classList.remove('open'); p.closest('.subject').querySelector('.head').setAttribute('aria-expanded','false'); p.closest('.subject').querySelector('.chev').style.transform='rotate(0deg)'; }
+      });
+      if(!expanded){
+        panel.classList.add('open');
+        head.setAttribute('aria-expanded','true');
+        head.querySelector('.chev').style.transform = 'rotate(90deg)';
+      } else {
+        panel.classList.remove('open');
+        head.setAttribute('aria-expanded','false');
+        head.querySelector('.chev').style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // Accessibility: close with escape
+    window.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeVisor(); closeChat(); closeAdmin(); }})
+
+ 
+    // ========== MOBILE MENU (simple) ==========
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    mobileBtn.addEventListener('click', ()=>{
+      const nav = document.querySelector('nav.main-nav');
+      if(nav.style.display === 'flex') nav.style.display = 'none';
+      else nav.style.display = 'flex';
+    });
 function toggleSubject(el) {
   const subject = el.parentElement;
   subject.classList.toggle("open");
@@ -636,77 +702,7 @@ function openForm(button) {
   border-radius: 6px;
 }
 </style>
-
-   <!-- SCRIPTS -->
-  <script>
-    // Elements
-    const visor = document.getElementById('visor');
-    const formFrame = document.getElementById('formFrame');
-
-    // Open form (tries iframe, if blocked opens in new tab)
-    function openForm(btn){
-      const key = btn.getAttribute('data-form') || btn.dataset.form;
-      const url = formUrls[key];
-      if(!url){ alert('Formulario no configurado. Reemplaza formUrls en el script.'); return; }
-
-      // Try embedding in iframe; if X-Frame-Options blocks, user can still open in new tab
-      formFrame.src = url;
-      visor.classList.add('open');
-      visor.setAttribute('aria-hidden', 'false');
-
-      // small timeout: if iframe loads blank due to frame blocking, offer open in new tab
-      setTimeout(()=> {
-        try {
-          const fdoc = document.getElementById('formFrame').contentDocument;
-          // if cross-origin, accessing contentDocument may throw; ignore safely
-        } catch(e){
-          // If blocked, offer user to open in a new tab
-          // (We do not auto-open because browsers may block popups)
-          const openNew = confirm('Si el formulario no se muestra incrustado, ¿abrir en nueva pestaña?');
-          if(openNew) window.open(url,'_blank');
-        }
-      }, 900);
-    }
-
-    function closeVisor(){
-      formFrame.src = '';
-      visor.classList.remove('open');
-      visor.setAttribute('aria-hidden','true');
-    }
-
-    // Toggle subject panels
-    function toggleSubject(head){
-      const subject = head.closest('.subject');
-      const panel = subject.querySelector('.panel');
-      const expanded = head.getAttribute('aria-expanded') === 'true';
-      // close others
-      document.querySelectorAll('.subject .panel.open').forEach(p=>{
-        if(p !== panel){ p.classList.remove('open'); p.closest('.subject').querySelector('.head').setAttribute('aria-expanded','false'); p.closest('.subject').querySelector('.chev').style.transform='rotate(0deg)'; }
-      });
-      if(!expanded){
-        panel.classList.add('open');
-        head.setAttribute('aria-expanded','true');
-        head.querySelector('.chev').style.transform = 'rotate(90deg)';
-      } else {
-        panel.classList.remove('open');
-        head.setAttribute('aria-expanded','false');
-        head.querySelector('.chev').style.transform = 'rotate(0deg)';
-      }
-    }
-
-    // Accessibility: close with escape
-    window.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeVisor(); closeChat(); closeAdmin(); }})
-
- 
-    // ========== MOBILE MENU (simple) ==========
-    const mobileBtn = document.getElementById('mobileMenuBtn');
-    mobileBtn.addEventListener('click', ()=>{
-      const nav = document.querySelector('nav.main-nav');
-      if(nav.style.display === 'flex') nav.style.display = 'none';
-      else nav.style.display = 'flex';
-    });
-
-
+   <script>
     // ========== UTILS: set footer year ==========
     document.getElementById('year').textContent = new Date().getFullYear();
 
