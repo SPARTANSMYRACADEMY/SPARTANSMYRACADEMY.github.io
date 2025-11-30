@@ -362,10 +362,11 @@ sociedad.</p>
       <iframe src="Video de WhatsApp 2025-11-30 a las 08.49.08_5e629399.mp4" title="Video 1" allowfullscreen></iframe>
     </div>
   </section>
-
   <!-- SIMULADORES -->
     <section id="simuladores" class="page">
       <div class="section-title">Simuladores Académicos (haz clic en la materia)</div>
+      <p class="lead">Los simuladores se abren en un visor dentro de la página (iframe). Si tu Google Form NO permite embedding, lo abriremos en nueva pestaña.</p>
+
       <div class="accordion card" role="tablist" aria-label="Simuladores">
         <!-- Ciencias Sociales -->
         <div class="subject" data-sub="sociales">
@@ -474,8 +475,6 @@ sociedad.</p>
       </div>
     </section>
 
-
-
   <!-- INSCRIPCIONES -->
   <section id="inscripciones" class="ins-container" aria-labelledby="insTitle" style="margin-top:18px">
     <h2 id="insTitle" class="section-title" style="margin-bottom:12px">Formulario de Inscripción</h2>
@@ -501,50 +500,6 @@ sociedad.</p>
       </form>
     </div>
   </section>
-
-  <!-- CONTACTOS -->
-  <section id="contactos" class="card" style="margin-top:18px">
-    <div class="section-title">Contactos & Ubicación</div>
-    <p class="lead">Contáctanos para inscripciones, consultas o entrenamientos personalizados. Haz clic en los iconos para ir a nuestras redes.</p>
-
-    <div class="social-row" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
-      <a class="admin-link" href="https://www.facebook.com/profile.php?id=61584114427412" target="_blank"><i class="fab fa-facebook-f" style="margin-right:8px"></i>Facebook</a>
-      <a class="admin-link" href="https://www.instagram.com/spartanosmyr" target="_blank"><i class="fab fa-instagram" style="margin-right:8px"></i>Instagram</a>
-      <a class="admin-link" href="https://www.tiktok.com/@spartanosmyr" target="_blank"><i class="fab fa-tiktok" style="margin-right:8px"></i>TikTok</a>
-      <a class="admin-link" href="https://wa.me/593986912191?text=Hola%20quiero%20informaci%C3%B3n" target="_blank"><i class="fab fa-whatsapp" style="margin-right:8px"></i>WhatsApp</a>
-      <a class="admin-link" href="https://maps.app.goo.gl/qXHnbpxcqG8XPnpW7" target="_blank"><i class="fa-solid fa-location-dot" style="margin-right:8px"></i>Ubicación</a>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer>
-    <div style="max-width:1200px;margin:auto;color:var(--muted)">&copy; <span id="year"></span> Spartanos MyR ACADEMY — Todos los derechos reservados</div>
-    <small style="opacity:0.85">Juan de Velasco y Simón Bolívar · CC Casa Blanca Oficina 21 · +593967135717 · spartanosmyr@gmail.com</small>
-  </footer>
-</main>
-
-<!-- WHATSAPP FLOTANTE -->
-<a id="whatsappFloat" href="https://wa.me/593967135717?text=Hola%20quiero%20más%20información" target="_blank" aria-label="WhatsApp">
-  <i class="fa-brands fa-whatsapp"></i>
-</a>
-
-<!-- HUD overlay (decorative) -->
-<svg id="hud-overlay" width="100%" height="100%" style="position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:0.06">
-  <defs>
-    <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#7fff7f"/><stop offset="1" stop-color="#4a5b24"/></linearGradient>
-  </defs>
-  <!-- simple reticle top-left -->
-  <g transform="translate(40,40)" stroke="url(#g1)" stroke-width="1" fill="none">
-    <circle r="26" cx="0" cy="0"></circle>
-    <path d="M-34 0 H-18 M18 0 H34 M0 -34 V-18 M0 18 V34" stroke-width="1" />
-  </g>
-  <!-- corner lines -->
-  <g stroke="url(#g1)" stroke-width="1">
-    <path d="M20 100 H120" />
-    <path d="M100 20 V120" />
-  </g>
-</svg>
-
 <!-- SCRIPTS -->
   <script>
     // ========== CONFIG: REEMPLAZA ESTAS URLs CON TUS GOOGLE FORMS (usar ?embedded=true si es posible) ==========
@@ -625,6 +580,7 @@ sociedad.</p>
 
     // Accessibility: close with escape
     window.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeVisor(); closeChat(); closeAdmin(); }})
+
  
     // ========== MOBILE MENU (simple) ==========
     const mobileBtn = document.getElementById('mobileMenuBtn');
@@ -633,6 +589,8 @@ sociedad.</p>
       if(nav.style.display === 'flex') nav.style.display = 'none';
       else nav.style.display = 'flex';
     });
+
+
     // ========== UTILS: set footer year ==========
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -649,6 +607,48 @@ sociedad.</p>
 
 </body>
 </html>
+  <!-- CONTACTOS -->
+  <section id="contactos" class="card" style="margin-top:18px">
+    <div class="section-title">Contactos & Ubicación</div>
+    <p class="lead">Contáctanos para inscripciones, consultas o entrenamientos personalizados. Haz clic en los iconos para ir a nuestras redes.</p>
+
+    <div class="social-row" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+      <a class="admin-link" href="https://www.facebook.com/profile.php?id=61584114427412" target="_blank"><i class="fab fa-facebook-f" style="margin-right:8px"></i>Facebook</a>
+      <a class="admin-link" href="https://www.instagram.com/spartanosmyr" target="_blank"><i class="fab fa-instagram" style="margin-right:8px"></i>Instagram</a>
+      <a class="admin-link" href="https://www.tiktok.com/@spartanosmyr" target="_blank"><i class="fab fa-tiktok" style="margin-right:8px"></i>TikTok</a>
+      <a class="admin-link" href="https://wa.me/593986912191?text=Hola%20quiero%20informaci%C3%B3n" target="_blank"><i class="fab fa-whatsapp" style="margin-right:8px"></i>WhatsApp</a>
+      <a class="admin-link" href="https://maps.app.goo.gl/qXHnbpxcqG8XPnpW7" target="_blank"><i class="fa-solid fa-location-dot" style="margin-right:8px"></i>Ubicación</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div style="max-width:1200px;margin:auto;color:var(--muted)">&copy; <span id="year"></span> Spartanos MyR ACADEMY — Todos los derechos reservados</div>
+    <small style="opacity:0.85">Juan de Velasco y Simón Bolívar · CC Casa Blanca Oficina 21 · +593967135717 · spartanosmyr@gmail.com</small>
+  </footer>
+</main>
+
+<!-- WHATSAPP FLOTANTE -->
+<a id="whatsappFloat" href="https://wa.me/593967135717?text=Hola%20quiero%20más%20información" target="_blank" aria-label="WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+<!-- HUD overlay (decorative) -->
+<svg id="hud-overlay" width="100%" height="100%" style="position:fixed;inset:0;pointer-events:none;z-index:1000;opacity:0.06">
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1"><stop offset="0" stop-color="#7fff7f"/><stop offset="1" stop-color="#4a5b24"/></linearGradient>
+  </defs>
+  <!-- simple reticle top-left -->
+  <g transform="translate(40,40)" stroke="url(#g1)" stroke-width="1" fill="none">
+    <circle r="26" cx="0" cy="0"></circle>
+    <path d="M-34 0 H-18 M18 0 H34 M0 -34 V-18 M0 18 V34" stroke-width="1" />
+  </g>
+  <!-- corner lines -->
+  <g stroke="url(#g1)" stroke-width="1">
+    <path d="M20 100 H120" />
+    <path d="M100 20 V120" />
+  </g>
+</svg>
 
 <script>
 /* ===== small utilities ===== */
