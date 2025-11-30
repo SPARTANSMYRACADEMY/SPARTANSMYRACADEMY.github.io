@@ -52,6 +52,20 @@ body{
   background-image: url("3.jpg");
   background-size: cover; background-position:center; filter:brightness(0.45) saturate(.9);
 }
+   .brand img{
+  height:85px;           /* ⬅️ Antes 58px — ahora más grande */
+  width:85px;            /* tamaño cuadrado estilo insignia */
+  border-radius:12px;    /* menos redondo, más militar */
+  object-fit:cover;
+  border:2px solid rgba(0,255,0,0.4); /* borde neon verde tipo HUD */
+  box-shadow:0 0 18px rgba(0,255,0,0.3); /* brillo verde */
+  transition:0.35s ease;
+}
+
+.brand img:hover{
+  transform:scale(1.08);
+  box-shadow:0 0 25px rgba(0,255,0,0.6);
+}
 
 /* subtle grain overlay (SVG data) */
 .grain {
@@ -225,11 +239,11 @@ footer{ padding:26px 12px; text-align:center; color:var(--muted); margin-top:36p
 <!-- HEADER -->
     <header class="site-header" role="banner">
     <div class="header-inner">
-      <div class="brand" style="gap:40px">
+      <div class="brand" style="gap:80px">
         <img src="Mesa de trabajo 2.png" alt="Logo Spartanos">
         <div>
         <h1 style="margin:0;font-size:18px">SPARTANOS MyR ACADEMY</h1>
-        <div style="font-size:12px;color:rgba(255,255,255,0.7);margin-top:2px">Excelencia en Preparación Académica</div>
+        <div style="font-size:32px;color:rgba(255,255,255,0.7);margin-top:2px">Excelencia en Preparación Académica</div>
       </div>
     </div>
 
@@ -323,7 +337,7 @@ aspirantes en candidatos preparados y seguros de sus capacidades.</p>
   <!-- MISION -->
   <section id="mision" class="card" style="margin-top:18px">
     <div class="section-title">Misión</div>
-    <p class="Formar aspirantes altamente preparados
+    <p class="lead">Formar aspirantes altamente preparados
 física, académica y mentalmente, brindando 
 una capacitación de excelencia que les
 permita afrontar exitosamente los procesos 
