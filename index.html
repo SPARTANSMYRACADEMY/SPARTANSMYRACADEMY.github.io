@@ -491,10 +491,32 @@ sociedad.</p>
 
     // ========== INSCRIPCIONES: REEMPLAZA por tu URL de Google Apps Script (web app) ==========
     
+    Nombre | Teléfono | Email | Programa | Fecha
+    function doPost(e) {
+  try {
+    const sheet = SpreadsheetApp.getActive().getSheetByName("Inscripciones");
+    const data = JSON.parse(e.postData.contents);
+
+    sheet.appendRow([
+      data.nombre || "",
+      data.telefono || "",
+      data.email || "",
+      data.programa || "",
+      data.fecha || new Date()
+    ]);
+
+    return ContentService.createTextOutput("OK").setMimeType(ContentService.MimeType.TEXT);
+
+  } catch (err) {
+    return ContentService.createTextOutput("ERROR: " + err).setMimeType(ContentService.MimeType.TEXT);
+  }
+}
+   
+    
     // Cómo crear: Google Sheets -> Tools > Script editor -> crear web app que reciba POST y lo guarde -> desplegar como web app (anyone, even anonymous)
     const INSCRIPCIONES_WEBHOOK = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vTIHQWti8tJLZbvnO-DhahTYYBPHpASw_ZHW6IVjMGyAyQxIx6cQF9yR1s19NDjhdd6kz3GGr52Rpyd/pubhtml?gid=0&single=true';
 <script>
-const INSCRIPCIONES_WEBHOOK = "https://script.google.com/macros/s/AKfycbXXXXX/exec"; // ← pega tu URL aquí
+const INSCRIPCIONES_WEBHOOK = "https://docs.google.com/spreadsheets/d/1E1-BrajDVJ4Wc0x5KgeBbGNzz3Bxj6dziICrbLAVjjE/edit?gid=0#gid=0"; // ← pega tu URL aquí
 
 const insForm = document.getElementById('inscripcionForm');
 const insClear = document.getElementById('insClear');
