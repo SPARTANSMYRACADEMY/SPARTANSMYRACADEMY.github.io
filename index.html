@@ -1,7 +1,309 @@
- <div style="min-width:220px;text-align:right">
-        <a class="sim-btn" href="#simuladores" style="background:var(--verde-camuflaje);color:#07100b;padding:12px 16px;border-radius:10px;text-decoration:none;display:inline-block">Ver Simuladores</a>
-      </div>
-    </section>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>SPARTANOS MyR ACADEMY — Profesional</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<style>
+
+/* ============================
+   PALETA MILITAR PROFESIONAL
+   ============================ */
+:root{
+  --black:#0A0A0A;
+  --white:#F2F2F2;
+
+  --military-green:#4B5320;        /* Verde militar */
+  --military-green-dark:#2F3513;   /* Verde militar oscuro */
+
+  --gray:#2E2E2E;                  /* Plomo oscuro */
+  --gray-soft:#555;                /* Plomo claro */
+
+  --gold:#D4AF37;                  /* Detalles premium */
+
+  --glass:rgba(255,255,255,0.06);
+  --blur:blur(10px);
+  --radius:14px;
+
+  --transition:.28s ease;
+}
+
+/* ============================
+   GLOBAL
+   ============================ */
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:'Montserrat',sans-serif;
+  background:
+    linear-gradient(rgba(15,15,15,0.90), rgba(10,10,10,0.95)),
+    url('3.jpg') center/cover no-repeat fixed;
+  color:var(--white);
+  overflow-x:hidden;
+}
+
+/* Marca de agua */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url("logo.png") center/600px repeat;
+  opacity:0.025;
+  pointer-events:none;
+  z-index:0;
+}
+
+/* ============================
+   HEADER
+   ============================ */
+header{
+  position:fixed;
+  top:0;left:0;right:0;
+  padding:12px 0;
+  background:rgba(34,34,34,0.65);
+  backdrop-filter:var(--blur);
+  z-index:999;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+
+.nav-wrap{
+  max-width:1250px;
+  margin:auto;
+  padding:0 20px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:12px;
+}
+.brand img{
+  height:58px;
+  border-radius:50%;
+}
+.brand h1{
+  font-size:17px;
+  font-weight:700;
+  color:var(--military-green);
+}
+
+nav a{
+  color:var(--white);
+  opacity:.75;
+  text-decoration:none;
+  margin-left:22px;
+  font-weight:600;
+  transition:var(--transition);
+}
+nav a:hover{
+  color:var(--military-green);
+  opacity:1;
+}
+
+/* ============================
+   MAIN
+   ============================ */
+main{
+  max-width:1250px;
+  margin:auto;
+  padding:130px 20px 60px;
+  position:relative;
+  z-index:5;
+}
+
+/* ============================
+   HERO
+   ============================ */
+.hero{
+  background:var(--glass);
+  padding:40px;
+  border-radius:var(--radius);
+  backdrop-filter:var(--blur);
+  border:1px solid rgba(255,255,255,0.05);
+  display:flex;
+  flex-direction:column;
+  gap:22px;
+  text-align:center;
+  box-shadow:0 10px 45px rgba(0,0,0,0.6);
+}
+
+.hero h2{
+  font-size:32px;
+  font-weight:900;
+  color:var(--military-green);
+}
+
+.hero p{
+  font-size:17px;
+  color:var(--white);
+  opacity:.85;
+}
+
+/* Chips */
+.chips{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.chip{
+  background:var(--gray);
+  padding:8px 17px;
+  border-radius:50px;
+  font-weight:700;
+  color:var(--military-green);
+  border:1px solid rgba(255,255,255,0.09);
+}
+
+/* Botón principal */
+.btn-main{
+  display:inline-block;
+  background:var(--military-green);
+  color:#fff;
+  padding:14px 22px;
+  font-size:18px;
+  font-weight:800;
+  text-decoration:none;
+  border-radius:var(--radius);
+  transition:var(--transition);
+}
+.btn-main:hover{
+  background:var(--military-green-dark);
+  transform:translateY(-4px);
+}
+
+/* ============================
+   CARDS
+   ============================ */
+.card{
+  margin-top:40px;
+  background:var(--glass);
+  padding:30px;
+  border-radius:var(--radius);
+  backdrop-filter:var(--blur);
+  border:1px solid rgba(255,255,255,0.06);
+  box-shadow:0 8px 35px rgba(0,0,0,0.5);
+}
+
+.section-title{
+  font-size:26px;
+  font-weight:800;
+  color:var(--military-green);
+  border-left:5px solid var(--military-green);
+  padding-left:12px;
+  margin-bottom:18px;
+}
+
+.lead{
+  font-size:17px;
+  color:var(--white);
+  opacity:.75;
+  line-height:1.65;
+}
+
+/* ============================
+   GALERÍA
+   ============================ */
+.galeria{
+  display:grid;
+  grid-template-columns:repeat(auto-fit, minmax(240px,1fr));
+  gap:16px;
+}
+
+.galeria img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-radius:var(--radius);
+  filter:brightness(0.8);
+  transition:var(--transition);
+}
+.galeria img:hover{
+  filter:brightness(1);
+  transform:scale(1.05);
+}
+
+/* ============================
+   WHATSAPP FLOTANTE
+   ============================ */
+#whatsappFloat{
+  position:fixed;
+  bottom:22px;
+  right:22px;
+  width:70px;
+  height:70px;
+  display:grid;
+  place-items:center;
+  background:#25D366;
+  border-radius:50%;
+  color:white;
+  font-size:38px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.45);
+  transition:.25s;
+  z-index:999;
+}
+#whatsappFloat:hover{
+  transform:scale(1.1);
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <div class="brand">
+      <img src="logo.png">
+      <h1>SPARTANOS MyR ACADEMY</h1>
+    </div>
+
+    <nav>
+        <nav class="main-nav" role="navigation" aria-label="Main">
+          <a href="#inicio">Inicio</a>
+          <a href="#introduccion">Introducción</a>
+          <a href="#mision">Misión</a>
+          <a href="#vision">Visión</a>
+          <a href="#galeria">Galería</a>
+          <a href="#videos">Videos</a>
+          <a href="#simuladores">Simuladores</a>
+          <a href="#contactos">Contactos</a>
+        </nav>
+  </div>
+</header>
+
+<main>
+
+<section id="inicio" class="hero">
+  <h2>Formación Policial & Militar Profesional</h2>
+  <p>Simuladores – Entrenamiento – Preparación Física y Académica</p>
+
+  <div class="chips">
+    <div class="chip">Simuladores Avanzados</div>
+    <div class="chip">Preparación Física</div>
+    <div class="chip">Evaluación Real</div>
+    <div class="chip">Entrenos Elite</div>
+  </div>
+
+  <a class="btn-main" href="#inscripciones">INSCRIBIRME</a>
+</section>
+
+</main>
+
+<!-- WHATSAPP FLOAT -->
+<a id="whatsappFloat" href="https://wa.me/593000000000" target="_blank">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+</body>
+</html>
 
     <!-- INTRO -->
     <section id="introduccion" class="page">
@@ -393,11 +695,19 @@ document.getElementById("formInscripcion").addEventListener("submit", async func
 
 </section>
 
-  <!-- BOTÓN FLOTANTE WHATSAPP -->
-<a href="https://wa.me/593967135717?text=Hola%20quiero%20más%20información" 
-   class="btn-whatsapp" target="_blank" aria-label="WhatsApp">
-  <i class="fab fa-whatsapp"></i>
+ ...
+</main>
+
+<!-- WHATSAPP FLOTANTE -->
+<a href="https://wa.me/593000000?text=Hola%20Spartanos%20MyR%20Academy,%20necesito%20más%20información"
+   class="whatsapp-float"
+   target="_blank" aria-label="Contactar por WhatsApp">
+   <i class="fa-brands fa-whatsapp"></i>
 </a>
+
+</body>
+</html>
+
 
   <!-- FOOTER -->
   <footer style="padding:24px;text-align:center;background:linear-gradient(0deg, rgba(0,0,0,0.65), rgba(0,0,0,0.3));margin-top:40px">
