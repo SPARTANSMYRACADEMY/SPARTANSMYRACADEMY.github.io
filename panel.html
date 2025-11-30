@@ -1,30 +1,126 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Panel Admin</title>
+  <title>Panel Administrador | Spartanos Academy</title>
+
+  <style>
+    body {
+      font-family: "Inter", Arial;
+      background: #0f1113;
+      color: #dfffe0;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 28px;
+      margin-bottom: 20px;
+      text-transform: uppercase;
+      color: #71f497;
+      font-weight: 900;
+    }
+
+    .panel-box {
+      background: rgba(255,255,255,0.05);
+      padding: 20px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 4px 18px rgba(0,0,0,0.35);
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      font-size: 15px;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+      text-align: left;
+    }
+
+    th {
+      background: rgba(113, 244, 151, 0.20);
+      color: #0d1e12;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    tr:hover {
+      background: rgba(255,255,255,0.08);
+    }
+
+    /* Botón recargar */
+    .btn-recargar {
+      background: #71f497;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 10px;
+      font-size: 15px;
+      cursor: pointer;
+      font-weight: 900;
+      color: #0d1e12;
+      transition: 0.3s;
+      margin-bottom: 15px;
+    }
+
+    .btn-recargar:hover {
+      background: #4cd671;
+      transform: scale(1.05);
+    }
+
+  </style>
 </head>
-<body style="font-family:Arial;padding:20px">
 
-  <h2>Inscripciones Registradas</h2>
-  <table border="1" cellpadding="8" style="border-collapse:collapse;width:100%">
-    <thead id="tablaHead"></thead>
-    <tbody id="tablaBody"></tbody>
-  </table>
+<body>
 
+  <h2>Panel Administrador - Inscripciones</h2>
+
+  <div class="panel-box">
+    
+    <button class="btn-recargar" onclick="cargarInscripciones()">🔄 Recargar datos</button>
+
+    <table>
+      <thead id="tablaHead"></thead>
+      <tbody id="tablaBody"></tbody>
+    </table>
+  </div>
+
+  <!-- ========== SCRIPT DEL PANEL ADMIN ========== -->
   <script>
-    google.script.run.withSuccessHandler(registros => {
-      if (registros.length === 0) return;
+    function cargarInscripciones() {
 
-      const head = Object.keys(registros[0]);
-      document.getElementById("tablaHead").innerHTML =
-        "<tr>" + head.map(h => `<th>${h}</th>`).join("") + "</tr>";
+      google.script.run.withSuccessHandler(registros => {
 
-      document.getElementById("tablaBody").innerHTML =
-        registros.map(r =>
-          "<tr>" + head.map(h => `<td>${r[h]}</td>`).join("") + "</tr>"
-        ).join("");
-    }).getInscripciones();
+        if (!registros || registros.length === 0) {
+          document.getElementById("tablaHead").innerHTML =
+            "<tr><th>No hay registros</th></tr>";
+          return;
+        }
+
+        const head = Object.keys(registros[0]);
+
+        // Encabezado
+        document.getElementById("tablaHead").innerHTML =
+          "<tr>" + head.map(h => `<th>${h}</th>`).join("") + "</tr>";
+
+        // Filas
+        document.getElementById("tablaBody").innerHTML =
+          registros.map(r =>
+            "<tr>" + head.map(h => `<td>${r[h]}</td>`).join("") + "</tr>`
+          ).join("");
+      })
+      .getInscripciones();
+    }
+
+    // Cargar automáticamente al abrir
+    cargarInscripciones();
   </script>
 
 </body>
