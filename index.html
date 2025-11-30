@@ -545,7 +545,111 @@ sociedad.</p>
   </g>
 </svg>
 
-<!-- ========== SCRIPTS ========== -->
+<!-- SCRIPTS -->
+  <script>
+    // ========== CONFIG: REEMPLAZA ESTAS URLs CON TUS GOOGLE FORMS (usar ?embedded=true si es posible) ==========
+    const formUrls = {
+      FORM_SOCIALES_1: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_1/viewform?embedded=true',
+      FORM_SOCIALES_2: 'https://docs.google.com/forms/d/e/FORM_ID_SOCIALES_2/viewform?embedded=true',
+
+      FORM_MATE_1: 'https://forms.gle/3MEoVqysj7vS2oXz9',
+      FORM_MATE_2: 'https://forms.gle/ErToU3HhET3L2vTj8',
+
+      FORM_FISICA_1: 'https://forms.gle/FbRnNvNWoJEYpFbq9',
+      FORM_FISICA_2: 'https://forms.gle/D14m8aHj9Z9HRj1W7',
+
+      FORM_LENGUA_1: 'https://forms.gle/HLk9xtMNPVCtPNZk9',
+      FORM_LENGUA_2: 'https://forms.gle/rWAFfwdYVzDdVebo7',
+
+      FORM_INGLES_1: 'https://forms.gle/YqVwhn37aML63UJs9',
+      FORM_INGLES_2: 'https://forms.gle/hx9t9XuyMXmguiev6',
+
+      FORM_PSICO_1: 'https://forms.gle/WWCnhs71amLba9mT8',
+      FORM_PSICO_2: 'https://forms.gle/6rwGaeFWpTzMTuJ8A',
+    };
+
+    // Elements
+    const visor = document.getElementById('visor');
+    const formFrame = document.getElementById('formFrame');
+
+    // Open form (tries iframe, if blocked opens in new tab)
+    function openForm(btn){
+      const key = btn.getAttribute('data-form') || btn.dataset.form;
+      const url = formUrls[key];
+      if(!url){ alert('Formulario no configurado. Reemplaza formUrls en el script.'); return; }
+
+      // Try embedding in iframe; if X-Frame-Options blocks, user can still open in new tab
+      formFrame.src = url;
+      visor.classList.add('open');
+      visor.setAttribute('aria-hidden', 'false');
+
+      // small timeout: if iframe loads blank due to frame blocking, offer open in new tab
+      setTimeout(()=> {
+        try {
+          const fdoc = document.getElementById('formFrame').contentDocument;
+          // if cross-origin, accessing contentDocument may throw; ignore safely
+        } catch(e){
+          // If blocked, offer user to open in a new tab
+          // (We do not auto-open because browsers may block popups)
+          const openNew = confirm('Si el formulario no se muestra incrustado, ¿abrir en nueva pestaña?');
+          if(openNew) window.open(url,'_blank');
+        }
+      }, 900);
+    }
+
+    function closeVisor(){
+      formFrame.src = '';
+      visor.classList.remove('open');
+      visor.setAttribute('aria-hidden','true');
+    }
+
+    // Toggle subject panels
+    function toggleSubject(head){
+      const subject = head.closest('.subject');
+      const panel = subject.querySelector('.panel');
+      const expanded = head.getAttribute('aria-expanded') === 'true';
+      // close others
+      document.querySelectorAll('.subject .panel.open').forEach(p=>{
+        if(p !== panel){ p.classList.remove('open'); p.closest('.subject').querySelector('.head').setAttribute('aria-expanded','false'); p.closest('.subject').querySelector('.chev').style.transform='rotate(0deg)'; }
+      });
+      if(!expanded){
+        panel.classList.add('open');
+        head.setAttribute('aria-expanded','true');
+        head.querySelector('.chev').style.transform = 'rotate(90deg)';
+      } else {
+        panel.classList.remove('open');
+        head.setAttribute('aria-expanded','false');
+        head.querySelector('.chev').style.transform = 'rotate(0deg)';
+      }
+    }
+
+    // Accessibility: close with escape
+    window.addEventListener('keydown', (e)=> { if(e.key === 'Escape'){ closeVisor(); closeChat(); closeAdmin(); }})
+ 
+    // ========== MOBILE MENU (simple) ==========
+    const mobileBtn = document.getElementById('mobileMenuBtn');
+    mobileBtn.addEventListener('click', ()=>{
+      const nav = document.querySelector('nav.main-nav');
+      if(nav.style.display === 'flex') nav.style.display = 'none';
+      else nav.style.display = 'flex';
+    });
+    // ========== UTILS: set footer year ==========
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // ========== helper close chat/admin on outside click ==========
+    window.addEventListener('click', (e)=>{
+      if(e.target.classList && e.target.classList.contains('visor')) closeVisor();
+    });
+
+    // ========== small accessibility: focus outlines on keyboard nav ==========
+    window.addEventListener('keydown', (e)=>{
+      if(e.key === 'Tab') document.body.classList.add('kbd-nav');
+    });
+  </script>
+
+</body>
+</html>
+
 <script>
 /* ===== small utilities ===== */
 document.getElementById('year').textContent = new Date().getFullYear();
