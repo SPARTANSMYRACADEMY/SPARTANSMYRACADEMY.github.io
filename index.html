@@ -421,67 +421,59 @@ sociedad.</p>
         <a class="social-btn" href="https://wa.me/593986912191?text=Hola%20quiero%20informaci%C3%B3n" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i> WhatsApp</a>
         <a class="social-btn" href="https://maps.app.goo.gl/qXHnbpxcqG8XPnpW7" target="_blank" rel="noopener"><i class="fa-solid fa-location-dot"></i> Ubicación</a>
       </div>
-<!-- Inscripciones -->
-<div style="max-width:720px;margin:18px auto 0 auto;" class="card">
-  <div style="font-weight:800;margin-bottom:8px">Formulario de Inscripción</div>
+<!-- FORMULARIO INSCRIPCIÓN -->
+<section id="inscripciones" style="padding:20px">
 
-  <form id="AKfycbzDkIgea5k94er2LcQhkr0bd4_3gZ6xTfjfc3vGoGYdBw3AfRbe4ZMC0CDatw1AiRzs">
-    <input name="nombre" id="ins_nombre" placeholder="Nombre completo" required style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
-    <input name="telefono" id="ins_telefono" placeholder="Teléfono" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
-    <input name="email" id="ins_email" type="email" placeholder="Correo" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
+  <h2>Formulario de Inscripción</h2>
 
-    <select id="ins_programa" name="programa" style="width:100%;padding:10px;border-radius:8px;border:1px solid #ccc;margin-bottom:8px">
+  <form id="formInscripcion">
+    <input name="nombre" id="ins_nombre" placeholder="Nombre completo" required>
+    <input name="telefono" id="ins_telefono" placeholder="Teléfono">
+    <input name="email" id="ins_email" type="email" placeholder="Correo">
+
+    <select id="ins_programa" name="programa" required>
       <option value="">Selecciona programa</option>
       <option>Preparación Policial</option>
       <option>Preparación Militar</option>
       <option>Simuladores Académicos</option>
     </select>
 
-    <div style="display:flex;gap:8px">
-      <button type="submit" style="flex:1;padding:10px;border-radius:8px;border:0;background:var(--verde-camuflaje);color:#07100b;font-weight:800">Inscribirme</button>
-      <button type="button" id="insClear" style="flex:0 0 120px;padding:10px;border-radius:8px;border:0;background:#444;color:white">Limpiar</button>
-    </div>
-
-    <small id="msgIns" style="display:block;margin-top:8px;color:white"></small>
+    <button type="submit">Inscribirme</button>
   </form>
-</div>
 
+  <p id="msg" style="margin-top:10px;color:green"></p>
+
+  <!-- BOTÓN PANEL ADMIN -->
+  <a href="TU_WEB_APP_URL" target="_blank"
+     style="display:block;margin-top:25px;font-weight:bold;color:#00f">
+     Acceder al Panel Administrador
+  </a>
+
+</section>
+
+
+<!-- SCRIPT PARA ENVIAR A GOOGLE SHEETS -->
 <script>
-  const WEBHOOK = "https://script.google.com/macros/s/AKfycbzDkIgea5k94er2LcQhkr0bd4_3gZ6xTfjfc3vGoGYdBw3AfRbe4ZMC0CDatw1AiRzs/exec";
+document.getElementById("formInscripcion").addEventListener("submit", async function(e) {
+  e.preventDefault();
 
-  document.getElementById("formInscripcion").addEventListener("submit", async (e) => {
-    e.preventDefault();
+  const data = {
+    nombre: document.getElementById("ins_nombre").value,
+    telefono: document.getElementById("ins_telefono").value,
+    email: document.getElementById("ins_email").value,
+    programa: document.getElementById("ins_programa").value
+  };
 
-    const datos = {
-      nombre: document.getElementById("ins_nombre").value,
-      telefono: document.getElementById("ins_telefono").value,
-      email: document.getElementById("ins_email").value,
-      programa: document.getElementById("ins_programa").value
-    };
-
-    const msg = document.getElementById("msgIns");
-    msg.textContent = "Enviando...";
-    
-    try {
-      const r = await fetch(WEBHOOK, {
-        method: "POST",
-        body: JSON.stringify(datos),
-        headers: { "Content-Type": "application/json" }
-      });
-
-      msg.textContent = "¡Inscripción enviada correctamente!";
-      msg.style.color = "#7CFC00";
-
-      document.getElementById("formInscripcion").reset();
-    } catch (error) {
-      msg.textContent = "Error al enviar.";
-      msg.style.color = "red";
-    }
+  const r = await fetch("TU_WEB_APP_URL", {
+    method: "POST",
+    mode: "no-cors",
+    headers: { "https://script.google.com/macros/s/AKfycbwjYOmy04PKi3dVbX0EhSuDyuZIMBLt-kWsJ1IQICpjOsHDpD7KwU6xBFBi1lP6wHDO/exec": "application/json" },
+    body: JSON.stringify(data)
   });
 
-  document.getElementById("insClear").onclick = () => {
-    document.getElementById("formInscripcion").reset();
-  };
+  document.getElementById("msg").textContent = "✓ Inscripción enviada correctamente";
+  document.getElementById("formInscripcion").reset();
+});
 </script>
 
   <!-- VISOR / MODAL para Google Forms -->
