@@ -298,42 +298,6 @@ footer{ padding:26px 12px; text-align:center; color:var(--muted); margin-top:36p
 </style>
 </head>
 <body>
-<div id="fb-root"></div>
-<script async defer crossorigin="anonymous" 
-  src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v18.0" 
-  nonce="XYZ123">
-</script>
-<div class="fb-like" 
-     data-href="https://www.facebook.com/profile.php?id=61584114427412" 
-     data-width=""
-     data-layout="standard" 
-     data-action="like" 
-     data-size="large" 
-     data-share="true">
-</div>
-<button id="likeBtn" style="
-  padding:12px 20px;
-  background:#2d7d46;
-  color:white;
-  border:none;
-  border-radius:10px;
-  font-size:18px;
-  cursor:pointer;">
-  👍 Me gusta <span id="likesCount">0</span>
-</button>
-
-<script>
-  let likes = localStorage.getItem("likes") || 0;
-  document.getElementById("likesCount").innerText = likes;
-
-  document.getElementById("likeBtn").onclick = function() {
-    likes++;
-    localStorage.setItem("likes", likes);
-    document.getElementById("likesCount").innerText = likes;
-    this.innerText = "👍 ¡Gracias!";
-    setTimeout(()=> location.reload(), 500);
-  };
-</script>
 
 <!-- BACKGROUNDS & CANVAS -->
 <div id="bg"></div>
@@ -408,7 +372,44 @@ Aumenta tus puntajes, pule tus habilidades y entra con ventaja a cualquier proce
             <div style="font-weight:900;font-size:18px;color:var(--military)">Limitadas</div>
           </div>
         </div>
+----------------------------------------
+         <div id="fb-root"></div>
+<script async defer crossorigin="anonymous" 
+  src="https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v18.0" 
+  nonce="XYZ123">
+</script>
+<div class="fb-like" 
+     data-href="https://www.facebook.com/profile.php?id=61584114427412" 
+     data-width=""
+     data-layout="standard" 
+     data-action="like" 
+     data-size="large" 
+     data-share="true">
+</div>
+<button id="likeBtn" style="
+  padding:12px 20px;
+  background:#2d7d46;
+  color:white;
+  border:none;
+  border-radius:10px;
+  font-size:18px;
+  cursor:pointer;">
+  👍 Me gusta <span id="likesCount">0</span>
+</button>
 
+<script>
+  let likes = localStorage.getItem("likes") || 0;
+  document.getElementById("likesCount").innerText = likes;
+
+  document.getElementById("likeBtn").onclick = function() {
+    likes++;
+    localStorage.setItem("likes", likes);
+    document.getElementById("likesCount").innerText = likes;
+    this.innerText = "👍 ¡Gracias!";
+    setTimeout(()=> location.reload(), 500);
+  };
+</script>
+         -------------------------
         <hr style="margin:12px 0 14px;border:none;border-top:1px solid rgba(255,255,255,0.04)">
 
         <div style="display:flex;gap:8px;align-items:center">
